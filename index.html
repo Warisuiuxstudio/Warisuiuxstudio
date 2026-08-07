@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muhammad Waris — Senior UI/UX & Product Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== Tailwind-style Utilities & Design System (Original) ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --radius: 1rem;
+            --background: oklch(0.985 0.004 265);
+            --foreground: oklch(0.17 0.03 265);
+            --card: oklch(1 0 0);
+            --card-foreground: oklch(0.17 0.03 265);
+            --popover: oklch(1 0 0);
+            --popover-foreground: oklch(0.17 0.03 265);
+            --primary: oklch(0.55 0.21 285);
+            --primary-foreground: oklch(0.99 0 0);
+            --secondary: oklch(0.95 0.015 270);
+            --secondary-foreground: oklch(0.25 0.04 275);
+            --muted: oklch(0.955 0.01 270);
+            --muted-foreground: oklch(0.5 0.03 270);
+            --accent: oklch(0.68 0.15 225);
+            --accent-foreground: oklch(0.15 0.03 265);
+            --border: oklch(0.9 0.012 270);
+            --input: oklch(0.9 0.012 270);
+            --ring: oklch(0.55 0.21 285);
+            --surface: oklch(1 0 0 / 0.7);
+            --glow: oklch(0.62 0.22 292 / 0.35);
+            --gradient-brand: linear-gradient(120deg, oklch(0.6 0.22 292), oklch(0.66 0.16 225));
+            --gradient-glow: radial-gradient(60% 60% at 50% 0%, var(--glow), transparent 70%);
+            --shadow-luxe: 0 30px 80px -30px oklch(0.4 0.15 285 / 0.45);
+        }
+        .dark {
+            --background: oklch(0.16 0.022 270);
+            --foreground: oklch(0.97 0.005 270);
+            --card: oklch(0.21 0.025 272);
+            --card-foreground: oklch(0.97 0.005 270);
+            --popover: oklch(0.2 0.025 272);
+            --popover-foreground: oklch(0.97 0.005 270);
+            --primary: oklch(0.68 0.19 290);
+            --primary-foreground: oklch(0.14 0.02 270);
+            --secondary: oklch(0.26 0.03 272);
+            --secondary-foreground: oklch(0.95 0.01 270);
+            --muted: oklch(0.25 0.028 272);
+            --muted-foreground: oklch(0.72 0.02 272);
+            --accent: oklch(0.74 0.14 220);
+            --accent-foreground: oklch(0.15 0.02 270);
+            --border: oklch(0.3 0.03 272);
+            --input: oklch(0.3 0.03 272);
+            --ring: oklch(0.68 0.19 290);
+            --surface: oklch(0.24 0.03 272 / 0.6);
+            --glow: oklch(0.65 0.22 292 / 0.45);
+            --shadow-luxe: 0 40px 100px -40px oklch(0.6 0.2 292 / 0.55);
+        }
+        body { font-family: 'Manrope', sans-serif; background: var(--background); color: var(--foreground); transition: background 0.3s, color 0.3s; line-height: 1.6; scroll-behavior: smooth; }
+        h1, h2, h3, h4, .font-display { font-family: 'Sora', sans-serif; letter-spacing: -0.02em; }
+
+        .container { max-width: 1180px; width: 92vw; margin: 0 auto; }
+        .glass { background: var(--surface); backdrop-filter: blur(18px); border: 1px solid color-mix(in oklab, var(--border) 80%, transparent); border-radius: var(--radius); }
+        .text-gradient { background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .bg-brand { background: var(--gradient-brand); }
+        .shadow-luxe { box-shadow: var(--shadow-luxe); }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.75s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+        @keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+        @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 oklch(0.72 0.19 145 / 0.6); } 70% { box-shadow: 0 0 0 16px oklch(0.72 0.19 145 / 0); } 100% { box-shadow: 0 0 0 0 oklch(0.72 0.19 145 / 0); } }
+        .animate-float { animation: float-y 7s ease-in-out infinite; }
+        .animate-pulse-ring { animation: pulse-ring 2.4s infinite; }
+
+        .gradient-glow { position: absolute; inset-x: 0; top: -150px; height: 500px; background: var(--gradient-glow); pointer-events: none; }
+
+        /* ===== NAVBAR ===== */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 16px 0; transition: all 0.3s; }
+        nav.scrolled { padding: 8px 0; }
+        nav .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; border-radius: 1rem; transition: all 0.3s; }
+        nav.scrolled .nav-inner { background: var(--surface); backdrop-filter: blur(18px); border: 1px solid var(--border); box-shadow: var(--shadow-luxe); }
+        nav .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--foreground); }
+        nav .logo span { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; background: var(--gradient-brand); color: #fff; font-weight: 600; }
+        nav .links { display: none; gap: 4px; }
+        nav .links a { padding: 6px 12px; border-radius: 999px; font-size: 14px; color: var(--muted-foreground); text-decoration: none; transition: 0.2s; }
+        nav .links a:hover { background: rgba(255,255,255,0.1); color: var(--foreground); }
+        nav .actions { display: flex; align-items: center; gap: 8px; }
+        nav .actions .theme-btn { border: 1px solid var(--border); background: transparent; border-radius: 10px; padding: 8px; cursor: pointer; color: var(--muted-foreground); }
+        nav .actions .theme-btn:hover { color: var(--foreground); }
+        nav .actions .cv-btn { display: none; background: var(--gradient-brand); color: #fff; padding: 6px 14px; border-radius: 10px; font-size: 14px; text-decoration: none; }
+        nav .actions .menu-btn { border: 1px solid var(--border); background: transparent; border-radius: 10px; padding: 8px; cursor: pointer; color: var(--foreground); display: block; }
+        .mobile-menu { display: none; margin-top: 8px; padding: 8px; border-radius: 1rem; }
+        .mobile-menu.open { display: block; }
+        .mobile-menu a { display: block; padding: 10px 14px; border-radius: 10px; font-size: 14px; color: var(--muted-foreground); text-decoration: none; }
+        .mobile-menu a:hover { background: rgba(255,255,255,0.1); color: var(--foreground); }
+
+        @media (min-width: 1024px) {
+            nav .links { display: flex; }
+            nav .actions .menu-btn { display: none; }
+            nav .actions .cv-btn { display: inline-flex; align-items: center; gap: 6px; }
+            .mobile-menu { display: none !important; }
+        }
+
+        /* ===== HERO ===== */
+        .hero { position: relative; overflow: hidden; padding-top: 140px; padding-bottom: 96px; }
+        .hero .grid { display: grid; gap: 40px; align-items: center; }
+        @media (min-width: 1024px) { .hero .grid { grid-template-columns: 1.15fr 0.85fr; } }
+        .hero h1 { font-size: 2.5rem; line-height: 1.05; margin-top: 24px; }
+        .hero h1 .highlight { display: inline-block; }
+        .hero p { max-width: 36rem; margin-top: 24px; font-size: 1.125rem; color: var(--muted-foreground); }
+        .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+        .hero .cta a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 12px; font-size: 14px; text-decoration: none; transition: 0.2s; }
+        .hero .cta .primary { background: var(--gradient-brand); color: #fff; }
+        .hero .cta .primary:hover { transform: scale(1.03); }
+        .hero .cta .secondary { border: 1px solid var(--border); color: var(--foreground); }
+        .hero .cta .secondary:hover { background: rgba(255,255,255,0.05); }
+        .hero .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 32rem; margin-top: 48px; }
+        @media (min-width: 640px) { .hero .stats { grid-template-columns: repeat(4, 1fr); } }
+        .hero .stats div dt { font-size: 1.875rem; font-weight: 600; font-family: 'Sora', sans-serif; }
+        .hero .stats div dd { font-size: 12px; color: var(--muted-foreground); margin-top: 4px; }
+
+        .hero-image-wrapper { position: relative; max-width: 24rem; margin: 0 auto; width: 100%; }
+        .hero-image-wrapper .glow-blob { position: absolute; inset: -24px; border-radius: 40px; background: var(--gradient-brand); opacity: 0.28; filter: blur(50px); }
+        .hero-image-wrapper .card { position: relative; overflow: hidden; border-radius: 32px; padding: 12px; background: var(--surface); backdrop-filter: blur(18px); border: 1px solid var(--border); box-shadow: var(--shadow-luxe); }
+        .hero-image-wrapper .card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 24px; }
+        .hero-image-wrapper .card-footer { display: flex; justify-content: space-between; align-items: center; padding: 12px 12px 4px; }
+        .hero-image-wrapper .card-footer div p { margin: 0; font-size: 14px; font-weight: 600; }
+        .hero-image-wrapper .card-footer div small { font-size: 12px; color: var(--muted-foreground); }
+        .hero-image-wrapper .card-footer .sparkle { display: grid; place-items: center; width: 36px; height: 36px; background: var(--gradient-brand); border-radius: 10px; color: #fff; }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 96px 0; scroll-margin-top: 100px; }
+        .section-heading { max-width: 40rem; margin: 0 auto 48px; text-align: center; }
+        .section-heading .eyebrow { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); padding: 4px 12px; border-radius: 999px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted-foreground); }
+        .section-heading h2 { font-size: 2.25rem; margin-top: 20px; }
+        @media (min-width: 768px) { .section-heading h2 { font-size: 3rem; } }
+        .section-heading p { margin-top: 16px; color: var(--muted-foreground); }
+
+        .grid-2 { display: grid; gap: 24px; }
+        @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+        .grid-3 { display: grid; gap: 24px; }
+        @media (min-width: 768px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 1024px) { .grid-3 { grid-template-columns: 1fr 1fr 1fr; } }
+
+        .card-glass { padding: 24px; border-radius: 1.5rem; background: var(--surface); backdrop-filter: blur(18px); border: 1px solid var(--border); transition: all 0.3s; }
+        .card-glass:hover { transform: translateY(-4px); box-shadow: var(--shadow-luxe); }
+
+        .about-grid { display: grid; gap: 48px; }
+        @media (min-width: 1024px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+        .about-text p { margin-top: 16px; color: var(--muted-foreground); }
+
+        .skill-item { margin-top: 16px; }
+        .skill-item .header { display: flex; justify-content: space-between; font-size: 14px; }
+        .skill-item .header span:last-child { color: var(--muted-foreground); }
+        .skill-item .bar { height: 6px; background: rgba(255,255,255,0.1); border-radius: 999px; margin-top: 6px; overflow: hidden; }
+        .skill-item .bar .fill { height: 100%; background: var(--gradient-brand); border-radius: 999px; }
+
+        .work-filters { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+        @media (min-width: 1024px) { .work-filters { flex-direction: row; justify-content: space-between; align-items: center; } }
+        .work-filters .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+        .work-filters .tabs button { border: 1px solid var(--border); background: transparent; padding: 8px 16px; border-radius: 999px; font-size: 14px; color: var(--muted-foreground); cursor: pointer; transition: 0.2s; }
+        .work-filters .tabs button.active { background: var(--gradient-brand); color: #fff; border-color: transparent; }
+        .work-filters .controls { display: flex; gap: 8px; }
+        .work-filters .controls input { background: var(--surface); border: 1px solid var(--border); padding: 8px 12px; border-radius: 10px; font-size: 14px; color: var(--foreground); outline: none; }
+        .work-filters .controls select { background: var(--surface); border: 1px solid var(--border); padding: 8px 12px; border-radius: 10px; font-size: 14px; color: var(--foreground); outline: none; }
+
+        .projects-grid { column-count: 1; column-gap: 24px; margin-top: 40px; }
+        .projects-grid .item { break-inside: avoid; margin-bottom: 24px; }
+        @media (min-width: 640px) { .projects-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .projects-grid { column-count: 3; } }
+        .project-card { display: block; padding: 6px; border-radius: 1.5rem; background: var(--surface); backdrop-filter: blur(18px); border: 1px solid var(--border); text-decoration: none; transition: 0.3s; color: inherit; }
+        .project-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-luxe); }
+        .project-card .cover { position: relative; border-radius: 1.35rem; min-height: 250px; padding: 24px; display: flex; flex-direction: column; justify-content: flex-end; }
+        .project-card .cover .top { display: flex; justify-content: space-between; align-items: flex-start; position: absolute; top: 24px; left: 24px; right: 24px; }
+        .project-card .cover .top span { background: rgba(255,255,255,0.7); padding: 4px 12px; border-radius: 999px; font-size: 12px; }
+        .project-card .cover .top .icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 999px; background: rgba(255,255,255,0.7); transition: 0.3s; }
+        .project-card:hover .cover .top .icon { transform: rotate(45deg); }
+        .project-card .cover h3 { font-size: 1.5rem; margin-top: 8px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .project-card .cover p { color: rgba(255,255,255,0.8); }
+        .project-card .tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px; }
+        .project-card .tags span { border: 1px solid var(--border); padding: 4px 10px; border-radius: 999px; font-size: 12px; color: var(--muted-foreground); }
+
+        .contact-grid { display: grid; gap: 40px; }
+        @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+        .contact-links a { display: flex; justify-content: space-between; padding: 16px 20px; border-radius: 1rem; text-decoration: none; color: inherit; transition: 0.2s; margin-bottom: 12px; }
+        .contact-links a:hover { transform: translateY(-2px); }
+        .contact-links a span:first-child { font-size: 12px; text-transform: uppercase; color: var(--muted-foreground); letter-spacing: 0.18em; }
+        .contact-links a span:last-child { font-size: 14px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); background: var(--background); color: var(--foreground); font-family: inherit; font-size: 14px; outline: none; }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--primary); }
+        .contact-form button { width: 100%; padding: 12px; border-radius: 12px; background: var(--gradient-brand); border: none; color: #fff; font-weight: 500; cursor: pointer; transition: 0.2s; }
+        .contact-form button:hover { transform: scale(1.02); }
+
+        footer { border-top: 1px solid var(--border); padding: 64px 0 24px; }
+        .footer-grid { display: grid; gap: 40px; }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+        .footer-links ul { list-style: none; margin-top: 16px; }
+        .footer-links ul li { margin-top: 8px; }
+        .footer-links ul li a { text-decoration: none; color: var(--muted-foreground); font-size: 14px; transition: 0.2s; }
+        .footer-links ul li a:hover { color: var(--foreground); }
+        .footer-copy { text-align: center; font-size: 12px; color: var(--muted-foreground); margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+
+        .whatsapp-fab { position: fixed; bottom: 24px; right: 24px; z-index: 40; width: 56px; height: 56px; border-radius: 999px; background: oklch(0.72 0.19 145); color: oklch(0.14 0.02 150); display: grid; place-items: center; box-shadow: var(--shadow-luxe); transition: 0.2s; text-decoration: none; }
+        .whatsapp-fab:hover { transform: scale(1.1); }
+        .whatsapp-fab svg { width: 24px; height: 24px; fill: currentColor; }
+
+        @media (max-width: 640px) { .hero h1 { font-size: 2rem; } }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } .animate-float, .animate-pulse-ring { animation: none; } }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="#" class="logo">
+                    <span>MW</span>
+                    <span style="display:none; @media(min-width:640px){display:block;} font-size:14px; font-weight:500;">Muhammad Waris</span>
+                </a>
+                <div class="links">
+                    <a href="#about">About</a>
+                    <a href="#work">Work</a>
+                    <a href="#services">Services</a>
+                    <a href="#process">Process</a>
+                    <a href="#journey">Journey</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="actions">
+                    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+                        <span id="themeIcon" style="font-size:16px;">🌙</span>
+                    </button>
+                    <a href="#" class="cv-btn" id="cvBtn">📄 CV</a>
+                    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+                </div>
+            </div>
+            <div class="mobile-menu glass" id="mobileMenu">
+                <a href="#about">About</a>
+                <a href="#work">Work</a>
+                <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#journey">Journey</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="gradient-glow"></div>
+        <div class="container">
+            <div class="grid">
+                <div>
+                    <div class="reveal">
+                        <span style="display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:4px 12px; border-radius:999px; font-size:12px; color:var(--muted-foreground);">
+                            <span style="width:8px; height:8px; border-radius:999px; background:oklch(0.72 0.19 145); display:inline-block;"></span>
+                            Available for new projects · PKT (UTC+5)
+                        </span>
+                    </div>
+                    <div class="reveal" style="transition-delay:80ms;">
+                        <h1>
+                            Designing digital<br />
+                            products people<br />
+                            <span class="text-gradient">actually enjoy.</span>
+                        </h1>
+                    </div>
+                    <div class="reveal" style="transition-delay:160ms;">
+                        <p>I'm <strong style="color:var(--foreground);">Muhammad Waris</strong> — UI/UX & Product Designer based in Karachi, Pakistan. I design modern, clean and conversion-focused mobile and web products.</p>
+                    </div>
+                    <div class="reveal cta" style="transition-delay:240ms;">
+                        <a href="#work" class="primary">View my work ↓</a>
+                        <a href="#" id="heroCvBtn" class="secondary">📄 Download CV</a>
+                    </div>
+                    <div class="reveal stats" style="transition-delay:320ms;">
+                        <div><dt>5+</dt><dd>Years designing</dd></div>
+                        <div><dt>40+</dt><dd>Products shipped</dd></div>
+                        <div><dt>20+</dt><dd>Happy clients</dd></div>
+                        <div><dt>6</dt><dd>Featured case studies</dd></div>
+                    </div>
+                </div>
+                <div class="reveal hero-image-wrapper" style="transition-delay:200ms;">
+                    <div class="glow-blob"></div>
+                    <div class="card animate-float">
+                        <img src="https://ui-avatars.com/api/?name=Muhammad+Waris&size=720&background=6d5df6&color=fff&bold=true" alt="Muhammad Waris" />
+                        <div class="card-footer">
+                            <div>
+                                <p>Muhammad Waris</p>
+                                <small>UI/UX & Product Designer</small>
+                            </div>
+                            <div class="sparkle">✦</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <div class="section-heading" style="text-align:left; margin:0;">
+                        <span class="eyebrow">About</span>
+                        <h2>Design that earns its place</h2>
+                    </div>
+                    <div class="reveal about-text">
+                        <p>Creative and detail-oriented UI/UX Designer with strong experience designing modern, clean and user-friendly mobile and web applications. Skilled in user research, wireframing, prototyping, design systems and high-fidelity interfaces using Figma, Adobe XD, Photoshop and Illustrator.</p>
+                        <p>I care about the boring details — spacing rhythm, empty states, error copy, tap targets — because that's what separates a pretty mockup from a product that works.</p>
+                    </div>
+                    <div class="reveal" style="margin-top:32px; background:var(--surface); padding:20px; border-radius:1.5rem; border:1px solid var(--border);">
+                        <p style="font-weight:600; font-size:18px;">Freelance UI/UX Designer</p>
+                        <p style="font-size:14px; color:var(--muted-foreground);">Upwork, Fiverr & Local Clients · April 2022 – Present</p>
+                        <ul style="list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+                            <li style="display:flex; gap:8px; font-size:14px; color:var(--muted-foreground);">✓ Designed modern mobile applications, dashboards, landing pages and websites for international clients.</li>
+                            <li style="display:flex; gap:8px; font-size:14px; color:var(--muted-foreground);">✓ Created professional wireframes, user flows and high-fidelity prototypes using Figma.</li>
+                            <li style="display:flex; gap:8px; font-size:14px; color:var(--muted-foreground);">✓ Worked with local business owners to improve brand identity and digital user experience.</li>
+                            <li style="display:flex; gap:8px; font-size:14px; color:var(--muted-foreground);">✓ Delivered clean, responsive and user-focused UI for startups and small businesses.</li>
+                            <li style="display:flex; gap:8px; font-size:14px; color:var(--muted-foreground);">✓ Managed multiple client projects with strong communication and timely delivery.</li>
+                            <li style="display:flex; gap:8px; font-size:14px; color:var(--muted-foreground);">✓ Specialised in premium interfaces for e-commerce, food delivery, booking, salon and luxury brands.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:24px;">
+                    <div class="reveal glass card-glass">
+                        <p style="font-weight:600; margin-bottom:20px;">Skills</p>
+                        <div class="skill-item"><div class="header"><span>UI Design</span><span>96%</span></div><div class="bar"><div class="fill" style="width:96%;"></div></div></div>
+                        <div class="skill-item"><div class="header"><span>UX Design</span><span>92%</span></div><div class="bar"><div class="fill" style="width:92%;"></div></div></div>
+                        <div class="skill-item"><div class="header"><span>Figma</span><span>98%</span></div><div class="bar"><div class="fill" style="width:98%;"></div></div></div>
+                        <div class="skill-item"><div class="header"><span>Prototyping</span><span>93%</span></div><div class="bar"><div class="fill" style="width:93%;"></div></div></div>
+                        <div class="skill-item"><div class="header"><span>Design Systems</span><span>90%</span></div><div class="bar"><div class="fill" style="width:90%;"></div></div></div>
+                        <div class="skill-item"><div class="header"><span>Responsive Design</span><span>94%</span></div><div class="bar"><div class="fill" style="width:94%;"></div></div></div>
+                        <div class="skill-item"><div class="header"><span>Wireframing</span><span>95%</span></div><div class="bar"><div class="fill" style="width:95%;"></div></div></div>
+                        <div class="skill-item"><div class="header"><span>User Research</span><span>85%</span></div><div class="bar"><div class="fill" style="width:85%;"></div></div></div>
+                        <div class="skill-item"><div class="header"><span>Interaction Design</span><span>88%</span></div><div class="bar"><div class="fill" style="width:88%;"></div></div></div>
+                    </div>
+                    <div class="reveal glass card-glass" style="transition-delay:80ms;">
+                        <p style="font-weight:600;">Education</p>
+                        <ul style="list-style:none; margin-top:16px;">
+                            <li style="display:flex; justify-content:space-between; padding:8px 0; font-size:14px; border-bottom:1px solid var(--border);"><div><strong>Virtual University</strong><br /><span style="color:var(--muted-foreground);">UI/UX Design</span></div><span style="color:var(--muted-foreground);">2023 – 2024</span></li>
+                            <li style="display:flex; justify-content:space-between; padding:8px 0; font-size:14px;"><div><strong>Computer Collegiate</strong><br /><span style="color:var(--muted-foreground);">Graphic Design</span></div><span style="color:var(--muted-foreground);">2023</span></li>
+                            <li style="display:flex; justify-content:space-between; padding:8px 0; font-size:14px;"><div><strong>Shah Abdul Latif University, Khairpur</strong><br /><span style="color:var(--muted-foreground);">Science</span></div><span style="color:var(--muted-foreground);">2023 – 2025</span></li>
+                            <li style="display:flex; justify-content:space-between; padding:8px 0; font-size:14px;"><div><strong>Govt. Boys Higher School Bakrani</strong><br /><span style="color:var(--muted-foreground);">Pre-Medical</span></div><span style="color:var(--muted-foreground);">2020 – 2022</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TOOLBOX ===== -->
+    <section style="padding:40px 0;">
+        <div class="container">
+            <div class="reveal glass" style="padding:32px 24px; text-align:center;">
+                <p style="font-size:12px; text-transform:uppercase; letter-spacing:0.24em; color:var(--muted-foreground);">Daily toolbox</p>
+                <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:24px;">
+                    <span style="border:1px solid var(--border); padding:12px 20px; border-radius:1rem; font-size:14px; color:var(--muted-foreground);">Figma</span>
+                    <span style="border:1px solid var(--border); padding:12px 20px; border-radius:1rem; font-size:14px; color:var(--muted-foreground);">FigJam</span>
+                    <span style="border:1px solid var(--border); padding:12px 20px; border-radius:1rem; font-size:14px; color:var(--muted-foreground);">Adobe XD</span>
+                    <span style="border:1px solid var(--border); padding:12px 20px; border-radius:1rem; font-size:14px; color:var(--muted-foreground);">Photoshop</span>
+                    <span style="border:1px solid var(--border); padding:12px 20px; border-radius:1rem; font-size:14px; color:var(--muted-foreground);">Illustrator</span>
+                    <span style="border:1px solid var(--border); padding:12px 20px; border-radius:1rem; font-size:14px; color:var(--muted-foreground);">Notion</span>
+                    <span style="border:1px solid var(--border); padding:12px 20px; border-radius:1rem; font-size:14px; color:var(--muted-foreground);">GitHub</span>
+                    <span style="border:1px solid var(--border); padding:12px 20px; border-radius:1rem; font-size:14px; color:var(--muted-foreground);">VS Code</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WORK ===== -->
+    <section id="work">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Selected work</span>
+                <h2>Case studies, presented properly</h2>
+                <p>Every project opens as a full case study page. The layout, storytelling and galleries are ready.</p>
+            </div>
+            <div class="reveal work-filters">
+                <div class="tabs" id="filterTabs">
+                    <button class="active" data-filter="All">All</button>
+                    <button data-filter="Mobile Apps">Mobile Apps</button>
+                    <button data-filter="E-commerce">E-commerce</button>
+                    <button data-filter="Web Apps">Web Apps</button>
+                </div>
+                <div class="controls">
+                    <input type="text" id="searchInput" placeholder="Search projects" />
+                    <select id="sortSelect">
+                        <option value="recent">Most recent</option>
+                        <option value="az">A – Z</option>
+                        <option value="category">By category</option>
+                    </select>
+                </div>
+            </div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be injected by JS -->
+            </div>
+            <div id="noResults" style="display:none; text-align:center; padding:48px; color:var(--muted-foreground); font-size:14px;">No projects match that search yet.</div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section id="services">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Services</span>
+                <h2>What I can take off your plate</h2>
+                <p>From a single landing page to a full product system — scoped clearly, delivered on time.</p>
+            </div>
+            <div class="grid-3">
+                <div class="reveal glass card-glass">
+                    <div style="background:var(--gradient-brand); width:44px; height:44px; border-radius:12px; display:grid; place-items:center; color:#fff;">📱</div>
+                    <h3 style="margin-top:20px; font-size:18px;">Mobile App Design</h3>
+                    <p style="margin-top:8px; font-size:14px; color:var(--muted-foreground);">End-to-end iOS & Android product design — onboarding, core flows, empty states and handoff-ready screens.</p>
+                </div>
+                <div class="reveal glass card-glass" style="transition-delay:60ms;">
+                    <div style="background:var(--gradient-brand); width:44px; height:44px; border-radius:12px; display:grid; place-items:center; color:#fff;">🌐</div>
+                    <h3 style="margin-top:20px; font-size:18px;">Web & Landing Pages</h3>
+                    <p style="margin-top:8px; font-size:14px; color:var(--muted-foreground);">Responsive, conversion-focused websites with clear storytelling and a considered typographic system.</p>
+                </div>
+                <div class="reveal glass card-glass" style="transition-delay:120ms;">
+                    <div style="background:var(--gradient-brand); width:44px; height:44px; border-radius:12px; display:grid; place-items:center; color:#fff;">📊</div>
+                    <h3 style="margin-top:20px; font-size:18px;">SaaS & Dashboards</h3>
+                    <p style="margin-top:8px; font-size:14px; color:var(--muted-foreground);">Data-dense interfaces made calm: information architecture, tables, charts and admin experiences.</p>
+                </div>
+                <div class="reveal glass card-glass" style="transition-delay:180ms;">
+                    <div style="background:var(--gradient-brand); width:44px; height:44px; border-radius:12px; display:grid; place-items:center; color:#fff;">🎨</div>
+                    <h3 style="margin-top:20px; font-size:18px;">Design Systems</h3>
+                    <p style="margin-top:8px; font-size:14px; color:var(--muted-foreground);">Scalable Figma libraries with tokens, Auto Layout components, variants and documentation.</p>
+                </div>
+                <div class="reveal glass card-glass" style="transition-delay:240ms;">
+                    <div style="background:var(--gradient-brand); width:44px; height:44px; border-radius:12px; display:grid; place-items:center; color:#fff;">✏️</div>
+                    <h3 style="margin-top:20px; font-size:18px;">UX Research & Wireframes</h3>
+                    <p style="margin-top:8px; font-size:14px; color:var(--muted-foreground);">User flows, personas, journeys and low-fidelity structure before a single pixel is polished.</p>
+                </div>
+                <div class="reveal glass card-glass" style="transition-delay:300ms;">
+                    <div style="background:var(--gradient-brand); width:44px; height:44px; border-radius:12px; display:grid; place-items:center; color:#fff;">🏷️</div>
+                    <h3 style="margin-top:20px; font-size:18px;">Branding & Visual Identity</h3>
+                    <p style="margin-top:8px; font-size:14px; color:var(--muted-foreground);">Typography, colour theory and brand assets that keep every touchpoint consistent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROCESS ===== -->
+    <section id="process">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Process</span>
+                <h2>A repeatable path from brief to build</h2>
+            </div>
+            <div class="grid-3">
+                <div class="reveal glass card-glass"><h3 style="font-size:2.5rem; color:var(--primary);">01</h3><h4 style="margin-top:12px;">Discover</h4><p style="font-size:14px; color:var(--muted-foreground); margin-top:8px;">Understand the business, users and constraints. Define what success looks like.</p></div>
+                <div class="reveal glass card-glass" style="transition-delay:60ms;"><h3 style="font-size:2.5rem; color:var(--primary);">02</h3><h4 style="margin-top:12px;">Research</h4><p style="font-size:14px; color:var(--muted-foreground); margin-top:8px;">Competitor scan, user interviews, personas and journey mapping.</p></div>
+                <div class="reveal glass card-glass" style="transition-delay:120ms;"><h3 style="font-size:2.5rem; color:var(--primary);">03</h3><h4 style="margin-top:12px;">Structure</h4><p style="font-size:14px; color:var(--muted-foreground); margin-top:8px;">Information architecture, user flows and wireframes before visuals.</p></div>
+                <div class="reveal glass card-glass" style="transition-delay:180ms;"><h3 style="font-size:2.5rem; color:var(--primary);">04</h3><h4 style="margin-top:12px;">Design</h4><p style="font-size:14px; color:var(--muted-foreground); margin-top:8px;">High-fidelity UI built on a token-driven system in Figma.</p></div>
+                <div class="reveal glass card-glass" style="transition-delay:240ms;"><h3 style="font-size:2.5rem; color:var(--primary);">05</h3><h4 style="margin-top:12px;">Prototype</h4><p style="font-size:14px; color:var(--muted-foreground); margin-top:8px;">Interactive prototypes to validate flows and micro-interactions.</p></div>
+                <div class="reveal glass card-glass" style="transition-delay:300ms;"><h3 style="font-size:2.5rem; color:var(--primary);">06</h3><h4 style="margin-top:12px;">Deliver</h4><p style="font-size:14px; color:var(--muted-foreground); margin-top:8px;">Developer handoff, specs, assets and post-launch iteration.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== JOURNEY ===== -->
+    <section id="journey">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Journey</span>
+                <h2>How I got here</h2>
+            </div>
+            <div style="max-width:48rem; margin:48px auto 0; position:relative;">
+                <div style="position:absolute; left:16px; top:0; bottom:0; width:1px; background:var(--border);"></div>
+                <div style="display:flex; flex-direction:column; gap:32px; padding-left:40px;">
+                    <div class="reveal"><div style="width:12px; height:12px; border-radius:999px; background:var(--primary); position:absolute; left:10px; margin-top:4px;"></div><p style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground);">2020</p><h4 style="font-size:18px;">Learning UI Design</h4><p style="font-size:14px; color:var(--muted-foreground);">Started with graphic design fundamentals, typography and colour theory.</p></div>
+                    <div class="reveal" style="transition-delay:60ms;"><div style="width:12px; height:12px; border-radius:999px; background:var(--primary); position:absolute; left:10px; margin-top:4px;"></div><p style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground);">2022</p><h4 style="font-size:18px;">First Client</h4><p style="font-size:14px; color:var(--muted-foreground);">Delivered my first paid interface project and stepped into freelance work.</p></div>
+                    <div class="reveal" style="transition-delay:120ms;"><div style="width:12px; height:12px; border-radius:999px; background:var(--primary); position:absolute; left:10px; margin-top:4px;"></div><p style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground);">2023</p><h4 style="font-size:18px;">Freelance Projects</h4><p style="font-size:14px; color:var(--muted-foreground);">International clients through Upwork and Fiverr alongside local businesses.</p></div>
+                    <div class="reveal" style="transition-delay:180ms;"><div style="width:12px; height:12px; border-radius:999px; background:var(--primary); position:absolute; left:10px; margin-top:4px;"></div><p style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground);">2024</p><h4 style="font-size:18px;">Building Design Systems</h4><p style="font-size:14px; color:var(--muted-foreground);">Token-based Figma libraries, reusable components and documented patterns.</p></div>
+                    <div class="reveal" style="transition-delay:240ms;"><div style="width:12px; height:12px; border-radius:999px; background:var(--primary); position:absolute; left:10px; margin-top:4px;"></div><p style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground);">2025</p><h4 style="font-size:18px;">Senior-Level Product Thinking</h4><p style="font-size:14px; color:var(--muted-foreground);">Designing for outcomes — usability, conversion and business growth.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AVAILABILITY ===== -->
+    <section style="padding:40px 0;">
+        <div class="container">
+            <div class="reveal glass" style="padding:32px 24px; position:relative; overflow:hidden;">
+                <div style="position:absolute; right:-60px; top:-60px; width:200px; height:200px; border-radius:999px; background:var(--gradient-brand); opacity:0.2; filter:blur(40px);"></div>
+                <div style="position:relative; display:flex; flex-direction:column; gap:24px; align-items:center; text-align:center;">
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div style="background:var(--gradient-brand); width:56px; height:56px; border-radius:1rem; display:grid; place-items:center; color:#fff;">🌍</div>
+                        <div><h4 style="font-size:20px;">Working with clients globally</h4><p style="font-size:14px; color:var(--muted-foreground);">Based in Karachi — collaborating across EU, US and GCC hours.</p></div>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; width:100%; max-width:400px;">
+                        <div><dt style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground);">Availability</dt><dd style="font-size:14px;">Available worldwide · Remote</dd></div>
+                        <div><dt style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground);">Timezone</dt><dd style="font-size:14px;">PKT (UTC+5)</dd></div>
+                        <div><dt style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground);">Response time</dt><dd style="font-size:14px;">Usually replies within a few hours</dd></div>
+                        <div><dt style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground);">Languages</dt><dd style="font-size:14px;">English · Urdu · Sindhi</dd></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq">
+        <div class="container" style="max-width:880px;">
+            <div class="section-heading">
+                <span class="eyebrow">FAQ</span>
+                <h2>Good questions, answered</h2>
+            </div>
+            <div class="mt-10 space-y-3">
+                <div class="reveal glass" style="overflow:hidden; border-radius:1rem;">
+                    <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
+                        <span style="font-size:14px; font-weight:500;">What do you need to start a project?</span>
+                        <span style="color:var(--muted-foreground);">+</span>
+                    </button>
+                    <div style="display:none; padding:0 20px 20px; font-size:14px; color:var(--muted-foreground);">A short brief about your product, audience and goals. If you have references, competitors or existing branding, share those too — we start with a 20-minute call.</div>
+                </div>
+                <div class="reveal glass" style="overflow:hidden; border-radius:1rem; transition-delay:50ms;">
+                    <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
+                        <span style="font-size:14px; font-weight:500;">How long does a typical project take?</span>
+                        <span style="color:var(--muted-foreground);">+</span>
+                    </button>
+                    <div style="display:none; padding:0 20px 20px; font-size:14px; color:var(--muted-foreground);">A focused mobile app UI usually takes 2–3 weeks. A full product with research, design system and prototype is typically 4–6 weeks.</div>
+                </div>
+                <div class="reveal glass" style="overflow:hidden; border-radius:1rem; transition-delay:100ms;">
+                    <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
+                        <span style="font-size:14px; font-weight:500;">Do you work with developers?</span>
+                        <span style="color:var(--muted-foreground);">+</span>
+                    </button>
+                    <div style="display:none; padding:0 20px 20px; font-size:14px; color:var(--muted-foreground);">Yes. I deliver handoff-ready Figma files with Auto Layout, tokens, specs and exported assets, and stay available during build.</div>
+                </div>
+                <div class="reveal glass" style="overflow:hidden; border-radius:1rem; transition-delay:150ms;">
+                    <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
+                        <span style="font-size:14px; font-weight:500;">Can you work in my timezone?</span>
+                        <span style="color:var(--muted-foreground);">+</span>
+                    </button>
+                    <div style="display:none; padding:0 20px 20px; font-size:14px; color:var(--muted-foreground);">I work remotely with clients worldwide from Karachi (UTC+5) and keep overlapping hours for EU and US calls.</div>
+                </div>
+                <div class="reveal glass" style="overflow:hidden; border-radius:1rem; transition-delay:200ms;">
+                    <button onclick="toggleFaq(this)" class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
+                        <span style="font-size:14px; font-weight:500;">Do you offer revisions?</span>
+                        <span style="color:var(--muted-foreground);">+</span>
+                    </button>
+                    <div style="display:none; padding:0 20px 20px; font-size:14px; color:var(--muted-foreground);">Every milestone includes revision rounds. Feedback is collected directly in Figma so nothing gets lost.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div>
+                    <div class="section-heading" style="text-align:left; margin:0;">
+                        <span class="eyebrow">Contact</span>
+                        <h2>Let's build something worth showing off</h2>
+                        <p>Tell me about your product, timeline and goals. I'll come back with a clear plan and an honest estimate.</p>
+                    </div>
+                    <div class="reveal contact-links" style="margin-top:32px;">
+                        <a href="https://wa.me/923407921680" target="_blank" class="glass" style="display:flex; justify-content:space-between; padding:16px 20px; border-radius:1rem; text-decoration:none; color:inherit; transition:0.2s; margin-bottom:12px;">
+                            <span>WhatsApp</span><span>+92 340 7921680</span>
+                        </a>
+                        <a href="mailto:sameeralikhooharo@gmail.com" class="glass" style="display:flex; justify-content:space-between; padding:16px 20px; border-radius:1rem; text-decoration:none; color:inherit; transition:0.2s; margin-bottom:12px;">
+                            <span>Email</span><span>sameeralikhooharo@gmail.com</span>
+                        </a>
+                        <a href="https://www.behance.net/sameerkhooharo" target="_blank" class="glass" style="display:flex; justify-content:space-between; padding:16px 20px; border-radius:1rem; text-decoration:none; color:inherit; transition:0.2s; margin-bottom:12px;">
+                            <span>Behance</span><span>behance.net/sameerkhooharo</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/muhammad-waris-6a408a21b" target="_blank" class="glass" style="display:flex; justify-content:space-between; padding:16px 20px; border-radius:1rem; text-decoration:none; color:inherit; transition:0.2s; margin-bottom:12px;">
+                            <span>LinkedIn</span><span>Muhammad Waris</span>
+                        </a>
+                        <a href="https://www.upwork.com/freelancers/~0189221b87188189fc" target="_blank" class="glass" style="display:flex; justify-content:space-between; padding:16px 20px; border-radius:1rem; text-decoration:none; color:inherit; transition:0.2s; margin-bottom:12px;">
+                            <span>Upwork</span><span>Hire me on Upwork</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="reveal glass" style="padding:28px; border-radius:1.5rem;">
+                    <form class="contact-form" id="contactForm">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                            <div><label style="display:block; font-size:14px; color:var(--muted-foreground);">Your name</label><input type="text" name="name" required /></div>
+                            <div><label style="display:block; font-size:14px; color:var(--muted-foreground);">Email</label><input type="email" name="email" required /></div>
+                        </div>
+                        <div style="margin-top:16px;"><label style="display:block; font-size:14px; color:var(--muted-foreground);">Project details</label><textarea name="message" rows="5" required></textarea></div>
+                        <button type="submit" style="margin-top:16px; width:100%;">✉️ Send message</button>
+                        <p style="margin-top:12px; font-size:12px; color:var(--muted-foreground); text-align:center;">Prefer email? sameeralikhooharo@gmail.com</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <span style="background:var(--gradient-brand); width:40px; height:40px; border-radius:10px; display:grid; place-items:center; color:#fff; font-weight:600;">MW</span>
+                        <div><p style="font-weight:600;">Muhammad Waris</p><p style="font-size:12px; color:var(--muted-foreground);">UI/UX & Product Designer</p></div>
+                    </div>
+                    <p style="margin-top:20px; max-width:24rem; font-size:14px; color:var(--muted-foreground);">I design modern, clean and conversion-focused mobile and web products.</p>
+                    <div style="margin-top:20px; display:flex; flex-direction:column; gap:8px; font-size:14px; color:var(--muted-foreground);">
+                        <a href="mailto:sameeralikhooharo@gmail.com" style="color:var(--muted-foreground); text-decoration:none;">📧 sameeralikhooharo@gmail.com</a>
+                        <a href="https://wa.me/923407921680" style="color:var(--muted-foreground); text-decoration:none;">📞 +92 340 7921680</a>
+                        <span>📍 Karachi, Pakistan</span>
+                    </div>
+                </div>
+                <div class="footer-links"><p style="font-weight:600;">Selected work</p><ul><li><a href="#">GOALGRID</a></li><li><a href="#">Foodiez</a></li><li><a href="#">StyleNova</a></li><li><a href="#">Luxury Restaurant Reservation</a></li><li><a href="#">Salon Booking</a></li><li><a href="#">Luxury Hotel</a></li></ul></div>
+                <div class="footer-links"><p style="font-weight:600;">Elsewhere</p><ul><li><a href="https://www.behance.net/sameerkhooharo" target="_blank">Behance</a></li><li><a href="https://www.linkedin.com/in/muhammad-waris-6a408a21b" target="_blank">LinkedIn</a></li><li><a href="https://www.upwork.com/freelancers/~0189221b87188189fc" target="_blank">Upwork</a></li><li><a href="https://wa.me/923407921680" target="_blank">WhatsApp</a></li><li><a href="#" id="footerCvBtn">Download CV</a></li></ul></div>
+            </div>
+            <div class="footer-copy">© 2026 Muhammad Waris. Designed and built with care in Karachi.</div>
+        </div>
+    </footer>
+
+    <!-- ===== WHATSAPP FAB ===== -->
+    <a href="https://wa.me/923407921680" target="_blank" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- ===== JAVASCRIPT (Original Logic) ===== -->
+    <script>
+        // ----- DATA (from portfolio.ts - 100% Original) -----
+        const projects = [
+            { slug: "goalgrid", title: "GOALGRID", subtitle: "Productivity & Goal Tracking App", category: "Mobile Apps", year: "2024", accent: "oklch(0.68 0.19 290)", tags: ["Mobile", "Productivity", "Dashboard"] },
+            { slug: "foodiez", title: "Foodiez", subtitle: "Food Delivery Mobile App", category: "Mobile Apps", year: "2024", accent: "oklch(0.72 0.18 45)", tags: ["Mobile", "E-commerce", "Delivery"] },
+            { slug: "stylenova", title: "StyleNova", subtitle: "Fashion E-commerce App", category: "E-commerce", year: "2024", accent: "oklch(0.6 0.16 340)", tags: ["Mobile", "E-commerce", "Fashion"] },
+            { slug: "luxury-restaurant-reservation", title: "Luxury Restaurant Reservation", subtitle: "Fine-dining Booking App", category: "Mobile Apps", year: "2024", accent: "oklch(0.75 0.13 85)", tags: ["Mobile", "Hospitality", "Booking"] },
+            { slug: "salon-booking", title: "Salon Booking", subtitle: "Responsive Website UI", category: "Web Apps", year: "2023", accent: "oklch(0.7 0.14 190)", tags: ["Web", "Booking", "Responsive"] },
+            { slug: "luxury-hotel", title: "Luxury Hotel", subtitle: "Premium Website Design", category: "Web Apps", year: "2023", accent: "oklch(0.66 0.13 250)", tags: ["Web", "Travel", "Luxury"] }
+        ];
+
+        // ----- THEME TOGGLE -----
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        let isDark = document.documentElement.classList.contains('dark');
+
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            document.documentElement.classList.toggle('dark', isDark);
+            themeIcon.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        // ----- NAV SCROLL & MOBILE MENU -----
+        const nav = document.getElementById('navbar');
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 24);
+        });
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            menuBtn.textContent = mobileMenu.classList.contains('open') ? '✕' : '☰';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                menuBtn.textContent = '☰';
+            });
+        });
+
+        // ----- SCROLL REVEAL -----
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // ----- PROJECTS RENDER & FILTERING -----
+        const projectsGrid = document.getElementById('projectsGrid');
+        const filterTabs = document.getElementById('filterTabs');
+        const searchInput = document.getElementById('searchInput');
+        const sortSelect = document.getElementById('sortSelect');
+        const noResults = document.getElementById('noResults');
+
+        let currentFilter = 'All';
+        let currentSearch = '';
+        let currentSort = 'recent';
+
+        function renderProjects() {
+            let filtered = projects.filter(p => {
+                const matchCategory = currentFilter === 'All' || p.category === currentFilter;
+                const matchSearch = !currentSearch || p.title.toLowerCase().includes(currentSearch) || p.subtitle.toLowerCase().includes(currentSearch) || p.tags.join(' ').toLowerCase().includes(currentSearch);
+                return matchCategory && matchSearch;
+            });
+
+            if (currentSort === 'az') filtered.sort((a,b) => a.title.localeCompare(b.title));
+            else if (currentSort === 'category') filtered.sort((a,b) => a.category.localeCompare(b.category));
+            else filtered.sort((a,b) => Number(b.year) - Number(a.year));
+
+            if (filtered.length === 0) {
+                projectsGrid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            noResults.style.display = 'none';
+
+            projectsGrid.innerHTML = filtered.map((p, i) => `
+                <div class="item reveal" style="transition-delay:${i*60}ms;">
+                    <a href="#" class="project-card" onclick="alert('Case study for ${p.title} will open here.'); return false;">
+                        <div class="cover" style="background:linear-gradient(150deg, ${p.accent}, transparent 70%);">
+                            <div class="top">
+                                <span>${p.category}</span>
+                                <div class="icon">↗</div>
+                            </div>
+                            <div style="margin-top:60px;">
+                                <p style="font-size:12px; text-transform:uppercase; color:rgba(255,255,255,0.7);">${p.year}</p>
+                                <h3>${p.title}</h3>
+                                <p style="font-size:14px; color:rgba(255,255,255,0.8);">${p.subtitle}</p>
+                            </div>
+                        </div>
+                        <div class="tags">
+                            ${p.tags.map(t => `<span>${t}</span>`).join('')}
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('#projectsGrid .reveal').forEach(el => observer.observe(el));
+        }
+
+        filterTabs.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterTabs.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderProjects();
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value.toLowerCase();
+            renderProjects();
+        });
+
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            renderProjects();
+        });
+
+        renderProjects();
+
+        // ----- FAQ TOGGLE -----
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const isOpen = content.style.display !== 'none';
+            content.style.display = isOpen ? 'none' : 'block';
+            btn.querySelector('span:last-child').textContent = isOpen ? '+' : '–';
+        }
+
+        // ----- CONTACT FORM -----
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = this.name.value;
+            const message = this.message.value;
+            const url = `https://wa.me/923407921680?text=Hi Waris, I'm ${name}.%0A%0A${message}`;
+            window.open(url, '_blank');
+        });
+
+        // ----- CV BUTTON (Placeholder for now) -----
+        document.querySelectorAll('#cvBtn, #heroCvBtn, #footerCvBtn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('Download CV will be available here.');
+            });
+        });
+    </script>
+</body>
+</html>
