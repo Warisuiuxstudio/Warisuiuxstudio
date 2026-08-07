@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muhammad Waris — UI/UX Designer CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Premium CV Design System */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #0b0d17; 
+            display: flex; 
+            justify-content: center; 
+            padding: 40px 20px; 
+            font-family: 'Manrope', sans-serif; 
+        }
+        .cv-container {
+            max-width: 1000px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 48px 56px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            color: #1a1a2e;
+        }
+
+        /* Header Section */
+        .header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #6c63ff; padding-bottom: 24px; margin-bottom: 32px; }
+        .header-left h1 { font-family: 'Sora', sans-serif; font-size: 36px; font-weight: 700; color: #0b0d17; letter-spacing: -0.02em; margin-bottom: 4px; }
+        .header-left h1 span { color: #6c63ff; }
+        .header-left .title { font-size: 18px; font-weight: 500; color: #4a4a6a; }
+        .header-right { text-align: right; font-size: 14px; color: #4a4a6a; line-height: 1.8; }
+        .header-right a { color: #6c63ff; text-decoration: none; font-weight: 500; }
+
+        /* Section Titles */
+        .section-title { font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 700; color: #0b0d17; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+        .section-title::after { content: ''; flex: 1; height: 2px; background: #e0e3eb; }
+
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .grid-skills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+        
+        /* Summary */
+        .summary { font-size: 15px; line-height: 1.7; color: #4a4a6a; margin-bottom: 32px; }
+
+        /* Experience */
+        .exp-item { margin-bottom: 24px; }
+        .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+        .exp-header h3 { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 600; color: #0b0d17; }
+        .exp-header .date { font-size: 14px; color: #6c63ff; font-weight: 500; }
+        .exp-sub { font-size: 14px; color: #6c7293; margin-bottom: 8px; }
+        .exp-list { list-style: none; padding-left: 0; }
+        .exp-list li { font-size: 14px; color: #4a4a6a; line-height: 1.7; padding-left: 20px; position: relative; margin-bottom: 4px; }
+        .exp-list li::before { content: '▸'; position: absolute; left: 0; color: #6c63ff; font-weight: bold; }
+
+        /* Projects Grid */
+        .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+        .project-card { 
+            background: #f8f9fc; 
+            padding: 16px; 
+            border-radius: 12px; 
+            border-left: 4px solid #6c63ff; 
+        }
+        .project-card h4 { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 600; color: #0b0d17; margin-bottom: 4px; }
+        .project-card p { font-size: 13px; color: #4a4a6a; line-height: 1.6; margin: 0; }
+
+        /* Education & Languages */
+        .edu-item { display: flex; justify-content: space-between; font-size: 14px; padding: 6px 0; border-bottom: 1px solid #f0f0f5; }
+        .edu-item:last-child { border-bottom: none; }
+        .edu-item strong { color: #0b0d17; font-weight: 600; }
+        .edu-item span { color: #6c7293; }
+
+        .lang-tags { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+        .lang-tags span { 
+            background: #6c63ff; 
+            color: #fff; 
+            padding: 4px 16px; 
+            border-radius: 999px; 
+            font-size: 13px; 
+            font-weight: 500; 
+        }
+
+        /* Print Media Query */
+        @media print {
+            body { background: #fff; padding: 0; }
+            .cv-container { box-shadow: none; border-radius: 0; padding: 40px; }
+            .project-card { break-inside: avoid; }
+        }
+
+        @media (max-width: 768px) {
+            .cv-container { padding: 24px; }
+            .header { flex-direction: column; gap: 16px; }
+            .header-right { text-align: left; }
+            .grid-2 { grid-template-columns: 1fr; gap: 24px; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <h1>Muhammad <span>Waris</span></h1>
+                <div class="title">Professional UI/UX Designer & Graphic Designer</div>
+            </div>
+            <div class="header-right">
+                📞 +92 340 7921680<br />
+                ✉️ <a href="mailto:sameeralikhooharo@gmail.com">sameeralikhooharo@gmail.com</a><br />
+                📍 Karachi, Pakistan
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary">
+            Creative and detail-oriented UI/UX Designer with strong experience in designing modern, clean, and user-friendly mobile and web applications. Skilled in user research, wireframing, prototyping, design systems, and high-fidelity interfaces using Figma, Adobe XD, Photoshop, and Illustrator. Experienced in working with international clients through Upwork, Fiverr, and direct local projects. Passionate about creating visually appealing and conversion-focused digital experiences that improve usability and business growth.
+        </div>
+
+        <!-- Core Skills & Experience -->
+        <div class="grid-2">
+            <div>
+                <div class="section-title">Core Skills</div>
+                <div class="grid-skills">
+                    <div style="font-size:14px; color:#4a4a6a;">UI/UX Design (Mobile & Web)</div>
+                    <div style="font-size:14px; color:#4a4a6a;">Wireframing & Prototyping</div>
+                    <div style="font-size:14px; color:#4a4a6a;">User Research & UCD</div>
+                    <div style="font-size:14px; color:#4a4a6a;">Dashboard & SaaS Design</div>
+                    <div style="font-size:14px; color:#4a4a6a;">Design Systems & Style Guides</div>
+                    <div style="font-size:14px; color:#4a4a6a;">Typography & Branding</div>
+                    <div style="font-size:14px; color:#4a4a6a;">Responsive Web Design</div>
+                    <div style="font-size:14px; color:#4a4a6a;">Figma, Adobe XD, Photoshop, Illustrator</div>
+                </div>
+            </div>
+            <div>
+                <div class="section-title">Work Experience</div>
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>Freelance UI/UX Designer</h3>
+                        <span class="date">April 2022 — Present</span>
+                    </div>
+                    <div class="exp-sub">Upwork, Fiverr & Local Clients</div>
+                    <ul class="exp-list">
+                        <li>Designed modern mobile apps, dashboards, landing pages, and websites for international clients.</li>
+                        <li>Created professional wireframes, user flows, and high-fidelity prototypes using Figma.</li>
+                        <li>Worked with local business owners to improve brand identity and digital user experience.</li>
+                        <li>Delivered clean, responsive, and user-focused UI designs for startups and small businesses.</li>
+                        <li>Specialized in premium interfaces for e-commerce, food delivery, booking, salon, and luxury brands.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Projects -->
+        <div class="section-title" style="margin-top:32px;">Featured Projects</div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h4>GOALGRID</h4>
+                <p>Productivity app with task management, goal tracking, and a clean dashboard experience.</p>
+            </div>
+            <div class="project-card">
+                <h4>Foodiez</h4>
+                <p>Complete food delivery app with onboarding, restaurant listing, cart, and order tracking.</p>
+            </div>
+            <div class="project-card">
+                <h4>StyleNova</h4>
+                <p>Modern e-commerce app with clean layouts, wishlist, cart, and secure checkout flow.</p>
+            </div>
+            <div class="project-card">
+                <h4>Luxury Restaurant</h4>
+                <p>High-end restaurant booking app with elegant typography and premium user experience.</p>
+            </div>
+            <div class="project-card">
+                <h4>Salon Booking</h4>
+                <p>Responsive salon booking website with modern visuals and conversion-focused layout.</p>
+            </div>
+            <div class="project-card">
+                <h4>Luxury Hotel</h4>
+                <p>Premium hotel landing page with room showcase, booking experience, and luxury branding.</p>
+            </div>
+        </div>
+
+        <!-- Education & Languages -->
+        <div class="grid-2" style="margin-top:32px;">
+            <div>
+                <div class="section-title">Education</div>
+                <div class="edu-item"><strong>Virtual University</strong> <span>UI/UX Design, 2023 – 2024</span></div>
+                <div class="edu-item"><strong>Computer Collegiate</strong> <span>Graphic Design, 2023</span></div>
+                <div class="edu-item"><strong>Shah Abdul Latif University</strong> <span>Science, 2023 – 2025</span></div>
+                <div class="edu-item"><strong>Govt. Boys Higher School Bakrani</strong> <span>Pre-Medical, 2020 – 2022</span></div>
+            </div>
+            <div>
+                <div class="section-title">Languages</div>
+                <div class="lang-tags">
+                    <span>English</span>
+                    <span>Urdu</span>
+                    <span>Sindhi</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
