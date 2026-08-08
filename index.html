@@ -814,13 +814,69 @@
     <!-- ===== JAVASCRIPT ===== -->
     <script>
         const projects = [
-            { slug: "archmind-ai", title: "ArchiMind AI", subtitle: "AI Architecture Studio", category: "Mobile Apps", year: "2026", accent: "#4f46e5", tags: ["Figma", "AI", "Architecture", "iOS"] },
-            { slug: "luxe-market", title: "Luxe Market", subtitle: "Premium Fashion E-commerce App", category: "E-commerce", year: "2025", accent: "#6366f1", tags: ["Figma", "UI/UX", "Mobile App", "E-Commerce"] },
-            { slug: "lumen-ai", title: "Lumen AI", subtitle: "AI-Powered FinTech App", category: "FinTech", year: "2025", accent: "#06b6d4", tags: ["Figma", "FinTech", "AI", "Mobile App"] },
-            { slug: "velora-motors", title: "Velora Motors", subtitle: "Luxury Automotive Website", category: "Automotive", year: "2024", accent: "#eab308", tags: ["Figma", "Web Design", "Automotive", "UI/UX"] },
-            { slug: "fitsync-pro", title: "FitSync Pro", subtitle: "AI Fitness App & Dashboard", category: "Health & Fitness", year: "2024", accent: "#22d3ee", tags: ["Figma", "Health Tech", "Mobile App", "Dashboard"] },
-            { slug: "fintrack", title: "FinTrack", subtitle: "Personal Finance Dashboard", category: "FinTech", year: "2024", accent: "#3b82f6", tags: ["Figma", "FinTech", "Dashboard", "Web App"] },
-            { slug: "medicare-connect", title: "MediCare Connect", subtitle: "Healthcare Booking Platform", category: "Healthcare", year: "2023", accent: "#10b981", tags: ["Figma", "Healthcare", "Web App", "UI/UX"] }
+            { 
+                slug: "archmind-ai", 
+                title: "ArchiMind AI", 
+                subtitle: "AI Architecture Studio", 
+                category: "Mobile Apps", 
+                year: "2026", 
+                image: "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=800&h=600&fit=crop", 
+                tags: ["Figma", "AI", "Architecture", "iOS"] 
+            },
+            { 
+                slug: "luxe-market", 
+                title: "Luxe Market", 
+                subtitle: "Premium Fashion E-commerce App", 
+                category: "E-commerce", 
+                year: "2025", 
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=800&h=600&fit=crop", 
+                tags: ["Figma", "UI/UX", "Mobile App", "E-Commerce"] 
+            },
+            { 
+                slug: "lumen-ai", 
+                title: "Lumen AI", 
+                subtitle: "AI-Powered FinTech App", 
+                category: "FinTech", 
+                year: "2025", 
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop", 
+                tags: ["Figma", "FinTech", "AI", "Mobile App"] 
+            },
+            { 
+                slug: "velora-motors", 
+                title: "Velora Motors", 
+                subtitle: "Luxury Automotive Website", 
+                category: "Automotive", 
+                year: "2024", 
+                image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop", 
+                tags: ["Figma", "Web Design", "Automotive", "UI/UX"] 
+            },
+            { 
+                slug: "fitsync-pro", 
+                title: "FitSync Pro", 
+                subtitle: "AI Fitness App & Dashboard", 
+                category: "Health & Fitness", 
+                year: "2024", 
+                image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop", 
+                tags: ["Figma", "Health Tech", "Mobile App", "Dashboard"] 
+            },
+            { 
+                slug: "fintrack", 
+                title: "FinTrack", 
+                subtitle: "Personal Finance Dashboard", 
+                category: "FinTech", 
+                year: "2024", 
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop", 
+                tags: ["Figma", "FinTech", "Dashboard", "Web App"] 
+            },
+            { 
+                slug: "medicare-connect", 
+                title: "MediCare Connect", 
+                subtitle: "Healthcare Booking Platform", 
+                category: "Healthcare", 
+                year: "2023", 
+                image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop", 
+                tags: ["Figma", "Healthcare", "Web App", "UI/UX"] 
+            }
         ];
 
         const themeToggle = document.getElementById('themeToggle');
@@ -876,11 +932,17 @@
             projectsGrid.innerHTML = filtered.map((p, i) => `
                 <div class="item reveal" style="transition-delay:${i*60}ms;">
                     <a href="#" class="project-card" onclick="window.open('https://wa.me/923407921680?text=Hi Waris, I am interested in your ${p.title} project. Please share the case study.', '_blank'); return false;">
-                        <div class="cover" style="background:linear-gradient(150deg, ${p.accent}, #0b0d17);">
-                            <div class="top"><span>${p.category}</span><div class="icon">↗</div></div>
-                            <div style="margin-top:80px;"><p style="font-size:12px; text-transform:uppercase; color:rgba(255,255,255,0.6);">${p.year}</p><h3>${p.title}</h3><p style="font-size:15px; color:rgba(255,255,255,0.8);">${p.subtitle}</p></div>
+                        <div class="cover" style="background:var(--card); padding:0; min-height:unset; border-radius:18px; overflow:hidden;">
+                            <img src="${p.image}" alt="${p.title}" style="width:100%; height:auto; object-fit:cover; display:block;" />
                         </div>
-                        <div class="tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+                        <div style="padding:16px 20px;">
+                            <p style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground); opacity:0.7; margin-bottom:4px;">${p.year} · ${p.category}</p>
+                            <h3 style="font-size:1.4rem; font-weight:600; margin-top:4px;">${p.title}</h3>
+                            <p style="font-size:14px; color:var(--muted-foreground); margin-top:4px;">${p.subtitle}</p>
+                            <div class="tags" style="padding:12px 0 0;">
+                                ${p.tags.map(t => `<span>${t}</span>`).join('')}
+                            </div>
+                        </div>
                     </a>
                 </div>
             `).join('');
