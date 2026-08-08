@@ -820,62 +820,17 @@
                 subtitle: "AI Architecture Studio", 
                 category: "Mobile Apps", 
                 year: "2026", 
-                image: "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=800&h=600&fit=crop", 
+                image: "/archmind-1.png", 
                 tags: ["Figma", "AI", "Architecture", "iOS"] 
             },
             { 
-                slug: "luxe-market", 
-                title: "Luxe Market", 
-                subtitle: "Premium Fashion E-commerce App", 
-                category: "E-commerce", 
+                slug: "swiftdrop", 
+                title: "SwiftDrop", 
+                subtitle: "Premium Delivery Mobile App", 
+                category: "Mobile Apps", 
                 year: "2025", 
-                image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=800&h=600&fit=crop", 
-                tags: ["Figma", "UI/UX", "Mobile App", "E-Commerce"] 
-            },
-            { 
-                slug: "lumen-ai", 
-                title: "Lumen AI", 
-                subtitle: "AI-Powered FinTech App", 
-                category: "FinTech", 
-                year: "2025", 
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop", 
-                tags: ["Figma", "FinTech", "AI", "Mobile App"] 
-            },
-            { 
-                slug: "velora-motors", 
-                title: "Velora Motors", 
-                subtitle: "Luxury Automotive Website", 
-                category: "Automotive", 
-                year: "2024", 
-                image: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop", 
-                tags: ["Figma", "Web Design", "Automotive", "UI/UX"] 
-            },
-            { 
-                slug: "fitsync-pro", 
-                title: "FitSync Pro", 
-                subtitle: "AI Fitness App & Dashboard", 
-                category: "Health & Fitness", 
-                year: "2024", 
-                image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop", 
-                tags: ["Figma", "Health Tech", "Mobile App", "Dashboard"] 
-            },
-            { 
-                slug: "fintrack", 
-                title: "FinTrack", 
-                subtitle: "Personal Finance Dashboard", 
-                category: "FinTech", 
-                year: "2024", 
-                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop", 
-                tags: ["Figma", "FinTech", "Dashboard", "Web App"] 
-            },
-            { 
-                slug: "medicare-connect", 
-                title: "MediCare Connect", 
-                subtitle: "Healthcare Booking Platform", 
-                category: "Healthcare", 
-                year: "2023", 
-                image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&h=600&fit=crop", 
-                tags: ["Figma", "Healthcare", "Web App", "UI/UX"] 
+                image: "/swiftdrop-1-hero.png", 
+                tags: ["Figma", "Delivery", "Mobile App", "UI/UX"] 
             }
         ];
 
@@ -931,7 +886,7 @@
             noResults.style.display = 'none';
             projectsGrid.innerHTML = filtered.map((p, i) => `
                 <div class="item reveal" style="transition-delay:${i*60}ms;">
-                    <a href="#" class="project-card" onclick="window.location.href='/${p.slug}.html'; return false;">
+                    <a href="${p.slug}.html" class="project-card">
                         <div class="cover" style="background:var(--card); padding:0; min-height:unset; border-radius:18px; overflow:hidden;">
                             <img src="${p.image}" alt="${p.title}" style="width:100%; height:auto; object-fit:cover; display:block;" />
                         </div>
