@@ -41,7 +41,7 @@
             --shadow-luxe: 0 20px 60px rgba(108, 99, 255, 0.3);
         }
 
-        /* Light Mode (Premium Light) */
+        /* Light Mode (Premium Light) - FIXED */
         .light {
             --background: #f8f9fc;
             --foreground: #1a1a2e;
@@ -931,7 +931,7 @@
             noResults.style.display = 'none';
             projectsGrid.innerHTML = filtered.map((p, i) => `
                 <div class="item reveal" style="transition-delay:${i*60}ms;">
-                    <a href="#" class="project-card" onclick="window.open('https://wa.me/923407921680?text=Hi Waris, I am interested in your ${p.title} project. Please share the case study.', '_blank'); return false;">
+                    <a href="#" class="project-card" onclick="window.location.href='/${p.slug}.html'; return false;">
                         <div class="cover" style="background:var(--card); padding:0; min-height:unset; border-radius:18px; overflow:hidden;">
                             <img src="${p.image}" alt="${p.title}" style="width:100%; height:auto; object-fit:cover; display:block;" />
                         </div>
