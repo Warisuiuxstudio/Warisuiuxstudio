@@ -3,134 +3,319 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SwiftDrop — Case Study | Muhammad Waris</title>
+    <title>SwiftDrop — Premium Delivery Mobile App | Muhammad Waris</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Manrope', sans-serif; background: #0b0d17; color: #e8ecf4; line-height: 1.7; }
-        .container { max-width: 1100px; width: 92vw; margin: 0 auto; padding: 60px 0; }
-        h1, h2, h3, h4, .font-display { font-family: 'Sora', sans-serif; letter-spacing: -0.02em; }
-        
-        .glass { background: rgba(20, 23, 43, 0.7); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 40px; }
-        
-        .hero { text-align: center; padding: 60px 0 40px; }
-        .hero h1 { font-size: 3.5rem; background: linear-gradient(135deg, #ff5a00, #ff8c42); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { color: #8e94b0; font-size: 1.2rem; margin-top: 12px; }
-        
-        .full-width-img { 
-            width: 100%; 
-            height: auto; 
-            border-radius: 20px; 
-            margin: 40px 0 30px 0; 
-            border: 1px solid rgba(255,255,255,0.1);
-            display: block;
+        :root {
+            --background: #0b0d17;
+            --foreground: #e8ecf4;
+            --card: #14172b;
+            --muted-foreground: #8e94b0;
+            --border: #2a2f4f;
+            --primary: #6c63ff;
+            --gradient-brand: linear-gradient(135deg, #6c63ff, #00d4ff);
+            --surface: rgba(20, 23, 43, 0.7);
+            --shadow-luxe: 0 20px 60px rgba(108, 99, 255, 0.3);
+            --radius: 1rem;
         }
-        
-        .btn { display: inline-block; padding: 14px 28px; background: linear-gradient(135deg, #ff5a00, #ff8c42); color: #fff; border-radius: 12px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(255,90,0,0.4); }
-        .back-link { color: #8e94b0; text-decoration: none; margin-bottom: 30px; display: inline-block; font-size: 14px; }
-        .back-link:hover { color: #fff; }
-        
-        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
+        .light {
+            --background: #f8f9fc;
+            --foreground: #1a1a2e;
+            --card: #ffffff;
+            --muted-foreground: #6c7293;
+            --border: #e0e3eb;
+            --surface: rgba(255, 255, 255, 0.8);
+        }
+        body { 
+            font-family: 'Manrope', sans-serif; 
+            background: var(--background); 
+            color: var(--foreground); 
+            line-height: 1.7; 
+            transition: background 0.4s, color 0.4s;
+        }
+        h1, h2, h3 { font-family: 'Sora', sans-serif; letter-spacing: -0.02em; }
+        .container { max-width: 1180px; width: 92vw; margin: 0 auto; }
+        .text-gradient { background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .glass { background: var(--surface); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: var(--radius); }
+
+        nav { 
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50; 
+            padding: 20px 0; transition: all 0.4s; 
+        }
+        nav.scrolled { padding: 10px 0; }
+        nav .nav-inner { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 10px 20px; border-radius: 20px; transition: all 0.4s; 
+        }
+        nav.scrolled .nav-inner { 
+            background: var(--surface); backdrop-filter: blur(20px); 
+            border: 1px solid var(--border); box-shadow: var(--shadow-luxe); 
+        }
+        nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--foreground); }
+        nav .logo img { border-radius: 12px; width: 40px; height: 40px; }
+        nav a { color: var(--muted-foreground); text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--foreground); }
+        .back-btn { 
+            display: inline-flex; align-items: center; gap: 8px; 
+            padding: 10px 20px; border-radius: 12px; 
+            border: 1px solid var(--border); color: var(--foreground); 
+            text-decoration: none; font-size: 14px; font-weight: 500;
+            transition: 0.3s; background: var(--surface);
+        }
+        .back-btn:hover { border-color: var(--primary); transform: translateX(-4px); }
+
+        .case-hero { padding: 160px 0 80px; }
+        .case-hero .badge { 
+            display: inline-flex; align-items: center; gap: 8px;
+            border: 1px solid var(--border); padding: 6px 16px; 
+            border-radius: 999px; font-size: 12px; font-weight: 600;
+            color: var(--primary); background: rgba(108, 99, 255, 0.1);
+        }
+        .case-hero h1 { font-size: 4rem; margin-top: 24px; }
+        .case-hero p { font-size: 1.2rem; color: var(--muted-foreground); max-width: 36rem; margin-top: 16px; }
+        .case-hero .meta { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+        .case-hero .meta span { 
+            padding: 8px 20px; border-radius: 999px; 
+            border: 1px solid var(--border); font-size: 14px; 
+            color: var(--muted-foreground);
+        }
+        .case-hero .meta span strong { color: var(--foreground); }
+
+        section { padding: 80px 0; }
+        .section-heading { max-width: 40rem; margin-bottom: 48px; }
+        .section-heading .eyebrow { 
+            display: inline-flex; align-items: center; gap: 8px;
+            border: 1px solid var(--border); padding: 6px 16px; 
+            border-radius: 999px; font-size: 12px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--primary); background: rgba(108, 99, 255, 0.1);
+        }
+        .section-heading h2 { font-size: 2.8rem; margin-top: 16px; }
+        .section-heading p { margin-top: 12px; color: var(--muted-foreground); font-size: 1.1rem; }
+
+        .img-grid { display: grid; gap: 24px; }
+        .img-grid-2 { grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .img-grid-2 { grid-template-columns: 1fr 1fr; } }
+        .img-grid-3 { grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .img-grid-3 { grid-template-columns: 1fr 1fr 1fr; } }
+        .img-grid img { width: 100%; border-radius: 16px; border: 1px solid var(--border); }
+
+        .outcome-grid { display: grid; gap: 30px; }
+        @media (min-width: 768px) { .outcome-grid { grid-template-columns: 1fr 1fr; } }
+        .outcome-card { 
+            padding: 32px; border-radius: 20px; 
+            background: var(--surface); border: 1px solid var(--border);
+            text-align: center;
+        }
+        .outcome-card .number { font-size: 3rem; font-weight: 700; color: var(--primary); font-family: 'Sora', sans-serif; }
+        .outcome-card p { color: var(--muted-foreground); font-size: 15px; margin-top: 8px; }
+
+        .footer-bar { 
+            border-top: 1px solid var(--border); 
+            padding: 40px 0; text-align: center; 
+            font-size: 14px; color: var(--muted-foreground);
+        }
+        .footer-bar a { color: var(--primary); text-decoration: none; }
+
+        .swiftdrop-label {
+            display: inline-block;
+            background: rgba(108, 99, 255, 0.15);
+            color: #6c63ff;
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 640px) { .case-hero h1 { font-size: 2.5rem; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-link">← Back to Portfolio</a>
-        
-        <!-- ===== HERO ===== -->
-        <div class="hero">
-            <p style="text-transform:uppercase; letter-spacing:0.2em; color:#ff5a00; font-size:12px;">Case Study · Mobile Delivery</p>
-            <h1>SwiftDrop</h1>
-            <p>Premium Delivery Mobile App Design</p>
-            <img src="/swiftdrop-1-hero.png" class="full-width-img" />
-        </div>
 
-        <!-- ===== OVERVIEW ===== -->
-        <div class="glass" style="margin-top:40px;">
-            <h2 class="section-title">Project Overview</h2>
-            <p>SwiftDrop is a next-generation delivery platform designed to redefine how users order, track, and receive products. The objective was to create a premium mobile experience that combines speed, simplicity, and trust while maintaining a modern visual identity.</p>
-            <img src="/swiftdrop-2-overview.png" class="full-width-img" />
-        </div>
-
-        <!-- ===== DESIGN PHILOSOPHY ===== -->
-        <div class="glass" style="margin-top:40px;">
-            <h2 class="section-title">Design Philosophy</h2>
-            <p>The design language is built around three core principles: Speed, Simplicity, and Trust.</p>
-            <img src="/swiftdrop-3-philosophy.png" class="full-width-img" />
-        </div>
-
-        <!-- ===== BRAND IDENTITY ===== -->
-        <div class="glass" style="margin-top:40px;">
-            <h2 class="section-title">Brand Identity</h2>
-            <p>The visual identity reflects movement, efficiency, and innovation.</p>
-            <img src="/swiftdrop-4-brand.png" class="full-width-img" />
-        </div>
-
-        <!-- ===== COLOR SYSTEM ===== -->
-        <div class="glass" style="margin-top:40px;">
-            <h2 class="section-title">Color System</h2>
-            <p>Electric Orange for action, Deep Midnight for contrast, and Sky Blue for tracking interactions.</p>
-            <img src="/swiftdrop-5-colors.png" class="full-width-img" />
-        </div>
-
-        <!-- ===== TYPOGRAPHY ===== -->
-        <div class="glass" style="margin-top:40px;">
-            <h2 class="section-title">Typography</h2>
-            <p>A modern sans-serif typeface chosen for its exceptional readability and clarity.</p>
-            <img src="/swiftdrop-7-visual.png" class="full-width-img" />
-        </div>
-
-        <!-- ===== VISUAL DIRECTION ===== -->
-        <div class="glass" style="margin-top:40px;">
-            <h2 class="section-title">Visual Direction</h2>
-            <p>A modern minimalist aesthetic inspired by premium technology brands.</p>
-            <img src="/swiftdrop-8-strategy.png" class="full-width-img" />
-        </div>
-
-        <!-- ===== UX STRATEGY ===== -->
-        <div class="glass" style="margin-top:40px;">
-            <h2 class="section-title">User Experience Strategy</h2>
-            <p>Every interaction was optimized to require fewer taps and less cognitive effort.</p>
-            <img src="/swiftdrop-9-home.png" class="full-width-img" />
-        </div>
-
-        <!-- ===== KEY SCREENS ===== -->
-        <div class="glass" style="margin-top:40px;">
-            <h2 class="section-title">Key Screens</h2>
-            <p>Every screen was optimized for modern smartphones with a mobile-first approach.</p>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px;">
-                <div>
-                    <img src="/swiftdrop-10-discovery.png" class="full-width-img" />
-                    <p style="text-align:center; margin-top:10px; font-weight:500; color:#e8ecf4;">Home Screen</p>
-                </div>
-                <div>
-                    <img src="/swiftdrop-11-details.png" class="full-width-img" />
-                    <p style="text-align:center; margin-top:10px; font-weight:500; color:#e8ecf4;">Product Discovery</p>
-                </div>
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" class="logo">
+                    <img src="/logo.webp" alt="Logo" />
+                    <span style="font-weight:600;">Muhammad Waris</span>
+                </a>
+                <a href="/" class="back-btn">← Back to Portfolio</a>
             </div>
         </div>
+    </nav>
 
-        <!-- ===== FINAL OUTCOME ===== -->
-        <div class="glass" style="margin-top:40px;">
-            <h2 class="section-title">Final Outcome</h2>
-            <p>SwiftDrop successfully combines functionality, aesthetics, and usability into a single cohesive experience.</p>
-            <img src="/swiftdrop-17-outcome.png" class="full-width-img" />
+    <!-- ===== CASE HERO ===== -->
+    <section class="case-hero">
+        <div class="container">
+            <div class="badge">📱 2025 · MOBILE APPS</div>
+            <h1>SwiftDrop</h1>
+            <p>Premium Delivery Mobile App — complete UI/UX case study from research to final design.</p>
+            <span class="swiftdrop-label">UI/UX</span>
+            <div class="meta">
+                <span><strong>Role:</strong> Lead UI/UX Designer</span>
+                <span><strong>Timeline:</strong> 4 Weeks</span>
+                <span><strong>Tools:</strong> Figma, FigJam, Photoshop</span>
+            </div>
         </div>
+    </section>
 
-        <!-- ===== THANK YOU ===== -->
-        <div class="glass" style="margin-top:40px;">
-            <h2 class="section-title">Thank You</h2>
-            <p>Designing experiences that move people forward.</p>
-            <img src="/swiftdrop-18-thankyou.png" class="full-width-img" />
+    <!-- ===== OVERVIEW ===== -->
+    <section>
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Overview</span>
+                <h2>Delivery reimagined</h2>
+                <p>SwiftDrop is a premium delivery app designed for speed, trust and a seamless user experience.</p>
+            </div>
+            <img src="/swiftdrop-3-overview.png" alt="SwiftDrop Overview" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
         </div>
+    </section>
 
-        <!-- ===== FOOTER ===== -->
-        <div style="text-align:center; margin-top:60px; padding-top:40px; border-top:1px solid rgba(255,255,255,0.1);">
-            <a href="/" class="btn">← Back to Portfolio</a>
+    <!-- ===== PHILOSOPHY ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Philosophy</span>
+                <h2>Design principles</h2>
+            </div>
+            <img src="/swiftdrop-philosophy.png" alt="SwiftDrop Philosophy" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== BRAND & COLORS ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Brand Identity</span>
+                <h2>Colors & Typography</h2>
+            </div>
+            <div class="img-grid img-grid-2">
+                <img src="/swiftdrop-4-brand.png" alt="SwiftDrop Brand" />
+                <img src="/swiftdrop-5-colors.png" alt="SwiftDrop Colors" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VISUAL DESIGN ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Visual Design</span>
+                <h2>Interface exploration</h2>
+            </div>
+            <img src="/swiftdrop-7-visual.png" alt="SwiftDrop Visual Design" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== STRATEGY ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Strategy</span>
+                <h2>Design strategy & decisions</h2>
+            </div>
+            <img src="/swiftdrop-8-strategy.png" alt="SwiftDrop Strategy" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== HOME SCREEN ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Key Screen</span>
+                <h2>Home Screen</h2>
+            </div>
+            <img src="/swiftdrop-9-home.png" alt="SwiftDrop Home Screen" style="width:100%; max-width:400px; display:block; margin:0 auto; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== DISCOVERY ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Discovery</span>
+                <h2>User research & insights</h2>
+            </div>
+            <img src="/swiftdrop-10-discovery.png" alt="SwiftDrop Discovery" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== DETAILS ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Details</span>
+                <h2>Screen details</h2>
+            </div>
+            <img src="/swiftdrop-11-details.png" alt="SwiftDrop Details" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== OUTCOME ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Outcome</span>
+                <h2>Results & impact</h2>
+            </div>
+            <div class="outcome-grid">
+                <div class="outcome-card">
+                    <div class="number">40%</div>
+                    <p>Faster checkout completion</p>
+                </div>
+                <div class="outcome-card">
+                    <div class="number">25%</div>
+                    <p>Increase in user retention</p>
+                </div>
+                <div class="outcome-card">
+                    <div class="number">4.8★</div>
+                    <p>User satisfaction rating</p>
+                </div>
+                <div class="outcome-card">
+                    <div class="number">10K+</div>
+                    <p>Downloads in first month</p>
+                </div>
+            </div>
+            <img src="/swiftdrop-17-outcome.png" alt="SwiftDrop Outcome" style="width:100%; border-radius:20px; border:1px solid var(--border); margin-top:30px;" />
+        </div>
+    </section>
+
+    <!-- ===== THANK YOU ===== -->
+    <section style="padding-top:0; padding-bottom:100px;">
+        <div class="container">
+            <div class="section-heading" style="text-align:center; max-width:100%;">
+                <span class="eyebrow">Thank You</span>
+                <h2>Let's build something great</h2>
+                <p>Interested in working together? Let's talk.</p>
+                <a href="/#contact" style="display:inline-block; margin-top:24px; padding:14px 40px; border-radius:14px; background:var(--gradient-brand); color:#fff; text-decoration:none; font-weight:600; box-shadow:0 10px 30px rgba(108,99,255,0.3);">Let's Talk</a>
+            </div>
+            <img src="/swiftdrop-18-thankyou.png" alt="SwiftDrop Thank You" style="width:100%; max-width:500px; display:block; margin:30px auto 0; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer-bar">
+        <div class="container">
+            © 2026 Muhammad Waris · Designed with 💜 · <a href="/">Back to Portfolio</a>
         </div>
     </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 24); });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const isDark = localStorage.getItem('theme') !== 'light';
+            document.documentElement.classList.toggle('dark', isDark);
+            document.documentElement.classList.toggle('light', !isDark);
+        });
+    </script>
+
 </body>
 </html>
