@@ -640,6 +640,7 @@
                         <li style="margin-top:10px;"><a href="/archmind-ai.html" style="color:var(--muted-foreground); text-decoration:none; font-size:15px; transition:0.2s;">ArchiMind AI</a></li>
                         <li style="margin-top:10px;"><a href="/swiftdrop.html" style="color:var(--muted-foreground); text-decoration:none; font-size:15px; transition:0.2s;">SwiftDrop</a></li>
                         <li style="margin-top:10px;"><a href="/luxe-market.html" style="color:var(--muted-foreground); text-decoration:none; font-size:15px; transition:0.2s;">Luxe Market</a></li>
+                        <li style="margin-top:10px;"><a href="/luxora.html" style="color:var(--muted-foreground); text-decoration:none; font-size:15px; transition:0.2s;">Luxora</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -668,7 +669,8 @@
         const projects = [
             { slug: "archmind-ai", title: "ArchiMind AI", subtitle: "AI Architecture Studio", category: "Mobile Apps", year: "2026", image: "/archmind-1.png", tags: ["Figma", "AI", "Architecture", "iOS"] },
             { slug: "swiftdrop", title: "SwiftDrop", subtitle: "Premium Delivery Mobile App", category: "Mobile Apps", year: "2025", image: "/swiftdrop-9-home.png", tags: ["Figma", "Delivery", "Mobile App"] },
-            { slug: "luxe-market", title: "Luxe Market", subtitle: "Premium Mobile Commerce App", category: "E-commerce", year: "2025", image: "/luxe-1.png", tags: ["Figma", "E-commerce", "iOS", "Android"] }
+            { slug: "luxe-market", title: "Luxe Market", subtitle: "Premium Mobile Commerce App", category: "E-commerce", year: "2025", image: "/luxe-1.png", tags: ["Figma", "E-commerce", "iOS", "Android"] },
+            { slug: "luxora", title: "Luxora", subtitle: "Premium Fashion E-Commerce Website", category: "E-commerce", year: "2026", image: "/luxora-cover.png", tags: ["Figma", "E-commerce", "Web Design", "UI/UX"] }
         ];
 
         // ===== THEME TOGGLE =====
@@ -752,6 +754,7 @@
                                 ${p.year} · ${p.category}
                                 ${p.slug === "swiftdrop" ? `<span style="background:rgba(108,99,255,0.15); color:#6c63ff; padding:2px 12px; border-radius:999px; font-size:11px; font-weight:600; margin-left:8px;">UI/UX</span>` : ''}
                                 ${p.slug === "luxe-market" ? `<span style="background:rgba(216,90,48,0.15); color:#D85A30; padding:2px 12px; border-radius:999px; font-size:11px; font-weight:600; margin-left:8px;">E-commerce</span>` : ''}
+                                ${p.slug === "luxora" ? `<span style="background:rgba(212,175,55,0.15); color:#D4AF37; padding:2px 12px; border-radius:999px; font-size:11px; font-weight:600; margin-left:8px;">Fashion</span>` : ''}
                             </p>
                             <h3 style="font-size:1.4rem; font-weight:600; margin-top:4px;">${p.title}</h3>
                             <p style="font-size:14px; color:var(--muted-foreground); margin-top:4px;">${p.subtitle}</p>
