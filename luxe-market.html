@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxe Market — Premium Mobile Commerce App | Muhammad Waris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --background: #0b0d17;
+            --foreground: #e8ecf4;
+            --card: #14172b;
+            --muted-foreground: #8e94b0;
+            --border: #2a2f4f;
+            --primary: #6c63ff;
+            --gradient-brand: linear-gradient(135deg, #6c63ff, #00d4ff);
+            --surface: rgba(20, 23, 43, 0.7);
+            --shadow-luxe: 0 20px 60px rgba(108, 99, 255, 0.3);
+            --radius: 1rem;
+            --terracotta: #D85A30;
+            --sage: #639922;
+            --canvas: #FAF9F6;
+            --charcoal: #1A1A1A;
+        }
+        .light {
+            --background: #f8f9fc;
+            --foreground: #1a1a2e;
+            --card: #ffffff;
+            --muted-foreground: #6c7293;
+            --border: #e0e3eb;
+            --surface: rgba(255, 255, 255, 0.8);
+        }
+        body { 
+            font-family: 'Manrope', sans-serif; 
+            background: var(--background); 
+            color: var(--foreground); 
+            line-height: 1.7; 
+            transition: background 0.4s, color 0.4s;
+        }
+        h1, h2, h3 { font-family: 'Sora', sans-serif; letter-spacing: -0.02em; }
+        .display-font { font-family: 'Playfair Display', serif; }
+        .container { max-width: 1180px; width: 92vw; margin: 0 auto; }
+        .text-gradient { background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .glass { background: var(--surface); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: var(--radius); }
+
+        nav { 
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50; 
+            padding: 20px 0; transition: all 0.4s; 
+        }
+        nav.scrolled { padding: 10px 0; }
+        nav .nav-inner { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 10px 20px; border-radius: 20px; transition: all 0.4s; 
+        }
+        nav.scrolled .nav-inner { 
+            background: var(--surface); backdrop-filter: blur(20px); 
+            border: 1px solid var(--border); box-shadow: var(--shadow-luxe); 
+        }
+        nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--foreground); }
+        nav .logo img { border-radius: 12px; width: 40px; height: 40px; }
+        nav a { color: var(--muted-foreground); text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--foreground); }
+        .back-btn { 
+            display: inline-flex; align-items: center; gap: 8px; 
+            padding: 10px 20px; border-radius: 12px; 
+            border: 1px solid var(--border); color: var(--foreground); 
+            text-decoration: none; font-size: 14px; font-weight: 500;
+            transition: 0.3s; background: var(--surface);
+        }
+        .back-btn:hover { border-color: var(--primary); transform: translateX(-4px); }
+
+        .case-hero { padding: 160px 0 80px; }
+        .case-hero .badge { 
+            display: inline-flex; align-items: center; gap: 8px;
+            border: 1px solid var(--border); padding: 6px 16px; 
+            border-radius: 999px; font-size: 12px; font-weight: 600;
+            color: var(--primary); background: rgba(108, 99, 255, 0.1);
+        }
+        .case-hero h1 { font-size: 4rem; margin-top: 24px; }
+        .case-hero .subtitle { font-size: 1.2rem; color: var(--muted-foreground); max-width: 36rem; margin-top: 16px; }
+        .case-hero .tagline { 
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem; 
+            color: var(--terracotta); 
+            margin-top: 12px;
+            letter-spacing: 0.05em;
+        }
+        .case-hero .meta { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+        .case-hero .meta span { 
+            padding: 8px 20px; border-radius: 999px; 
+            border: 1px solid var(--border); font-size: 14px; 
+            color: var(--muted-foreground);
+        }
+        .case-hero .meta span strong { color: var(--foreground); }
+
+        section { padding: 80px 0; }
+        .section-heading { max-width: 40rem; margin-bottom: 48px; }
+        .section-heading .eyebrow { 
+            display: inline-flex; align-items: center; gap: 8px;
+            border: 1px solid var(--border); padding: 6px 16px; 
+            border-radius: 999px; font-size: 12px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--primary); background: rgba(108, 99, 255, 0.1);
+        }
+        .section-heading h2 { font-size: 2.8rem; margin-top: 16px; }
+        .section-heading p { margin-top: 12px; color: var(--muted-foreground); font-size: 1.1rem; }
+
+        .img-grid { display: grid; gap: 24px; }
+        .img-grid-2 { grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .img-grid-2 { grid-template-columns: 1fr 1fr; } }
+        .img-grid-3 { grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .img-grid-3 { grid-template-columns: 1fr 1fr 1fr; } }
+        .img-grid img { width: 100%; border-radius: 16px; border: 1px solid var(--border); }
+
+        .color-swatch { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
+        .color-swatch .swatch { 
+            padding: 12px 24px; border-radius: 12px; 
+            border: 1px solid var(--border);
+            text-align: center; min-width: 100px;
+        }
+        .color-swatch .swatch .circle { 
+            width: 40px; height: 40px; border-radius: 999px; 
+            margin: 0 auto 8px; border: 1px solid var(--border);
+        }
+        .color-swatch .swatch span { font-size: 13px; color: var(--muted-foreground); }
+
+        .footer-bar { 
+            border-top: 1px solid var(--border); 
+            padding: 40px 0; text-align: center; 
+            font-size: 14px; color: var(--muted-foreground);
+        }
+        .footer-bar a { color: var(--primary); text-decoration: none; }
+
+        .luxe-label {
+            display: inline-block;
+            background: rgba(216, 90, 48, 0.15);
+            color: var(--terracotta);
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 640px) { .case-hero h1 { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" class="logo">
+                    <img src="/logo.webp" alt="Logo" />
+                    <span style="font-weight:600;">Muhammad Waris</span>
+                </a>
+                <a href="/" class="back-btn">← Back to Portfolio</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== CASE HERO ===== -->
+    <section class="case-hero">
+        <div class="container">
+            <div class="badge">🛍️ 2025 · E-COMMERCE</div>
+            <h1>Luxe Market</h1>
+            <p class="subtitle">A premium, editorial shopping experience for iOS & Android. Curated brands, tactile product photography, and a checkout that feels effortless.</p>
+            <p class="tagline">Curated · Delivered · Loved</p>
+            <span class="luxe-label">E-commerce · Mobile</span>
+            <div class="meta">
+                <span><strong>Role:</strong> Lead UI/UX Designer</span>
+                <span><strong>Timeline:</strong> 6 Weeks</span>
+                <span><strong>Tools:</strong> Figma, Photoshop, Illustrator</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ONBOARDING SCREENS ===== -->
+    <section>
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Onboarding</span>
+                <h2>Welcome to Luxe Market</h2>
+                <p>A hand-picked edit of the labels worth your wardrobe.</p>
+            </div>
+            <div class="img-grid img-grid-3">
+                <img src="/luxe-2.png" alt="Luxe Market Onboarding" />
+                <img src="/luxe-2.png" alt="Luxe Market Onboarding" />
+                <img src="/luxe-2.png" alt="Luxe Market Onboarding" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOME & DISCOVERY ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Home & Discovery</span>
+                <h2>Browse & explore</h2>
+                <p>Curated categories, trending items, and seamless navigation.</p>
+            </div>
+            <div class="img-grid img-grid-2">
+                <img src="/luxe-1.png" alt="Luxe Market Home" />
+                <img src="/luxe-3.png" alt="Luxe Market Discovery" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCT & CHECKOUT ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Product & Checkout</span>
+                <h2>From discovery to delivery</h2>
+                <p>Product details, sizing, reviews, and a frictionless checkout flow.</p>
+            </div>
+            <div class="img-grid img-grid-2">
+                <img src="/luxe-4.png" alt="Luxe Market Product" />
+                <img src="/luxe-5.png" alt="Luxe Market Checkout" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STYLE GUIDE ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Style Guide</span>
+                <h2>Design System</h2>
+                <p>Warm editorial commerce — the polish of a fashion lookbook and the clarity of a high-conversion shopping app.</p>
+            </div>
+            <img src="/luxe-6.png" alt="Luxe Market Style Guide" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+            
+            <!-- Color Palette -->
+            <div style="margin-top: 40px;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Color Palette</h3>
+                <div class="color-swatch">
+                    <div class="swatch">
+                        <div class="circle" style="background:#1A1A1A;"></div>
+                        <span>Charcoal</span>
+                        <span style="display:block; font-size:11px;">#1A1A1A</span>
+                    </div>
+                    <div class="swatch">
+                        <div class="circle" style="background:#D85A30;"></div>
+                        <span>Terracotta</span>
+                        <span style="display:block; font-size:11px;">#D85A30</span>
+                    </div>
+                    <div class="swatch">
+                        <div class="circle" style="background:#639922;"></div>
+                        <span>Sage</span>
+                        <span style="display:block; font-size:11px;">#639922</span>
+                    </div>
+                    <div class="swatch">
+                        <div class="circle" style="background:#FAF9F6;"></div>
+                        <span>Canvas</span>
+                        <span style="display:block; font-size:11px;">#FAF9F6</span>
+                    </div>
+                    <div class="swatch">
+                        <div class="circle" style="background:#EDEBE4;"></div>
+                        <span>Surface</span>
+                        <span style="display:block; font-size:11px;">#EDEBE4</span>
+                    </div>
+                    <div class="swatch">
+                        <div class="circle" style="background:#A8A780;"></div>
+                        <span>Muted</span>
+                        <span style="display:block; font-size:11px;">#A8A780</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typography -->
+            <div style="margin-top: 40px;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Typography</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+                        <p style="font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;">Playfair Display</p>
+                        <p style="font-size: 13px; color: var(--muted-foreground);">Display · Headings · Editorial</p>
+                    </div>
+                    <div style="padding: 20px; border-radius: 16px; border: 1px solid var(--border);">
+                        <p style="font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 600;">Inter</p>
+                        <p style="font-size: 13px; color: var(--muted-foreground);">Body · Buttons · Captions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== THANK YOU ===== -->
+    <section style="padding-top:0; padding-bottom:100px;">
+        <div class="container">
+            <div class="section-heading" style="text-align:center; max-width:100%;">
+                <span class="eyebrow">Thank You</span>
+                <h2>Curated · Delivered · Loved</h2>
+                <p>Interested in working together? Let's talk.</p>
+                <a href="/#contact" style="display:inline-block; margin-top:24px; padding:14px 40px; border-radius:14px; background:var(--gradient-brand); color:#fff; text-decoration:none; font-weight:600; box-shadow:0 10px 30px rgba(108,99,255,0.3);">Let's Talk</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer-bar">
+        <div class="container">
+            © 2026 Muhammad Waris · Designed with 💜 · <a href="/">Back to Portfolio</a>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 24); });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const isDark = localStorage.getItem('theme') !== 'light';
+            document.documentElement.classList.toggle('dark', isDark);
+            document.documentElement.classList.toggle('light', !isDark);
+        });
+    </script>
+
+</body>
+</html>
