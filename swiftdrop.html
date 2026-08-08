@@ -19,7 +19,6 @@
         .hero h1 { font-size: 3.5rem; background: linear-gradient(135deg, #ff5a00, #ff8c42); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero p { color: #8e94b0; font-size: 1.2rem; margin-top: 12px; }
         
-        /* FIX: Images will now render properly with width/height */
         .full-width-img { 
             width: 100%; 
             height: auto; 
@@ -29,10 +28,19 @@
             display: block;
         }
         
+        /* FIX: Added spacing between images */
+        .img-grid { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 40px; /* Gap fix kar diya */
+        }
+        
         .btn { display: inline-block; padding: 14px 28px; background: linear-gradient(135deg, #ff5a00, #ff8c42); color: #fff; border-radius: 12px; text-decoration: none; font-weight: 600; transition: 0.3s; }
         .btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(255,90,0,0.4); }
         .back-link { color: #8e94b0; text-decoration: none; margin-bottom: 30px; display: inline-block; font-size: 14px; }
         .back-link:hover { color: #fff; }
+        
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -100,15 +108,19 @@
         <div class="glass" style="margin-top:40px;">
             <h2 class="section-title">Key Screens</h2>
             <p>Every screen was optimized for modern smartphones with a mobile-first approach.</p>
-            <img src="/swiftdrop-10-type.png" alt="Home Screen" class="full-width-img" />
-            <img src="/swiftdrop-11-final.png" alt="Product Discovery" class="full-width-img" />
+            <div class="img-grid">
+                <img src="/swiftdrop-10-type.png" alt="Home Screen" class="full-width-img" />
+                <img src="/swiftdrop-11-final.png" alt="Product Discovery" class="full-width-img" />
+            </div>
         </div>
 
         <!-- ===== FINAL OUTCOME ===== -->
         <div class="glass" style="margin-top:40px;">
             <h2 class="section-title">Final Outcome</h2>
             <p>A premium delivery platform that feels fast, trustworthy, and effortless.</p>
-            <img src="/swiftdrop-11-final.png" alt="Final Outcome" class="full-width-img" />
+            <!-- FIX: Changed to a different placeholder image so it doesn't duplicate -->
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=800&h=600&fit=crop" alt="Final Outcome" class="full-width-img" />
+            <p style="font-size:13px; color:#8e94b0; margin-top:10px; text-align:center;">(Replace this image with your real swiftdrop-17-outcome.png)</p>
         </div>
 
         <!-- ===== FOOTER ===== -->
