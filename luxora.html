@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxora — Premium Fashion E-Commerce Website | Muhammad Waris</title>
+    <meta name="description" content="Luxora is a premium fashion e-commerce website designed for luxury brands. Modern shopping experience with elegant UI/UX design." />
+    <link rel="canonical" href="https://warisuiuxstudio.vercel.app/luxora.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --background: #0b0d17;
+            --foreground: #e8ecf4;
+            --card: #14172b;
+            --muted-foreground: #8e94b0;
+            --border: #2a2f4f;
+            --primary: #6c63ff;
+            --gradient-brand: linear-gradient(135deg, #6c63ff, #00d4ff);
+            --surface: rgba(20, 23, 43, 0.7);
+            --shadow-luxe: 0 20px 60px rgba(108, 99, 255, 0.3);
+            --radius: 1rem;
+            --gold: #D4AF37;
+        }
+        .light {
+            --background: #f8f9fc;
+            --foreground: #1a1a2e;
+            --card: #ffffff;
+            --muted-foreground: #6c7293;
+            --border: #e0e3eb;
+            --surface: rgba(255, 255, 255, 0.8);
+        }
+        body { font-family: 'Manrope', sans-serif; background: var(--background); color: var(--foreground); line-height: 1.7; transition: background 0.4s, color 0.4s; }
+        h1, h2, h3, h4 { font-family: 'Sora', sans-serif; letter-spacing: -0.02em; }
+        .luxora-font { font-family: 'Poppins', sans-serif; }
+        .container { max-width: 1180px; width: 92vw; margin: 0 auto; }
+        .gold-text { color: var(--gold); }
+        .glass { background: var(--surface); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: var(--radius); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 20px 0; transition: all 0.4s; }
+        nav.scrolled { padding: 10px 0; }
+        nav .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-radius: 20px; transition: all 0.4s; }
+        nav.scrolled .nav-inner { background: var(--surface); backdrop-filter: blur(20px); border: 1px solid var(--border); box-shadow: var(--shadow-luxe); }
+        nav .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--foreground); }
+        nav .logo img { border-radius: 12px; width: 40px; height: 40px; }
+        nav a { color: var(--muted-foreground); text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--foreground); }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 12px; border: 1px solid var(--border); color: var(--foreground); text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; background: var(--surface); }
+        .back-btn:hover { border-color: var(--primary); transform: translateX(-4px); }
+
+        .case-hero { padding: 160px 0 80px; }
+        .case-hero .badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); padding: 6px 16px; border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--primary); background: rgba(108, 99, 255, 0.1); }
+        .case-hero h1 { font-size: 4rem; margin-top: 24px; font-family: 'Poppins', sans-serif; letter-spacing: 0.05em; }
+        .case-hero .subtitle { font-size: 1.2rem; color: var(--muted-foreground); max-width: 36rem; margin-top: 16px; }
+        .case-hero .tagline { font-family: 'Poppins', sans-serif; font-size: 1.2rem; color: var(--gold); margin-top: 12px; letter-spacing: 0.15em; font-weight: 600; }
+        .case-hero .meta { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+        .case-hero .meta span { padding: 8px 20px; border-radius: 999px; border: 1px solid var(--border); font-size: 14px; color: var(--muted-foreground); }
+        .case-hero .meta span strong { color: var(--foreground); }
+
+        section { padding: 80px 0; }
+        .section-heading { max-width: 40rem; margin-bottom: 48px; }
+        .section-heading .eyebrow { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); padding: 6px 16px; border-radius: 999px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); background: rgba(108, 99, 255, 0.1); }
+        .section-heading h2 { font-size: 2.8rem; margin-top: 16px; }
+        .section-heading p { margin-top: 12px; color: var(--muted-foreground); font-size: 1.1rem; }
+
+        .img-grid { display: grid; gap: 24px; }
+        .img-grid-2 { grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .img-grid-2 { grid-template-columns: 1fr 1fr; } }
+        .img-grid-3 { grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .img-grid-3 { grid-template-columns: 1fr 1fr 1fr; } }
+        .img-grid img { width: 100%; border-radius: 16px; border: 1px solid var(--border); }
+
+        .footer-bar { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; font-size: 14px; color: var(--muted-foreground); }
+        .footer-bar a { color: var(--primary); text-decoration: none; }
+        .luxora-label { display: inline-block; background: rgba(212, 175, 55, 0.15); color: var(--gold); padding: 4px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; margin-top: 10px; }
+
+        @media (max-width: 640px) { .case-hero h1 { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" class="logo">
+                    <img src="/logo.webp" alt="Logo" />
+                    <span style="font-weight:600;">Muhammad Waris</span>
+                </a>
+                <a href="/" class="back-btn">← Back to Portfolio</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="case-hero">
+        <div class="container">
+            <div class="badge">🛍️ 2026 · E-COMMERCE · WEBSITE</div>
+            <h1>LUXORA</h1>
+            <p class="subtitle">Premium Fashion E-Commerce Website — Modern shopping experience designed for luxury fashion brands.</p>
+            <p class="tagline">Elegance · Usability · Conversions</p>
+            <span class="luxora-label">UI/UX Case Study 2026</span>
+            <div class="meta">
+                <span><strong>Role:</strong> Lead UI/UX Designer</span>
+                <span><strong>Timeline:</strong> 2 Weeks</span>
+                <span><strong>Tools:</strong> Figma, Photoshop, Illustrator</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OVERVIEW ===== -->
+    <section>
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Overview</span>
+                <h2>Project Overview</h2>
+                <p>Luxora is a premium e-commerce experience focused on elegance, usability, and conversions.</p>
+            </div>
+            <img src="/luxora-overview.png" alt="Luxora Project Overview" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== BRAND IDENTITY ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Brand Identity</span>
+                <h2>Luxora Brand</h2>
+                <p>Clean, elegant, and sophisticated design language for a premium fashion brand.</p>
+            </div>
+            <img src="/luxora-brand.png" alt="Luxora Brand Identity" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== DESIGN PROCESS ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Process</span>
+                <h2>Design Process</h2>
+                <p>From research to prototype - a systematic approach to luxury e-commerce.</p>
+            </div>
+            <img src="/luxora-process.png" alt="Luxora Design Process" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== WIREFRAMES ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Wireframes</span>
+                <h2>Low Fidelity Wireframes</h2>
+                <p>Structuring the user experience before visual design.</p>
+            </div>
+            <img src="/luxora-wireframes.png" alt="Luxora Wireframes" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Hero Section</span>
+                <h2>Homepage Hero</h2>
+                <p>Elevate your style with premium fashion collections.</p>
+            </div>
+            <img src="/luxora-hero.png" alt="Luxora Hero Section" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== HOME & CATEGORY ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Screens</span>
+                <h2>Home &amp; Category</h2>
+                <p>Clean product discovery with elegant presentation.</p>
+            </div>
+            <div class="img-grid img-grid-2">
+                <img src="/luxora-home.png" alt="Luxora Homepage" />
+                <img src="/luxora-cover.png" alt="Luxora Category" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCT DETAIL ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Product</span>
+                <h2>Product Detail Page</h2>
+                <p>Premium product presentation with size selection and reviews.</p>
+            </div>
+            <img src="/luxora-product.png" alt="Luxora Product Detail" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== CART & CHECKOUT ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Checkout</span>
+                <h2>Shopping Cart &amp; Checkout</h2>
+                <p>Seamless purchase flow with clear summary and trust signals.</p>
+            </div>
+            <div class="img-grid img-grid-2">
+                <img src="/luxora-cart.png" alt="Luxora Shopping Cart" />
+                <img src="/luxora-checkout.png" alt="Luxora Checkout" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DASHBOARD & TRACKING ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">User Experience</span>
+                <h2>Dashboard &amp; Order Tracking</h2>
+                <p>User dashboard and real-time order tracking for customer confidence.</p>
+            </div>
+            <div class="img-grid img-grid-2">
+                <img src="/luxora-dashboard.png" alt="Luxora User Dashboard" />
+                <img src="/luxora-tracking.png" alt="Luxora Order Tracking" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MOCKUPS ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">High Fidelity</span>
+                <h2>High Fidelity Mockups</h2>
+                <p>Polished visual design with brand identity applied.</p>
+            </div>
+            <img src="/luxora-mockups.png" alt="Luxora High Fidelity Mockups" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== RESPONSIVE ===== -->
+    <section style="padding-top:0;">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Responsive</span>
+                <h2>Responsive Across All Devices</h2>
+                <p>Seamless experience on desktop, tablet, and mobile.</p>
+            </div>
+            <img src="/luxora-responsive.png" alt="Luxora Responsive Design" style="width:100%; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== THANK YOU ===== -->
+    <section style="padding-top:0; padding-bottom:100px;">
+        <div class="container">
+            <div class="section-heading" style="text-align:center; max-width:100%;">
+                <span class="eyebrow">Thank You</span>
+                <h2>Elegance · Usability · Conversions</h2>
+                <p>Interested in working together? Let's talk.</p>
+                <a href="/#contact" style="display:inline-block; margin-top:24px; padding:14px 40px; border-radius:14px; background:var(--gradient-brand); color:#fff; text-decoration:none; font-weight:600; box-shadow:0 10px 30px rgba(108,99,255,0.3);">Let's Talk</a>
+            </div>
+            <img src="/luxora-thankyou.png" alt="Luxora Thank You" style="width:100%; max-width:500px; display:block; margin:30px auto 0; border-radius:20px; border:1px solid var(--border);" />
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer-bar">
+        <div class="container">
+            © 2026 Muhammad Waris · Designed with 💜 · <a href="/">Back to Portfolio</a>
+        </div>
+    </div>
+
+    <script>
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 24); });
+        document.addEventListener('DOMContentLoaded', () => {
+            const isDark = localStorage.getItem('theme') !== 'light';
+            document.documentElement.classList.toggle('dark', isDark);
+            document.documentElement.classList.toggle('light', !isDark);
+        });
+    </script>
+
+</body>
+</html>
