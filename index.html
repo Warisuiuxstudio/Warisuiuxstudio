@@ -829,8 +829,8 @@
                 subtitle: "Premium Delivery Mobile App", 
                 category: "Mobile Apps", 
                 year: "2025", 
-                image: "/swiftdrop-1-hero.png", 
-                tags: ["Figma", "Delivery", "Mobile App", "UI/UX"] 
+                image: "/swiftdrop-9-home.png",
+                tags: ["Figma", "Delivery", "Mobile App"] 
             }
         ];
 
@@ -891,7 +891,10 @@
                             <img src="${p.image}" alt="${p.title}" style="width:100%; height:auto; object-fit:cover; display:block;" />
                         </div>
                         <div style="padding:16px 20px;">
-                            <p style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground); opacity:0.7; margin-bottom:4px;">${p.year} · ${p.category}</p>
+                            <p style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground); opacity:0.7; margin-bottom:4px;">
+                                ${p.year} · ${p.category}
+                                ${p.slug === "swiftdrop" ? `<span style="background:rgba(108,99,255,0.15); color:#6c63ff; padding:2px 12px; border-radius:999px; font-size:11px; font-weight:600; margin-left:8px;">UI/UX</span>` : ''}
+                            </p>
                             <h3 style="font-size:1.4rem; font-weight:600; margin-top:4px;">${p.title}</h3>
                             <p style="font-size:14px; color:var(--muted-foreground); margin-top:4px;">${p.subtitle}</p>
                             <div class="tags" style="padding:12px 0 0;">
