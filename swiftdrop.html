@@ -28,12 +28,6 @@
             display: block;
         }
         
-        .img-grid { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 40px; 
-        }
-        
         .btn { display: inline-block; padding: 14px 28px; background: linear-gradient(135deg, #ff5a00, #ff8c42); color: #fff; border-radius: 12px; text-decoration: none; font-weight: 600; transition: 0.3s; }
         .btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(255,90,0,0.4); }
         .back-link { color: #8e94b0; text-decoration: none; margin-bottom: 30px; display: inline-block; font-size: 14px; }
@@ -107,9 +101,16 @@
         <div class="glass" style="margin-top:40px;">
             <h2 class="section-title">Key Screens</h2>
             <p>Every screen was optimized for modern smartphones with a mobile-first approach.</p>
-            <div class="img-grid">
-                <img src="/swiftdrop-10-type.png" alt="Home Screen" class="full-width-img" />
-                <img src="/swiftdrop-11-final.png" alt="Product Discovery" class="full-width-img" />
+            <!-- UPDATED: Images now in 2 columns with captions -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px;">
+                <div>
+                    <img src="/swiftdrop-10-discovery.png" alt="Home Screen" class="full-width-img" />
+                    <p style="text-align:center; margin-top:10px; font-weight:500; color:#e8ecf4;">Home Screen</p>
+                </div>
+                <div>
+                    <img src="/swiftdrop-11-details.png" alt="Product Discovery" class="full-width-img" />
+                    <p style="text-align:center; margin-top:10px; font-weight:500; color:#e8ecf4;">Product Discovery</p>
+                </div>
             </div>
         </div>
 
