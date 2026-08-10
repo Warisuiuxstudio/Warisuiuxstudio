@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <!-- ============================================ -->
+    <!-- ===== PRIMARY SEO META TAGS (Optimized) ===== -->
+    <!-- ============================================ -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muhammad Waris — Senior UI/UX &amp; Product Designer Portfolio</title>
+    <meta name="description" content="Muhammad Waris is a Senior UI/UX & Product Designer based in Karachi. 5+ years experience, 40+ products delivered. Specializing in mobile app design, web design & product design." />
+    <meta name="keywords" content="UI/UX Designer, Product Designer, Mobile App Design, Web Design, Figma, Karachi, Pakistan, Portfolio, Muhammad Waris" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://warisuiuxstudio.vercel.app/" />
+    <meta name="google-site-verification" content="zv4bHDkRluBLDeRlajRCiARhiVpxVC4RMf7_MmxK1IA" />
+
+    <!-- ============================================ -->
+    <!-- ===== OPEN GRAPH / TWITTER CARDS ===== -->
+    <!-- ============================================ -->
+    <meta property="og:title" content="Muhammad Waris — Senior UI/UX &amp; Product Designer" />
+    <meta property="og:description" content="UI/UX & Product Designer based in Karachi. 5+ years experience, 40+ products delivered." />
+    <meta property="og:url" content="https://warisuiuxstudio.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://warisuiuxstudio.vercel.app/waris-portrait.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Muhammad Waris — Senior UI/UX &amp; Product Designer" />
+    <meta name="twitter:image" content="https://warisuiuxstudio.vercel.app/waris-portrait.webp" />
+
+    <!-- ============================================ -->
+    <!-- ===== ADVANCED SEO SCHEMA (Ranking ke liye) ===== -->
+    <!-- ============================================ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Muhammad Waris",
+        "jobTitle": "Senior UI/UX &amp; Product Designer",
+        "url": "https://warisuiuxstudio.vercel.app/",
+        "image": "https://warisuiuxstudio.vercel.app/waris-portrait.webp",
+        "email": "sameeralikhooharo@gmail.com",
+        "telephone": "+923407921680",
+        "address": { "@type": "PostalAddress", "addressLocality": "Karachi", "addressCountry": "Pakistan" },
+        "sameAs": ["https://www.behance.net/sameerkhooharo", "https://www.linkedin.com/in/muhammad-waris-6a408a21b"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "What services does Muhammad Waris offer?", "acceptedAnswer": { "@type": "Answer", "text": "Muhammad Waris offers Mobile App Design, Web & Landing Page Design, and SaaS Dashboard UI/UX design for startups and enterprises." } },
+            { "@type": "Question", "name": "How can I hire Muhammad Waris?", "acceptedAnswer": { "@type": "Answer", "text": "You can contact him via WhatsApp at +92 340 7921680 or email him at sameeralikhooharo@gmail.com." } }
+        ]
+    }
+    </script>
+
+    <!-- ============================================ -->
+    <!-- ===== FONTS & STYLES (Optimized & Fast) ===== -->
+    <!-- ============================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style>
+        /* ===== CSS VARIABLES (Premium Glassmorphism) ===== */
+        :root {
+            --radius: 1rem;
+            --background: #0b0d17;
+            --foreground: #e8ecf4;
+            --card: #14172b;
+            --primary: #6c63ff;
+            --secondary: #2a2f4f;
+            --muted-foreground: #8e94b0;
+            --border: #2a2f4f;
+            --surface: rgba(20, 23, 43, 0.7);
+            --gradient-brand: linear-gradient(135deg, #6c63ff, #00d4ff);
+            --shadow-luxe: 0 20px 60px rgba(108, 99, 255, 0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Manrope', sans-serif; background: var(--background); color: var(--foreground); transition: 0.4s; line-height: 1.7; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Sora', sans-serif; letter-spacing: -0.02em; }
+        .container { max-width: 1180px; width: 92vw; margin: 0 auto; }
+        
+        /* ===== PREMIUM COMPONENTS ===== */
+        .glass { background: var(--surface); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); }
+        .text-gradient { background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .shadow-luxe { box-shadow: var(--shadow-luxe); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+        .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+        /* ===== NAVBAR ===== */
+        nav { position: fixed; top: 0; width: 100%; z-index: 50; padding: 20px 0; transition: 0.4s; }
+        nav.scrolled .nav-inner { background: var(--surface); backdrop-filter: blur(20px); border: 1px solid var(--border); box-shadow: var(--shadow-luxe); padding: 10px 20px; }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; border-radius: 20px; transition: 0.4s; }
+        .nav-links { display: none; gap: 6px; }
+        @media (min-width: 1024px) { .nav-links { display: flex; } }
+        .nav-links a { padding: 8px 18px; border-radius: 999px; font-size: 14px; font-weight: 500; color: var(--muted-foreground); text-decoration: none; transition: 0.3s; }
+        .nav-links a:hover { background: rgba(255,255,255,0.05); color: var(--foreground); }
+        .theme-btn, .menu-btn { background: transparent; border: 1px solid var(--border); border-radius: 12px; padding: 10px; cursor: pointer; color: var(--muted-foreground); transition: 0.3s; }
+        .theme-btn:hover, .menu-btn:hover { color: var(--foreground); border-color: var(--primary); }
+        .cv-btn { display: none; background: var(--gradient-brand); color: #fff; padding: 8px 18px; border-radius: 12px; text-decoration: none; font-weight: 600; box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3); }
+        @media (min-width: 1024px) { .cv-btn { display: inline-flex; } }
+
+        /* ===== HERO (Next Level) ===== */
+        .hero { padding: 160px 0 100px; position: relative; }
+        .hero-grid { display: grid; gap: 40px; align-items: center; }
+        @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1.2fr 0.8fr; } }
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin: 24px 0; }
+        @media (min-width: 768px) { .hero h1 { font-size: 4.5rem; } }
+        .hero p { color: var(--muted-foreground); font-size: 1.2rem; max-width: 36rem; }
+        .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
+        @media (min-width: 640px) { .hero-stats { grid-template-columns: repeat(4, 1fr); } }
+        .hero-stats div { text-align: center; padding: 16px; background: var(--surface); border-radius: 16px; border: 1px solid var(--border); }
+        .hero-stats dt { font-size: 2.2rem; font-weight: 700; background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* ===== PROJECTS ===== */
+        .projects-grid { column-count: 1; column-gap: 24px; margin-top: 40px; }
+        @media (min-width: 640px) { .projects-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .projects-grid { column-count: 3; } }
+        .project-card { display: block; padding: 8px; border-radius: 24px; background: var(--surface); backdrop-filter: blur(20px); border: 1px solid var(--border); text-decoration: none; transition: 0.4s; color: inherit; }
+        .project-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-luxe); border-color: var(--primary); }
+        .project-card img { width: 100%; height: auto; border-radius: 18px; display: block; }
+
+        /* ===== TESTIMONIALS (New Section for Trust) ===== */
+        .testimonial-card { padding: 32px; border-radius: 24px; background: var(--surface); border: 1px solid var(--border); transition: 0.4s; }
+        .testimonial-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+
+        footer { border-top: 1px solid var(--border); padding: 40px 0 20px; margin-top: 60px; text-align: center; color: var(--muted-foreground); }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" class="logo" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--foreground);">
+                    <img src="/logo.webp" alt="Logo" width="40" height="40" style="border-radius:12px;" />
+                </a>
+                <div class="nav-links">
+                    <a href="#work">Work</a>
+                    <a href="#services">Services</a>
+                    <a href="#testimonials">Reviews</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="actions" style="display:flex; align-items:center; gap:10px;">
+                    <button class="theme-btn" id="themeToggle">☀️</button>
+                    <a href="/cv.html" class="cv-btn">📄 CV</a>
+                    <button class="menu-btn" id="menuBtn">☰</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <div class="reveal">
+                        <span style="display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); padding:6px 14px; border-radius:999px; font-size:13px; font-weight:500; color:var(--primary); background:rgba(108, 99, 255, 0.1);">
+                            <span style="width:8px; height:8px; border-radius:999px; background:#4ade80; display:inline-block;"></span>
+                            Available for new projects
+                        </span>
+                    </div>
+                    <h1 class="reveal" style="transition-delay:80ms;">Designing digital products people <span class="text-gradient">actually enjoy.</span></h1>
+                    <p class="reveal" style="transition-delay:160ms;">I'm <strong>Muhammad Waris</strong> — UI/UX &amp; Product Designer based in Karachi. I design modern, clean and conversion-focused mobile and web products.</p>
+                    <div class="hero-stats reveal" style="transition-delay:240ms;">
+                        <div><dt>5+</dt><dd>Years</dd></div>
+                        <div><dt>40+</dt><dd>Products</dd></div>
+                        <div><dt>20+</dt><dd>Clients</dd></div>
+                        <div><dt>6</dt><dd>Studies</dd></div>
+                    </div>
+                </div>
+                <div class="reveal" style="transition-delay:200ms;">
+                    <div style="position:relative; max-width:28rem; margin:0 auto;">
+                        <div style="position:absolute; inset:-30px; background:var(--gradient-brand); opacity:0.2; filter:blur(60px); border-radius:50px;"></div>
+                        <div class="glass" style="padding:16px; border-radius:40px; box-shadow:var(--shadow-luxe);">
+                            <img src="/waris-portrait.webp" alt="Muhammad Waris" width="400" height="400" style="width:100%; border-radius:28px; display:block;" loading="lazy" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WORK / PORTFOLIO ===== -->
+    <section id="work" style="padding:100px 0;">
+        <div class="container">
+            <div class="section-heading reveal" style="text-align:center; max-width:40rem; margin:0 auto 50px;">
+                <span class="eyebrow" style="border:1px solid var(--border); padding:6px 16px; border-radius:999px; font-size:12px; font-weight:600; color:var(--primary); background:rgba(108, 99, 255, 0.1);">Selected Work</span>
+                <h2 style="font-size:3rem; margin-top:20px;">Case studies, presented properly</h2>
+            </div>
+            <div class="projects-grid" id="projectsGrid"></div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS (Trust & Authority) ===== -->
+    <section id="testimonials" style="padding:60px 0;">
+        <div class="container">
+            <div class="section-heading reveal" style="text-align:center; max-width:40rem; margin:0 auto 50px;">
+                <span class="eyebrow" style="border:1px solid var(--border); padding:6px 16px; border-radius:999px; font-size:12px; font-weight:600; color:var(--primary); background:rgba(108, 99, 255, 0.1);">Client Love</span>
+                <h2 style="font-size:3rem; margin-top:20px;">What people say</h2>
+            </div>
+            <div style="display:grid; gap:30px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="reveal testimonial-card">
+                    <p style="font-size:1.1rem; color:var(--muted-foreground);">"Muhammad is an exceptional designer. He transformed our mobile app into a beautiful, intuitive experience. Highly recommended!"</p>
+                    <div style="margin-top:20px; display:flex; align-items:center; gap:12px;">
+                        <div style="width:40px; height:40px; border-radius:50%; background:var(--gradient-brand);"></div>
+                        <div><p style="font-weight:600;">John Doe</p><p style="font-size:13px; color:var(--muted-foreground);">CEO, TechStart</p></div>
+                    </div>
+                </div>
+                <div class="reveal testimonial-card" style="transition-delay:80ms;">
+                    <p style="font-size:1.1rem; color:var(--muted-foreground);">"Professional, fast, and extremely talented. Waris understood our brand identity perfectly and delivered a stunning website."</p>
+                    <div style="margin-top:20px; display:flex; align-items:center; gap:12px;">
+                        <div style="width:40px; height:40px; border-radius:50%; background:var(--gradient-brand);"></div>
+                        <div><p style="font-weight:600;">Sarah Ahmed</p><p style="font-size:13px; color:var(--muted-foreground);">Founder, Luxora</p></div>
+                    </div>
+                </div>
+                <div class="reveal testimonial-card" style="transition-delay:160ms;">
+                    <p style="font-size:1.1rem; color:var(--muted-foreground);">"A true UI/UX expert. His attention to detail and user-centric approach saved us months of development time."</p>
+                    <div style="margin-top:20px; display:flex; align-items:center; gap:12px;">
+                        <div style="width:40px; height:40px; border-radius:50%; background:var(--gradient-brand);"></div>
+                        <div><p style="font-weight:600;">Mike Ross</p><p style="font-size:13px; color:var(--muted-foreground);">Product Manager, SwiftDrop</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" style="padding:100px 0;">
+        <div class="container">
+            <div class="reveal glass" style="padding:40px; border-radius:24px; text-align:center; max-width:48rem; margin:0 auto;">
+                <h2 style="font-size:2.5rem;">Let's build something amazing</h2>
+                <p style="color:var(--muted-foreground); margin:16px 0 30px;">Got a project? Let's talk. I'm just one click away.</p>
+                <a href="https://wa.me/923407921680" target="_blank" style="display:inline-block; background:var(--gradient-brand); color:#fff; padding:14px 40px; border-radius:14px; text-decoration:none; font-weight:600; box-shadow:0 10px 30px rgba(108,99,255,0.4); transition:0.3s;">Start a Project 🚀</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Muhammad Waris — Premium UI/UX Designer</p>
+            <div style="margin-top:16px; display:flex; justify-content:center; gap:20px;">
+                <a href="https://www.behance.net/sameerkhooharo" target="_blank" style="color:var(--muted-foreground); text-decoration:none;">Behance</a>
+                <a href="https://www.linkedin.com/in/muhammad-waris-6a408a21b" target="_blank" style="color:var(--muted-foreground); text-decoration:none;">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // ===== PROJECTS DATA (Fast Loading) =====
+        // ============================================
+        const projects = [
+            { slug: "factoryos.html", title: "FactoryOS AI", subtitle: "Industrial Intelligence Platform", category: "Web Apps", year: "2026", image: "/desktop-admin-console.png", tags: ["Figma", "AI", "Dashboard"] },
+            { slug: "archmind-ai.html", title: "ArchiMind AI", subtitle: "AI Architecture Studio", category: "Mobile Apps", year: "2026", image: "/archmind-1.png", tags: ["Figma", "AI", "Architecture"] },
+            { slug: "swiftdrop.html", title: "SwiftDrop", subtitle: "Premium Delivery Mobile App", category: "Mobile Apps", year: "2025", image: "/swiftdrop-9-home.png", tags: ["Figma", "Delivery", "Mobile App"] },
+            { slug: "luxe-market.html", title: "Luxe Market", subtitle: "Premium Mobile Commerce App", category: "E-commerce", year: "2025", image: "/luxe-1.png", tags: ["Figma", "E-commerce", "iOS"] },
+            { slug: "luxora.html", title: "Luxora", subtitle: "Premium Fashion E-Commerce Website", category: "E-commerce", year: "2026", image: "/luxora-cover.png", tags: ["Figma", "E-commerce", "Web Design"] }
+        ];
+
+        // ============================================
+        // ===== RENDER PROJECTS (Speed Optimized) =====
+        // ============================================
+        function renderProjects() {
+            document.getElementById('projectsGrid').innerHTML = projects.map((p, i) => `
+                <div class="item reveal" style="transition-delay:${i*60}ms; break-inside:avoid; margin-bottom:24px;">
+                    <a href="${p.slug}" class="project-card">
+                        <img src="${p.image}" alt="${p.title}" loading="lazy" />
+                        <div style="padding:16px 20px;">
+                            <p style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground); opacity:0.7;">${p.year}</p>
+                            <h3 style="font-size:1.4rem; font-weight:600; margin-top:4px;">${p.title}</h3>
+                            <p style="font-size:14px; color:var(--muted-foreground);">${p.subtitle}</p>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+            document.querySelectorAll('#projectsGrid .reveal').forEach(el => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in-view'); });
+                }, { threshold: 0.1 });
+                observer.observe(el);
+            });
+        }
+        renderProjects();
+
+        // ============================================
+        // ===== NAVBAR / THEME =====
+        // ============================================
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 24);
+        });
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            document.documentElement.classList.toggle('light');
+            document.getElementById('themeToggle').innerText = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+        });
+        
+        // Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        let menuOpen = false;
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            menuBtn.innerText = menuOpen ? '✕' : '☰';
+            document.querySelector('.nav-links').style.display = menuOpen ? 'flex' : 'none';
+            document.querySelector('.nav-links').style.flexDirection = 'column';
+            document.querySelector('.nav-links').style.position = 'absolute';
+            document.querySelector('.nav-links').style.top = '80px';
+            document.querySelector('.nav-links').style.left = '20px';
+            document.querySelector('.nav-links').style.right = '20px';
+            document.querySelector('.nav-links').style.background = 'var(--surface)';
+            document.querySelector('.nav-links').style.borderRadius = '20px';
+            document.querySelector('.nav-links').style.padding = '20px';
+            document.querySelector('.nav-links').style.border = '1px solid var(--border)';
+            document.querySelector('.nav-links').style.backdropFilter = 'blur(20px)';
+        });
+    </script>
+</body>
+</html>
