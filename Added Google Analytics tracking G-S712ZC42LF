@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- ===== PRIMARY SEO ===== -->
+    <title>Muhammad Waris — Senior UI/UX & Product Designer | Karachi</title>
+    <meta name="description" content="Muhammad Waris is a Senior UI/UX & Product Designer based in Karachi. 5+ years experience, 40+ products delivered. Specializing in mobile app design, web design & SaaS dashboards." />
+    <link rel="canonical" href="https://warisuiuxstudio.vercel.app/" />
+    
+    <!-- ===== BUSINESS SCHEMA ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Waris UI UX Studio",
+        "image": "https://warisuiuxstudio.vercel.app/waris-portrait.webp",
+        "telephone": "+923407921680",
+        "email": "sameeralikhooharo@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Karachi",
+            "addressCountry": "PK"
+        },
+        "description": "Senior UI/UX Designer offering mobile app design, web design, and SaaS dashboard UI/UX services."
+    }
+    </script>
+
+    <!-- ===== OPEN GRAPH ===== -->
+    <meta property="og:title" content="Muhammad Waris — Senior UI/UX & Product Designer" />
+    <meta property="og:description" content="UI/UX & Product Designer based in Karachi. 5+ years experience, 40+ products delivered." />
+    <meta property="og:image" content="https://warisuiuxstudio.vercel.app/waris-portrait.webp" />
+
+    <!-- ============================================ -->
+    <!-- ===== GOOGLE ANALYTICS 4 (GA4) CODE ===== -->
+    <!-- ============================================ -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S712ZC42LF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-S712ZC42LF');
+    </script>
+    <!-- ============================================ -->
+
+    <!-- ===== FONTS ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --bg-body: #0b0d17;
+            --text-main: #e8ecf4;
+            --text-muted: #94a3b8;
+            --primary: #6c63ff;
+            --surface: rgba(20, 23, 43, 0.7);
+            --border: #2a2f4f;
+            --shadow-luxe: 0 20px 60px rgba(108, 99, 255, 0.3);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg-body); 
+            color: var(--text-main); 
+            line-height: 1.7; 
+            scroll-behavior: smooth;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .glass { 
+            background: var(--surface); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid var(--border); 
+            border-radius: 20px; 
+        }
+        
+        .text-gradient { 
+            background: linear-gradient(135deg, #6c63ff, #00d4ff); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        
+        /* ===== HERO ===== */
+        .hero { padding: 100px 0 60px; text-align: center; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 20px; }
+        .hero-profile { 
+            width: 160px; height: 160px; border-radius: 50%; 
+            border: 4px solid var(--primary); margin-bottom: 24px; 
+            box-shadow: 0 0 40px rgba(108, 99, 255, 0.3); 
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            display: inline-block; background: var(--primary); padding: 14px 32px; 
+            border-radius: 12px; color: #fff; text-decoration: none; font-weight: 600; 
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+            transition: transform 0.3s ease;
+        }
+        .btn-primary:hover { transform: translateY(-3px); }
+
+        /* ===== SKILLS SECTION ===== */
+        .skills-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 40px; }
+        .skill-card { padding: 24px; transition: 0.3s; }
+        .skill-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .skill-item { margin-bottom: 16px; }
+        .skill-item .header { display: flex; justify-content: space-between; font-size: 14px; font-weight: 500; }
+        .skill-item .bar { height: 8px; background: var(--border); border-radius: 999px; margin-top: 8px; overflow: hidden; }
+        .skill-item .bar .fill { height: 100%; background: linear-gradient(135deg, #6c63ff, #00d4ff); border-radius: 999px; }
+
+        /* ===== PROJECT GRID ===== */
+        .grid-3 { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 40px; }
+        .project-card { 
+            display: block; padding: 16px; text-decoration: none; color: inherit; 
+            transition: 0.3s; background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+        }
+        .project-card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: var(--shadow-luxe); }
+        .project-card img { width: 100%; border-radius: 12px; height: auto; display: block; }
+
+        /* ===== FOOTER ===== */
+        footer { margin-top: 80px; padding: 30px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ===== HERO ===== -->
+        <section class="hero">
+            <img src="/waris-portrait.webp" alt="Muhammad Waris - UI/UX Designer" class="hero-profile" loading="lazy" />
+            <h1>Designing digital products people <span class="text-gradient">actually enjoy.</span></h1>
+            <p style="color:var(--text-muted); max-width:600px; margin:0 auto 30px;">
+                I'm <strong>Muhammad Waris</strong> — UI/UX &amp; Product Designer based in Karachi. 
+                I specialize in mobile app design, web design, SaaS dashboards, and front-end implementation (HTML/CSS).
+            </p>
+            <a href="#contact" class="btn-primary">Hire Me 🚀</a>
+        </section>
+
+        <!-- ===== SKILLS ===== -->
+        <section id="skills" style="padding: 40px 0;">
+            <h2 style="font-size: 2.5rem; text-align: center;">My Skills</h2>
+            <p style="color:var(--text-muted); text-align: center; margin-top:10px;">Design + Code = Complete Product</p>
+            
+            <div class="skills-grid">
+                <div class="skill-card glass">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 20px;">🎨 UI/UX Design</h3>
+                    <div class="skill-item"><div class="header"><span>Figma</span><span>95%</span></div><div class="bar"><div class="fill" style="width:95%;"></div></div></div>
+                    <div class="skill-item"><div class="header"><span>Adobe XD / Photoshop</span><span>85%</span></div><div class="bar"><div class="fill" style="width:85%;"></div></div></div>
+                    <div class="skill-item"><div class="header"><span>Wireframing & Prototyping</span><span>98%</span></div><div class="bar"><div class="fill" style="width:98%;"></div></div></div>
+                </div>
+
+                <div class="skill-card glass">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 20px;">💻 Front-End Code</h3>
+                    <div class="skill-item"><div class="header"><span>HTML5</span><span>92%</span></div><div class="bar"><div class="fill" style="width:92%;"></div></div></div>
+                    <div class="skill-item"><div class="header"><span>CSS3 (Flexbox/Grid)</span><span>88%</span></div><div class="bar"><div class="fill" style="width:88%;"></div></div></div>
+                    <div class="skill-item"><div class="header"><span>Responsive Design</span><span>90%</span></div><div class="bar"><div class="fill" style="width:90%;"></div></div></div>
+                </div>
+
+                <div class="skill-card glass">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 20px;">🧠 Product Strategy</h3>
+                    <div class="skill-item"><div class="header"><span>User Research</span><span>85%</span></div><div class="bar"><div class="fill" style="width:85%;"></div></div></div>
+                    <div class="skill-item"><div class="header"><span>Design Systems</span><span>90%</span></div><div class="bar"><div class="fill" style="width:90%;"></div></div></div>
+                    <div class="skill-item"><div class="header"><span>UX Writing & Micro-copy</span><span>80%</span></div><div class="bar"><div class="fill" style="width:80%;"></div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WORK ===== -->
+        <section id="work" style="padding: 40px 0;">
+            <h2 style="font-size: 2.5rem; text-align: center;">Case Studies</h2>
+            <div class="grid-3" id="projectsGrid"></div>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section id="contact" class="glass" style="padding: 40px; margin-top: 40px; text-align: center;">
+            <h2 style="font-size: 2rem; margin-bottom: 10px;">Let's build something great</h2>
+            <p style="color:var(--text-muted);">Call or WhatsApp: <strong>+92 340 7921680</strong></p>
+            <p style="color:var(--text-muted);">Email: sameeralikhooharo@gmail.com</p>
+            <div style="margin-top:20px;">
+                <a href="https://wa.me/923407921680" target="_blank" class="btn-primary">Chat on WhatsApp 💬</a>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer>
+            <p>© 2026 Muhammad Waris. Designed with ❤️ | UI/UX & Front-End Developer</p>
+        </footer>
+    </div>
+
+    <script>
+        // ===== PROJECTS DATA =====
+        const projects = [
+            { slug: "factoryos.html", title: "FactoryOS AI", image: "/desktop-admin-console.png" },
+            { slug: "archmind-ai.html", title: "ArchiMind AI", image: "/archmind-1.png" },
+            { slug: "swiftdrop.html", title: "SwiftDrop", image: "/swiftdrop-9-home.png" },
+            { slug: "luxe-market.html", title: "Luxe Market", image: "/luxe-1.png" },
+            { slug: "luxora.html", title: "Luxora", image: "/luxora-cover.png" }
+        ];
+        
+        document.getElementById('projectsGrid').innerHTML = projects.map(p => `
+            <a href="${p.slug}" class="project-card">
+                <img src="${p.image}" alt="${p.title}" loading="lazy" />
+                <h3 style="margin-top:16px; font-size:1.2rem;">${p.title}</h3>
+            </a>
+        `).join('');
+    </script>
+</body>
+</html>
