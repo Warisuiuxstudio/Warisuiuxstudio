@@ -306,6 +306,33 @@
         @media (min-width: 768px) { h2 { font-size: 2.8rem; } }
         h3 { font-size: 1.5rem; }
         h4 { font-size: 1.2rem; }
+
+        /* ===== QUOTA DISPLAY STYLES ===== */
+        .quota-display {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--muted-foreground);
+            margin-top: 16px;
+        }
+        .quota-display .count {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .quota-display .limit {
+            color: var(--muted-foreground);
+        }
+        .quota-display .remaining {
+            color: #4ade80;
+            font-weight: 600;
+        }
+        .quota-display .full {
+            color: #f87171;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -616,8 +643,13 @@
                             <div><label style="display:block; font-size:14px; font-weight:500; color:var(--muted-foreground);">Email</label><input type="email" name="email" required style="width:100%; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:var(--background); color:var(--foreground); font-size:14px; outline:none;" aria-required="true"/></div>
                         </div>
                         <div style="margin-top:16px;"><label style="display:block; font-size:14px; font-weight:500; color:var(--muted-foreground);">Project details</label><textarea name="message" rows="4" required style="width:100%; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:var(--background); color:var(--foreground); font-size:14px; outline:none;" aria-required="true"></textarea></div>
-                        <button type="submit" style="margin-top:20px; width:100%; padding:14px; border-radius:14px; background:var(--gradient-brand); border:none; color:#fff; font-weight:600; font-size:16px; cursor:pointer; transition:0.3s; box-shadow:0 10px 30px rgba(108,99,255,0.3);">✉️ Send message</button>
+                        <button type="submit" id="submitBtn" style="margin-top:20px; width:100%; padding:14px; border-radius:14px; background:var(--gradient-brand); border:none; color:#fff; font-weight:600; font-size:16px; cursor:pointer; transition:0.3s; box-shadow:0 10px 30px rgba(108,99,255,0.3);">✉️ Send message</button>
                     </form>
+                    <!-- ===== QUOTA DISPLAY ===== -->
+                    <div class="quota-display" id="quotaDisplay">
+                        📊 Today: <span class="count" id="requestCount">0</span> / <span class="limit" id="requestLimit">50</span> used · 
+                        <span class="remaining" id="remainingDisplay">50 remaining</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -665,6 +697,56 @@
     <!-- ===== JAVASCRIPT ===== -->
     <!-- ============================================ -->
     <script>
+        // ============================================
+        // ===== QUOTA MANAGEMENT SYSTEM =====
+        // ============================================
+        const DAILY_LIMIT = 50;
+
+        function getTodayRequests() {
+            const today = new Date().toDateString();
+            const savedDate = localStorage.getItem('quotaDate');
+            const savedCount = localStorage.getItem('quotaCount');
+            
+            if (savedDate !== today) {
+                localStorage.setItem('quotaDate', today);
+                localStorage.setItem('quotaCount', '0');
+                return 0;
+            }
+            return parseInt(savedCount) || 0;
+        }
+
+        function incrementRequestCount() {
+            let count = getTodayRequests();
+            count++;
+            localStorage.setItem('quotaCount', count.toString());
+            return count;
+        }
+
+        function canMakeRequest() {
+            const currentCount = getTodayRequests();
+            if (currentCount >= DAILY_LIMIT) {
+                return false;
+            }
+            return true;
+        }
+
+        function updateQuotaDisplay() {
+            const count = getTodayRequests();
+            const remaining = DAILY_LIMIT - count;
+            
+            document.getElementById('requestCount').textContent = count;
+            document.getElementById('requestLimit').textContent = DAILY_LIMIT;
+            
+            const remainingDisplay = document.getElementById('remainingDisplay');
+            if (remaining > 0) {
+                remainingDisplay.textContent = `${remaining} remaining`;
+                remainingDisplay.className = 'remaining';
+            } else {
+                remainingDisplay.textContent = '⚠️ Limit reached!';
+                remainingDisplay.className = 'full';
+            }
+        }
+
         // ===== PROJECTS DATA =====
         const projects = [
             { slug: "archmind-ai", title: "ArchiMind AI", subtitle: "AI Architecture Studio", category: "Mobile Apps", year: "2026", image: "/archmind-1.png", tags: ["Figma", "AI", "Architecture", "iOS"] },
@@ -684,6 +766,7 @@
             document.documentElement.classList.toggle('dark', isDark);
             document.documentElement.classList.toggle('light', !isDark);
             updateThemeIcon();
+            updateQuotaDisplay();
         });
 
         function updateThemeIcon() {
@@ -780,11 +863,42 @@
         sortSelect.addEventListener('change', (e) => { currentSort = e.target.value; renderProjects(); });
         renderProjects();
 
-        // ===== CONTACT FORM =====
+        // ============================================
+        // ===== CONTACT FORM WITH QUOTA =====
+        // ============================================
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = this.name.value, message = this.message.value;
+            
+            // Check quota first
+            if (!canMakeRequest()) {
+                const remaining = DAILY_LIMIT - getTodayRequests();
+                const name = this.name.value || 'Guest';
+                const message = this.message.value || 'No message';
+                const whatsappURL = `https://wa.me/923407921680?text=Hi Waris, I'm ${name}.%0A%0A${message}`;
+                
+                if (confirm(`❌ Today's limit reached! (${DAILY_LIMIT}/${DAILY_LIMIT} used)\n\nWant to message on WhatsApp instead?`)) {
+                    window.open(whatsappURL, '_blank');
+                }
+                return;
+            }
+            
+            // If quota available - send via WhatsApp
+            const name = this.name.value;
+            const message = this.message.value;
+            
+            // Increment the count
+            incrementRequestCount();
+            updateQuotaDisplay();
+            
+            // Open WhatsApp
             window.open(`https://wa.me/923407921680?text=Hi Waris, I'm ${name}.%0A%0A${message}`, '_blank');
+            
+            // Show success message
+            const remaining = DAILY_LIMIT - getTodayRequests();
+            alert(`✅ Message sent successfully!\n\n📊 Today: ${getTodayRequests()}/${DAILY_LIMIT} used\n✅ ${remaining} requests remaining today.`);
+            
+            // Reset form
+            this.reset();
         });
     </script>
 </body>
