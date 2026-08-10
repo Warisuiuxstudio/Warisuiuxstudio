@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FactoryOS AI — Case Study by Muhammad Waris</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================ */
+        /* ===== CSS (Premium Dark Theme) ===== */
+        /* ============================================ */
+        :root {
+            --bg-body: #08080e;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent-blue: #3b82f6;
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1300px; margin: 0 auto; }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .back-btn:hover { color: #93bbfc; transform: translateX(-4px); }
+
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            border-bottom: 1px solid var(--border-card);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+
+        header p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+
+        .section-header { display: flex; align-items: center; gap: 16px; margin: 50px 0 30px; }
+        .section-header h2 { font-size: 2rem; font-weight: 700; }
+        .section-line { flex-grow: 1; height: 1px; background: var(--border-card); }
+        .section-icon { font-size: 1.8rem; }
+
+        .grid-1 { display: grid; grid-template-columns: 1fr; gap: 32px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 32px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+
+        .img-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: var(--shadow-card);
+            transition: all 0.4s ease;
+        }
+
+        .img-card:hover { transform: translateY(-8px); border-color: rgba(59, 130, 246, 0.3); }
+        .img-card img { width: 100%; height: auto; border-radius: 12px; display: block; }
+        .img-card h3 { margin-top: 18px; font-size: 1rem; color: var(--text-muted); }
+        .img-card h3 span { color: var(--text-main); font-weight: 600; }
+
+        footer {
+            margin-top: 80px; padding-top: 30px;
+            border-top: 1px solid var(--border-card);
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.8rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="/" class="back-btn">← Back to Portfolio</a>
+        
+        <header>
+            <h1>FactoryOS AI</h1>
+            <p>27 of 45+ iOS screens. Designed thumb-first, one-handed, for the factory floor.</p>
+        </header>
+
+        <!-- Section 1: Mobile App -->
+        <div class="section-header"><span class="section-icon">📱</span><h2>Mobile App</h2><div class="section-line"></div></div>
+        <div class="grid-1">
+            <div class="img-card"><img src="mobile-all-screens.png" alt="All Mobile Screens"><h3><span>27+ Screens</span> — Optimized for thumb reach and high-noise environments.</h3></div>
+        </div>
+
+        <!-- Section 2: Desktop Dashboards -->
+        <div class="section-header"><span class="section-icon">🖥️</span><h2>Desktop Dashboards</h2><div class="section-line"></div></div>
+        <div class="grid-2">
+            <div class="img-card"><img src="desktop-worker-safety.png" alt="Safety"><h3><span>Worker Safety</span> — Vision AI & real-time zone alerts.</h3></div>
+            <div class="img-card"><img src="desktop-energy-dashboard.png" alt="Energy"><h3><span>Energy & Sustainability</span> — ISO 50001 real-time reporting.</h3></div>
+            <div class="img-card"><img src="desktop-ai-insights.png" alt="AI"><h3><span>AI Insights</span> — Predictive maintenance & automation.</h3></div>
+            <div class="img-card"><img src="desktop-predictive-maintenance.png" alt="Maintenance"><h3><span>Predictive Maintenance</span> — Failure curves & planning calendars.</h3></div>
+            <div class="img-card"><img src="desktop-digital-twin.png" alt="Digital Twin"><h3><span>Digital Twin</span> — Sensor overlays & emergency routing.</h3></div>
+            <div class="img-card"><img src="desktop-admin-console.png" alt="Admin"><h3><span>Admin Console</span> — Users, integrations, & API billing.</h3></div>
+            <div class="img-card"><img src="desktop-production-analytics.png" alt="Production"><h3><span>Production Analytics</span> — Quality, output, and shift tracking.</h3></div>
+        </div>
+
+        <!-- Section 3: Design & Strategy -->
+        <div class="section-header"><span class="section-icon">🧠</span><h2>Design & Strategy</h2><div class="section-line"></div></div>
+        <div class="grid-3">
+            <div class="img-card"><img src="slide-personas-journey.png" alt="Personas"><h3><span>User Personas</span> — Three different operational tempos.</h3></div>
+            <div class="img-card"><img src="slide-ia-user-flow.png" alt="IA"><h3><span>Information Architecture</span> — User flows under 3 taps.</h3></div>
+            <div class="img-card"><img src="slide-wireframes-strategy.png" alt="Wireframes"><h3><span>Structure First</span> — Low-fidelity wireframing strategy.</h3></div>
+            <div class="img-card"><img src="slide-design-system.png" alt="Brand"><h3><span>Brand Identity</span> — Designed for glare and gloves.</h3></div>
+            <div class="img-card"><img src="component-library.png" alt="Components"><h3><span>Component Library</span> — 96 tokens, zero one-offs.</h3></div>
+            <div class="img-card"><img src="slide-eighteen-months-later.png" alt="Results"><h3><span>18 Months Later</span> — €1.42M downtime saved. 91.4% Plant OEE.</h3></div>
+        </div>
+
+        <footer>
+            <p>© 2026 FactoryOS AI — Product Design Case Study</p>
+        </footer>
+    </div>
+</body>
+</html>
