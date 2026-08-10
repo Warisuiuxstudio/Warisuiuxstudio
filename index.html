@@ -747,9 +747,9 @@
             }
         }
 
-        // ===== PROJECTS DATA (UPDATED WITH FACTORYOS) =====
+        // ===== PROJECTS DATA (UPDATED WITH FACTORYOS - IMAGE FIXED TO DASHBOARD) =====
         const projects = [
-            { slug: "factoryos", title: "FactoryOS AI", subtitle: "Industrial Intelligence Platform", category: "Web Apps", year: "2026", image: "/mobile-all-screens.png", tags: ["Figma", "AI", "Dashboard", "IoT"] },
+            { slug: "factoryos.html", title: "FactoryOS AI", subtitle: "Industrial Intelligence Platform", category: "Web Apps", year: "2026", image: "/desktop-admin-console.png", tags: ["Figma", "AI", "Dashboard", "IoT"] },
             { slug: "archmind-ai", title: "ArchiMind AI", subtitle: "AI Architecture Studio", category: "Mobile Apps", year: "2026", image: "/archmind-1.png", tags: ["Figma", "AI", "Architecture", "iOS"] },
             { slug: "swiftdrop", title: "SwiftDrop", subtitle: "Premium Delivery Mobile App", category: "Mobile Apps", year: "2025", image: "/swiftdrop-9-home.png", tags: ["Figma", "Delivery", "Mobile App"] },
             { slug: "luxe-market", title: "Luxe Market", subtitle: "Premium Mobile Commerce App", category: "E-commerce", year: "2025", image: "/luxe-1.png", tags: ["Figma", "E-commerce", "iOS", "Android"] },
@@ -829,14 +829,14 @@
             noResults.style.display = 'none';
             projectsGrid.innerHTML = filtered.map((p, i) => `
                 <div class="item reveal" style="transition-delay:${i*60}ms;">
-                    <a href="${p.slug}.html" class="project-card">
+                    <a href="${p.slug}" class="project-card">
                         <div class="cover" style="background:var(--card); padding:0; min-height:unset; border-radius:18px; overflow:hidden;">
                             <img src="${p.image}" alt="${p.title} case study preview - UI/UX design project by Muhammad Waris" style="width:100%; height:auto; object-fit:cover; display:block;" loading="lazy" />
                         </div>
                         <div style="padding:16px 20px;">
                             <p style="font-size:12px; text-transform:uppercase; color:var(--muted-foreground); opacity:0.7; margin-bottom:4px;">
                                 ${p.year} · ${p.category}
-                                ${p.slug === "factoryos" ? `<span style="background:rgba(108,99,255,0.15); color:#6c63ff; padding:2px 12px; border-radius:999px; font-size:11px; font-weight:600; margin-left:8px;">AI Dashboard</span>` : ''}
+                                ${p.slug === "factoryos.html" ? `<span style="background:rgba(108,99,255,0.15); color:#6c63ff; padding:2px 12px; border-radius:999px; font-size:11px; font-weight:600; margin-left:8px;">AI Dashboard</span>` : ''}
                                 ${p.slug === "swiftdrop" ? `<span style="background:rgba(108,99,255,0.15); color:#6c63ff; padding:2px 12px; border-radius:999px; font-size:11px; font-weight:600; margin-left:8px;">UI/UX</span>` : ''}
                                 ${p.slug === "luxe-market" ? `<span style="background:rgba(216,90,48,0.15); color:#D85A30; padding:2px 12px; border-radius:999px; font-size:11px; font-weight:600; margin-left:8px;">E-commerce</span>` : ''}
                                 ${p.slug === "luxora" ? `<span style="background:rgba(212,175,55,0.15); color:#D4AF37; padding:2px 12px; border-radius:999px; font-size:11px; font-weight:600; margin-left:8px;">Fashion</span>` : ''}
