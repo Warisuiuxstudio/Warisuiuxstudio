@@ -1,566 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AURA Health — AI Healthcare Command Center | Product Design Case Study</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --navy:#0A1628;
-  --navy-soft:#0F2038;
-  --primary:#1B4B91;
-  --electric:#3D7FFF;
-  --mint:#14B8A6;
-  --white:#FFFFFF;
-  --bg:#F5F7FB;
-  --bg-alt:#EEF2F8;
-  --gray:#8894A6;
-  --gray-dark:#4A5568;
-  --border:#E2E7F0;
-  --success:#16A34A;
-  --success-bg:#E7F8EE;
-  --warning:#D97706;
-  --warning-bg:#FDF3E3;
-  --critical:#DC2626;
-  --critical-bg:#FBEAEA;
-  --radius:16px;
-  --shadow-sm:0 2px 8px rgba(10,22,40,0.06);
-  --shadow-md:0 12px 32px rgba(10,22,40,0.10);
-  --shadow-lg:0 30px 80px rgba(10,22,40,0.18);
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--navy);
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-.mono{font-family:'IBM Plex Mono',monospace;}
-.display{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.01em;}
-img{max-width:100%;display:block;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA Health · AI Healthcare Command Center · Case Study</title>
+  <!-- Google Fonts & Font Awesome (same as main site) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Manrope:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- RESET & BASE (matches main site) ----- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: #f5f7fb; }
+    body {
+      font-family: 'Manrope', 'Inter', sans-serif;
+      background: #f5f7fb;
+      color: #0a1628;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ::selection { background: #3d7fff; color: #fff; }
 
-#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--electric),var(--mint));z-index:999;width:0%;transition:width .1s linear;}
+    /* ----- CONTAINER & NAV (mirror main site) ----- */
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
 
-.section{max-width:1360px;margin:0 auto;padding:130px 60px;}
-.section--tight{padding:90px 60px;}
-.section--dark{background:var(--navy);color:#EAF0FF;max-width:none;}
-.section--alt{background:var(--bg-alt);max-width:none;}
-.section--alt > .inner, .section--dark > .inner{max-width:1360px;margin:0 auto;padding:130px 60px;}
+    /* ----- NAVIGATION (same as main site, adjusted for case study) ----- */
+    .navbar {
+      position: fixed; top: 1.2rem; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 2.4rem); max-width: 1280px; z-index: 999;
+      background: rgba(11, 10, 12, 0.55);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 60px; padding: 0.6rem 1.8rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+    .navbar.scrolled { background: rgba(11, 10, 12, 0.8); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+    .nav-left { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.1rem; color: #e8e6ea; }
+    .nav-sub { font-size: 0.7rem; color: #a09eab; border-left: 1px solid #26222e; padding-left: 0.75rem; display: none; }
+    @media (min-width: 640px) { .nav-sub { display: inline-block; } }
+    .nav-right { display: flex; align-items: center; gap: 1.8rem; }
+    .nav-links { display: none; gap: 1.8rem; font-weight: 500; font-size: 0.9rem; color: #a09eab; }
+    @media (min-width: 820px) { .nav-links { display: flex; } }
+    .nav-links a:hover { color: #7b6ef6; }
+    .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
+    .theme-toggle { background: none; border: none; color: #a09eab; font-size: 1.1rem; cursor: pointer; transition: 0.2s; }
+    .theme-toggle:hover { color: #7b6ef6; }
+    .btn-consult {
+      background: #7b6ef6; color: #fff; border: none;
+      padding: 0.5rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.8rem;
+      cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .btn-consult:hover { background: #9589ff; transform: scale(1.02); }
+    .mobile-menu-btn { background: none; border: none; color: #a09eab; font-size: 1.4rem; display: block; cursor: pointer; }
+    @media (min-width: 820px) { .mobile-menu-btn { display: none; } }
 
-.eyebrow{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:12px;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--electric);
-  font-weight:600;
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:22px;
-}
-.eyebrow::before{content:"";width:22px;height:1px;background:var(--electric);display:inline-block;}
-.section--dark .eyebrow{color:var(--mint);}
-.section--dark .eyebrow::before{background:var(--mint);}
+    /* ----- CASE STUDY SPECIFIC STYLES (blend with main) ----- */
+    .case-hero {
+      padding: 8rem 0 3rem;
+      background: radial-gradient(120% 90% at 15% 0%,#122747 0%, #0a1628 55%), #0a1628;
+      color: #fff;
+    }
+    .case-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .case-hero .subhead {
+      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+      font-weight: 400;
+      color: #b9c7e4;
+      margin-bottom: 1.2rem;
+    }
+    .case-hero .desc {
+      max-width: 640px;
+      font-size: 1.1rem;
+      color: #c7d3ea;
+      line-height: 1.7;
+    }
+    .case-tags {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .case-tag {
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      color: #dce5f7;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.02em;
+    }
+    .case-section {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .case-section--alt {
+      background: #eef2f8;
+      max-width: none;
+      padding: 4rem 0;
+    }
+    .case-section--dark {
+      background: #0a1628;
+      color: #eaf0ff;
+      max-width: none;
+      padding: 4rem 0;
+    }
+    .case-section--dark .inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3d7fff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.2rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: #3d7fff;
+      display: inline-block;
+    }
+    .case-section--dark .eyebrow { color: #14b8a6; }
+    .case-section--dark .eyebrow::before { background: #14b8a6; }
 
-h1,h2,h3{font-family:'Fraunces',serif;letter-spacing:-0.015em;line-height:1.05;}
-p{line-height:1.7;color:var(--gray-dark);font-size:16.5px;}
-.section--dark p{color:#A9B8D4;}
+    .big-h {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 3.6vw, 3.2rem);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    @media (max-width: 800px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
 
-/* ---------- HERO ---------- */
-.hero{
-  background:radial-gradient(120% 90% at 15% 0%,#122747 0%, var(--navy) 55%), var(--navy);
-  color:#fff;position:relative;overflow:hidden;
-}
-.hero::after{
-  content:"";position:absolute;inset:0;
-  background-image:radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.15) 1px, transparent 1px),
-    radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.1) 1px, transparent 1px);
-  background-size:180px 180px;
-  pointer-events:none;
-}
-.hero-inner{max-width:1360px;margin:0 auto;padding:120px 60px 0;position:relative;z-index:1;}
-.hero .eyebrow{color:var(--mint);}
-.hero h1{font-size:clamp(56px,9vw,128px);font-weight:600;margin-bottom:6px;}
-.hero .subtitle{font-size:clamp(20px,2.6vw,30px);font-weight:400;color:#B9C7E4;font-family:'Inter';margin-bottom:34px;letter-spacing:0.01em;}
-.hero .desc{max-width:640px;font-size:19px;color:#C7D3EA;line-height:1.75;margin-bottom:48px;}
-.hero-tags{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:80px;}
-.hero-tag{
-  border:1px solid rgba(255,255,255,.18);
-  padding:9px 18px;border-radius:100px;
-  font-size:13px;color:#DCE5F7;
-  font-family:'IBM Plex Mono',monospace;
-  letter-spacing:0.02em;
-}
-.hero-mockup-wrap{padding:0 40px;position:relative;z-index:1;}
+    .card {
+      background: #fff;
+      border: 1px solid #e2e7f0;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(10,22,40,0.06);
+    }
+    .card-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8894a6;
+      margin-bottom: 0.8rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .badge.success { background: #e7f8ee; color: #16a34a; }
+    .badge.warning { background: #fdf3e3; color: #d97706; }
+    .badge.critical { background: #fbeaea; color: #dc2626; }
+    .badge.neutral { background: #eef1f6; color: #4a5568; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; display: inline-block; margin-right: 4px; }
 
-/* pulse divider */
-.pulse{width:100%;height:64px;display:block;}
-.pulse path{fill:none;stroke:var(--electric);stroke-width:1.5;opacity:.55;}
-.section--dark .pulse path{stroke:var(--mint);}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: default;
+    }
+    .btn-primary { background: #3d7fff; color: #fff; }
+    .btn-ghost { background: #fff; border: 1px solid #e2e7f0; color: #0a1628; }
+    .btn-mint { background: #14b8a6; color: #fff; }
 
-/* ---------- browser frame ---------- */
-.browser-frame{
-  background:#fff;border-radius:14px;overflow:hidden;
-  box-shadow:var(--shadow-lg);
-  border:1px solid rgba(10,22,40,0.06);
-}
-.browser-bar{
-  height:44px;background:#F0F2F6;display:flex;align-items:center;padding:0 16px;gap:8px;
-  border-bottom:1px solid #E4E8EF;
-}
-.browser-dot{width:10px;height:10px;border-radius:50%;}
-.browser-url{
-  margin-left:16px;background:#fff;border:1px solid #E4E8EF;border-radius:8px;
-  padding:6px 14px;font-size:12px;color:#8894A6;font-family:'IBM Plex Mono',monospace;
-  flex:1;max-width:340px;
-}
-.mockup-caption{margin-top:36px;max-width:640px;}
-.mockup-caption .label{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--electric);font-weight:600;margin-bottom:10px;display:block;
-}
+    .metric-tile { background: #fff; border: 1px solid #e2e7f0; border-radius: 14px; padding: 1.2rem; }
+    .metric-tile .mv { font-family: 'IBM Plex Mono', monospace; font-size: 1.6rem; font-weight: 600; color: #0a1628; }
+    .metric-tile .ml { font-size: 0.75rem; color: #8894a6; margin-top: 4px; }
 
-/* ---------- app shell reused inside mockups ---------- */
-.app-shell{display:flex;min-height:640px;background:var(--bg);}
-.app-sidebar{
-  width:216px;background:var(--navy);color:#fff;padding:26px 18px;flex-shrink:0;
-  display:flex;flex-direction:column;gap:26px;
-}
-.app-logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces';font-size:20px;font-weight:600;padding:0 6px;}
-.app-logo .dot{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px var(--mint);}
-.app-nav{display:flex;flex-direction:column;gap:2px;}
-.app-nav-item{
-  display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:9px;
-  font-size:13.5px;color:#AAB8D6;font-weight:500;
-}
-.app-nav-item .ic{width:16px;height:16px;border-radius:4px;background:rgba(255,255,255,.14);flex-shrink:0;}
-.app-nav-item.active{background:rgba(61,127,255,.18);color:#fff;}
-.app-nav-item.active .ic{background:var(--electric);}
-.app-main{flex:1;padding:30px 34px;overflow:hidden;}
-.app-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;}
-.app-search{
-  flex:1;max-width:360px;background:#fff;border:1px solid var(--border);border-radius:10px;
-  padding:9px 14px;font-size:13px;color:var(--gray);
-}
-.app-top-right{display:flex;align-items:center;gap:14px;}
-.bell{width:34px;height:34px;border-radius:9px;background:#fff;border:1px solid var(--border);position:relative;}
-.bell::after{content:"";position:absolute;top:7px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--critical);}
-.avatar{
-  width:36px;height:36px;border-radius:50%;
-  background:linear-gradient(135deg,var(--electric),var(--mint));
-  color:#fff;display:flex;align-items:center;justify-content:center;
-  font-size:13px;font-weight:700;font-family:'IBM Plex Mono';flex-shrink:0;
-}
-.avatar.lg{width:56px;height:56px;font-size:18px;}
-.avatar.xl{width:120px;height:120px;font-size:38px;box-shadow:var(--shadow-md);}
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #e2e7f0;
+      font-size: 0.85rem;
+    }
+    .status-row:last-child { border-bottom: none; }
 
-.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px;}
-.card-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);margin-bottom:14px;}
-.grid{display:grid;gap:16px;}
-.grid-2{grid-template-columns:1fr 1fr;}
-.grid-3{grid-template-columns:1fr 1fr 1fr;}
-.grid-4{grid-template-columns:repeat(4,1fr);}
+    .app-shell { display: flex; min-height: 480px; background: #f5f7fb; }
+    .app-sidebar {
+      width: 180px;
+      background: #0a1628;
+      color: #fff;
+      padding: 1.5rem 1rem;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .app-logo { display: flex; align-items: center; gap: 8px; font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; }
+    .app-logo .dot { width: 8px; height: 8px; border-radius: 50%; background: #14b8a6; box-shadow: 0 0 12px #14b8a6; }
+    .app-nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 0.5rem 0.7rem; border-radius: 8px;
+      font-size: 0.75rem; color: #aab8d6; font-weight: 500;
+    }
+    .app-nav-item .ic { width: 14px; height: 14px; border-radius: 4px; background: rgba(255,255,255,0.14); flex-shrink: 0; }
+    .app-nav-item.active { background: rgba(61,127,255,0.18); color: #fff; }
+    .app-nav-item.active .ic { background: #3d7fff; }
+    .app-main { flex: 1; padding: 1.5rem 1.8rem; overflow: hidden; }
+    .app-search {
+      flex: 1; max-width: 280px; background: #fff; border: 1px solid #e2e7f0;
+      border-radius: 10px; padding: 0.4rem 0.8rem; font-size: 0.75rem; color: #8894a6;
+    }
+    .app-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+    .avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #3d7fff, #14b8a6);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; font-family: 'IBM Plex Mono', monospace;
+      flex-shrink: 0;
+    }
+    .avatar.lg { width: 48px; height: 48px; font-size: 1rem; }
+    .avatar.xl { width: 100px; height: 100px; font-size: 2rem; box-shadow: 0 12px 32px rgba(10,22,40,0.18); }
 
-.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:100px;font-size:11.5px;font-weight:600;}
-.badge.success{background:var(--success-bg);color:var(--success);}
-.badge.warning{background:var(--warning-bg);color:var(--warning);}
-.badge.critical{background:var(--critical-bg);color:var(--critical);}
-.badge.neutral{background:#EEF1F6;color:var(--gray-dark);}
-.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;}
+    .browser-frame {
+      background: #fff; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(10,22,40,0.18);
+      border: 1px solid rgba(10,22,40,0.06);
+    }
+    .browser-bar {
+      height: 38px; background: #f0f2f6; display: flex; align-items: center; padding: 0 14px; gap: 6px;
+      border-bottom: 1px solid #e4e8ef;
+    }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-url {
+      margin-left: 12px; background: #fff; border: 1px solid #e4e8ef; border-radius: 6px;
+      padding: 4px 12px; font-size: 0.65rem; color: #8894a6; font-family: 'IBM Plex Mono', monospace;
+      flex: 1; max-width: 280px;
+    }
+    .mockup-caption { margin-top: 1.5rem; max-width: 640px; }
+    .mockup-caption .label {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: .12em;
+      text-transform: uppercase; color: #3d7fff; font-weight: 600; margin-bottom: 0.4rem; display: block;
+    }
 
-.btn{
-  display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;
-  font-size:13.5px;font-weight:600;font-family:'Inter';cursor:default;
-}
-.btn-primary{background:var(--electric);color:#fff;}
-.btn-ghost{background:#fff;border:1px solid var(--border);color:var(--navy);}
-.btn-mint{background:var(--mint);color:#fff;}
+    .phone-frame {
+      width: 180px; border-radius: 28px; background: #0a1628; padding: 8px;
+      box-shadow: 0 30px 80px rgba(10,22,40,0.18); flex-shrink: 0;
+    }
+    .phone-screen { background: #fff; border-radius: 22px; overflow: hidden; height: 380px; position: relative; }
+    .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 70px; height: 18px; background: #0a1628; border-radius: 0 0 12px 12px; z-index: 2; }
 
-.bar-chart{display:flex;align-items:flex-end;gap:10px;height:120px;}
-.bar-chart .bar{flex:1;background:linear-gradient(180deg,var(--electric),#8FB4FF);border-radius:6px 6px 2px 2px;position:relative;}
-.bar-chart .bar.alt{background:linear-gradient(180deg,var(--mint),#8CE0D3);}
+    /* footer-like */
+    .footer-cta {
+      text-align: center; padding: 4rem 1.5rem;
+    }
+    .footer-cta h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      max-width: 800px; margin: 0 auto 1.5rem; color: #fff;
+    }
 
-/* ---------- generic layout helpers ---------- */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-.big-h{font-size:clamp(36px,4.2vw,58px);font-weight:500;max-width:820px;}
-.overview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:70px;padding-bottom:60px;border-bottom:1px solid var(--border);}
-.overview-grid .k{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.1em;color:var(--electric);text-transform:uppercase;margin-bottom:10px;font-weight:600;}
-.overview-grid .v{font-size:19px;font-weight:600;font-family:'Fraunces';}
-
-.diagram-node{
-  background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 20px;
-  font-size:13px;font-weight:600;color:var(--gray-dark);box-shadow:var(--shadow-sm);
-  display:inline-flex;align-items:center;gap:8px;
-}
-.diagram-node .dot{width:7px;height:7px;border-radius:50%;background:var(--gray);}
-
-.goal-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:36px 30px;box-shadow:var(--shadow-sm);}
-.goal-card .num{font-family:'IBM Plex Mono';font-size:12px;color:var(--electric);font-weight:700;margin-bottom:22px;}
-.goal-card h3{font-size:22px;margin-bottom:12px;}
-
-.research-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:30px;}
-.research-card .rn{font-family:'Fraunces';font-size:34px;color:#D7DEEB;font-weight:600;margin-bottom:16px;}
-.research-card h4{font-size:17px;margin-bottom:8px;font-family:'Inter';font-weight:700;}
-.research-card p{font-size:14px;}
-
-.persona-wrap{display:grid;grid-template-columns:280px 1fr;gap:60px;background:#fff;border:1px solid var(--border);border-radius:22px;padding:50px;box-shadow:var(--shadow-sm);}
-.persona-list{margin-top:10px;}
-.persona-list li{list-style:none;font-size:14.5px;color:var(--gray-dark);padding:9px 0;padding-left:22px;position:relative;}
-.persona-list.goals li::before{content:"";position:absolute;left:0;top:16px;width:8px;height:8px;border-radius:50%;background:var(--mint);}
-.persona-list.pain li::before{content:"";position:absolute;left:0;top:16px;width:8px;height:8px;border-radius:50%;background:#F0B4A8;}
-
-.journey-track{display:flex;gap:0;overflow-x:auto;padding-bottom:20px;}
-.journey-step{min-width:150px;text-align:center;position:relative;padding:0 10px;}
-.journey-step .jn{
-  width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;
-  display:flex;align-items:center;justify-content:center;margin:0 auto 14px;
-  font-family:'IBM Plex Mono';font-size:13px;font-weight:600;position:relative;z-index:1;
-}
-.journey-step p{font-size:13.5px;font-weight:600;color:var(--navy);}
-.journey-line{position:absolute;top:22px;left:50%;width:100%;height:2px;background:var(--border);z-index:0;}
-.journey-step:last-child .journey-line{display:none;}
-
-.ia-tree{font-family:'IBM Plex Mono';font-size:14.5px;color:var(--gray-dark);line-height:2.3;}
-.ia-tree .root{color:var(--navy);font-weight:700;font-size:16px;}
-.ia-tree .child{padding-left:28px;}
-
-.swatch{border-radius:14px;height:104px;position:relative;box-shadow:var(--shadow-sm);overflow:hidden;}
-.swatch .lbl{position:absolute;bottom:10px;left:12px;color:#fff;font-family:'IBM Plex Mono';font-size:11px;}
-.swatch.light .lbl{color:#0A1628;}
-
-.type-row{display:flex;align-items:baseline;gap:24px;border-bottom:1px solid var(--border);padding:22px 0;}
-.type-row .tag{width:90px;flex-shrink:0;font-family:'IBM Plex Mono';font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;}
-
-.comp-tile{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:8px;min-height:96px;}
-.comp-tile .lbl{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:.06em;font-weight:700;}
-
-.status-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--border);font-size:13.5px;}
-.status-row:last-child{border-bottom:none;}
-
-.timeline-item{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--border);}
-.timeline-item:last-child{border-bottom:none;}
-.timeline-dot{width:12px;height:12px;border-radius:50%;background:var(--electric);margin-top:5px;flex-shrink:0;}
-.timeline-date{font-family:'IBM Plex Mono';font-size:11.5px;color:var(--gray);width:110px;flex-shrink:0;}
-
-.metric-tile{background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;}
-.metric-tile .mv{font-family:'IBM Plex Mono';font-size:26px;font-weight:600;color:var(--navy);}
-.metric-tile .ml{font-size:12px;color:var(--gray);margin-top:4px;}
-.trend{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;}
-
-.phone-frame{
-  width:250px;border-radius:34px;background:var(--navy);padding:10px;box-shadow:var(--shadow-lg);flex-shrink:0;
-}
-.phone-screen{background:#fff;border-radius:26px;overflow:hidden;height:520px;position:relative;}
-.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:90px;height:22px;background:var(--navy);border-radius:0 0 14px 14px;z-index:2;}
-
-.detail-tile{background:#fff;border:1px solid var(--border);border-radius:14px;padding:26px;overflow:hidden;}
-.detail-tile .tag{font-family:'IBM Plex Mono';font-size:10.5px;color:var(--electric);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;display:block;font-weight:700;}
-
-.footer-cta{text-align:center;padding:180px 40px;}
-.footer-cta h2{font-size:clamp(32px,5.5vw,64px);max-width:900px;margin:0 auto 34px;color:#fff;}
-
-::selection{background:var(--electric);color:#fff;}
-
-@media (max-width:900px){
-  .section, .section--alt > .inner, .section--dark > .inner{padding:80px 24px;}
-  .overview-grid, .grid-4{grid-template-columns:1fr 1fr;}
-  .grid-3{grid-template-columns:1fr;}
-  .two-col, .persona-wrap{grid-template-columns:1fr;gap:40px;}
-  .app-shell{flex-direction:column;}
-}
-</style>
+    /* responsive tweaks */
+    @media (max-width: 700px) {
+      .navbar { padding: 0.4rem 1rem; }
+      .container { padding: 0 1rem; }
+      .case-hero { padding: 6rem 0 2rem; }
+      .case-section { padding: 2rem 1rem; }
+      .app-shell { flex-direction: column; }
+      .app-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 0.8rem; }
+      .app-nav { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+    }
+  </style>
 </head>
 <body>
-<div id="progress"></div>
 
-<!-- ============ 01 HERO ============ -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">PRODUCT DESIGN CASE STUDY • 2026</div>
-    <h1 class="display">AURA Health</h1>
-    <div class="subtitle">AI Healthcare Command Center</div>
+<!-- ===== NAVIGATION (same as main site) ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-left">
+    <span class="nav-name">MOHAMMAD WARIS</span>
+    <span class="nav-sub">UI/UX & Product Designer</span>
+  </div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+      <a href="https://calendly.com/" target="_blank" class="btn-consult">
+        <i class="fas fa-calendar-check"></i> Book a Call
+      </a>
+      <button class="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== CASE STUDY HERO ===== -->
+<section class="case-hero">
+  <div class="container">
+    <div class="eyebrow" style="color:#14b8a6;">PRODUCT DESIGN CASE STUDY • 2026</div>
+    <h1>AURA Health</h1>
+    <div class="subhead">AI Healthcare Command Center</div>
     <p class="desc">Designing a smarter clinical workspace that helps healthcare teams understand patients, coordinate care, and act faster with AI-powered insights.</p>
-    <div class="hero-tags">
-      <span class="hero-tag">Product Designer</span>
-      <span class="hero-tag">UI/UX Design</span>
-      <span class="hero-tag">AI Experience</span>
-      <span class="hero-tag">Healthcare SaaS</span>
+    <div class="case-tags">
+      <span class="case-tag">Product Designer</span>
+      <span class="case-tag">UI/UX Design</span>
+      <span class="case-tag">AI Experience</span>
+      <span class="case-tag">Healthcare SaaS</span>
     </div>
   </div>
-  <div class="hero-mockup-wrap">
-    <div class="browser-frame" style="max-width:1240px;margin:0 auto;">
-      <div class="browser-bar">
-        <span class="browser-dot" style="background:#FF5F57;"></span>
-        <span class="browser-dot" style="background:#FEBC2E;"></span>
-        <span class="browser-dot" style="background:#28C840;"></span>
-        <span class="browser-url">aurahealth.app/dashboard</span>
-      </div>
-      <div class="app-shell">
-        <div class="app-sidebar">
-          <div class="app-logo"><span class="dot"></span>AURA</div>
-          <div class="app-nav">
-            <div class="app-nav-item active"><span class="ic"></span>Dashboard</div>
-            <div class="app-nav-item"><span class="ic"></span>Patients</div>
-            <div class="app-nav-item"><span class="ic"></span>Appointments</div>
-            <div class="app-nav-item"><span class="ic"></span>AI Assistant</div>
-            <div class="app-nav-item"><span class="ic"></span>Medical Records</div>
-            <div class="app-nav-item"><span class="ic"></span>Lab Results</div>
-            <div class="app-nav-item"><span class="ic"></span>Treatment Plans</div>
-            <div class="app-nav-item"><span class="ic"></span>Messages</div>
-            <div class="app-nav-item"><span class="ic"></span>Analytics</div>
-            <div class="app-nav-item" style="margin-top:auto"><span class="ic"></span>Settings</div>
-          </div>
-        </div>
-        <div class="app-main">
-          <div class="app-topbar">
-            <div class="app-search">Search patients, records, insights…</div>
-            <div class="app-top-right"><div class="bell"></div><div class="avatar">OB</div></div>
-          </div>
-          <div style="margin-bottom:22px;">
-            <div style="font-family:'Fraunces';font-size:24px;font-weight:500;">Good morning, Dr. Bennett</div>
-            <p style="font-size:13.5px;margin-top:4px;">You have 8 appointments today and 2 priority AI insights to review.</p>
-          </div>
-          <div class="grid grid-4" style="margin-bottom:18px;">
-            <div class="metric-tile"><div class="mv">8</div><div class="ml">Today's appointments</div></div>
-            <div class="metric-tile"><div class="mv">2</div><div class="ml">Priority insights</div></div>
-            <div class="metric-tile"><div class="mv">126</div><div class="ml">Active patients</div></div>
-            <div class="metric-tile"><div class="mv">94%</div><div class="ml">Adherence rate</div></div>
-          </div>
-          <div class="grid grid-2">
-            <div class="card">
-              <div class="card-title">Recent patients</div>
-              <div class="status-row"><span>Olivia Carter</span><span class="badge warning">Review needed</span></div>
-              <div class="status-row"><span>Marcus Lee</span><span class="badge success">Stable</span></div>
-              <div class="status-row"><span>Priya Nair</span><span class="badge neutral">Follow-up</span></div>
-            </div>
-            <div class="card">
-              <div class="card-title">AI priority insights</div>
-              <div class="status-row"><span>Elevated BP trend — O. Carter</span><span class="badge critical">Attention</span></div>
-              <div class="status-row"><span>Lab result ready — M. Lee</span><span class="badge neutral">New</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="height:110px;"></div>
 </section>
 
-<!-- ============ 02 OVERVIEW ============ -->
-<section class="section">
-  <div class="overview-grid">
-    <div><div class="k">Role</div><div class="v">Product Designer</div></div>
-    <div><div class="k">Timeline</div><div class="v">8 Weeks</div></div>
-    <div><div class="k">Platform</div><div class="v">Web Application</div></div>
-    <div><div class="k">Tools</div><div class="v">Figma • FigJam</div></div>
+<!-- ===== OVERVIEW ===== -->
+<section class="case-section">
+  <div class="grid-4" style="margin-bottom: 2.5rem;">
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Role</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Product Designer</div></div>
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Timeline</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">8 Weeks</div></div>
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Platform</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Web Application</div></div>
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Tools</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Figma • FigJam</div></div>
   </div>
   <div class="eyebrow">Overview</div>
-  <p class="big-h" style="font-size:clamp(24px,2.6vw,32px);font-weight:400;">AURA Health is an AI‑powered healthcare command center designed to bring patient information, clinical workflows and intelligent insights into one focused workspace.</p>
+  <p class="big-h" style="font-weight:400;max-width:800px;">AURA Health is an AI‑powered healthcare command center designed to bring patient information, clinical workflows and intelligent insights into one focused workspace.</p>
 </section>
 
-<!-- ============ 03 CHALLENGE ============ -->
-<section class="section--alt">
-<div class="inner">
-  <div class="two-col">
-    <div>
-      <div class="eyebrow">The Challenge</div>
-      <h2 class="big-h">Healthcare data is powerful, but fragmented.</h2>
-      <p style="margin-top:26px;max-width:520px;">Healthcare professionals often work across disconnected systems for patient records, appointments, laboratory results, medications and treatment plans — switching context dozens of times a day just to answer one clinical question.</p>
-      <div style="margin-top:34px;display:flex;flex-direction:column;gap:14px;">
-        <div class="diagram-node"><span class="dot" style="background:var(--critical)"></span>Information overload</div>
-        <div class="diagram-node"><span class="dot" style="background:var(--critical)"></span>Fragmented workflows</div>
-        <div class="diagram-node"><span class="dot" style="background:var(--critical)"></span>Difficult patient history navigation</div>
-        <div class="diagram-node"><span class="dot" style="background:var(--critical)"></span>Documentation burden</div>
+<!-- ===== CHALLENGE ===== -->
+<section class="case-section--alt">
+  <div class="inner container">
+    <div class="grid-2">
+      <div>
+        <div class="eyebrow">The Challenge</div>
+        <h2 class="big-h">Healthcare data is powerful, but fragmented.</h2>
+        <p style="margin-top:1.2rem;max-width:480px;color:#4a5568;">Healthcare professionals often work across disconnected systems for patient records, appointments, laboratory results, medications and treatment plans — switching context dozens of times a day just to answer one clinical question.</p>
+        <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem;">
+          <div class="card" style="border-left:4px solid #dc2626;padding:0.8rem 1.2rem;"><span style="font-weight:600;">Information overload</span></div>
+          <div class="card" style="border-left:4px solid #dc2626;padding:0.8rem 1.2rem;"><span style="font-weight:600;">Fragmented workflows</span></div>
+          <div class="card" style="border-left:4px solid #dc2626;padding:0.8rem 1.2rem;"><span style="font-weight:600;">Difficult patient history navigation</span></div>
+        </div>
+      </div>
+      <div>
+        <svg viewBox="0 0 400 320" style="width:100%;max-width:420px;">
+          <g font-family="IBM Plex Mono" font-size="10" fill="#4a5568">
+            <rect x="10" y="10" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="33">Records</text>
+            <rect x="10" y="70" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="93">Lab Systems</text>
+            <rect x="10" y="130" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="153">Scheduling</text>
+            <rect x="10" y="190" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="213">Pharmacy</text>
+            <rect x="10" y="250" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="273">Billing</text>
+          </g>
+          <g stroke="#c6d2e8" stroke-width="1.5" fill="none">
+            <path d="M130 28 C 210 28, 210 150, 280 150"/>
+            <path d="M130 88 C 210 88, 210 150, 280 150"/>
+            <path d="M130 148 C 210 148, 210 150, 280 150"/>
+            <path d="M130 208 C 210 208, 210 150, 280 150"/>
+            <path d="M130 268 C 210 268, 210 150, 280 150"/>
+          </g>
+          <circle cx="330" cy="150" r="50" fill="#0a1628"/>
+          <text x="330" y="148" text-anchor="middle" fill="#fff" font-family="Fraunces" font-size="14" font-weight="600">AURA</text>
+          <text x="330" y="164" text-anchor="middle" fill="#8fb4ff" font-family="IBM Plex Mono" font-size="8">Health</text>
+        </svg>
       </div>
     </div>
-    <div>
-      <svg viewBox="0 0 480 420" style="width:100%;">
-        <g font-family="IBM Plex Mono" font-size="11" fill="#4A5568">
-          <rect x="10" y="10" width="150" height="46" rx="10" fill="#fff" stroke="#E2E7F0"/>
-          <text x="30" y="38">Electronic Records</text>
-          <rect x="10" y="90" width="150" height="46" rx="10" fill="#fff" stroke="#E2E7F0"/>
-          <text x="30" y="118">Lab Systems</text>
-          <rect x="10" y="170" width="150" height="46" rx="10" fill="#fff" stroke="#E2E7F0"/>
-          <text x="30" y="198">Scheduling</text>
-          <rect x="10" y="250" width="150" height="46" rx="10" fill="#fff" stroke="#E2E7F0"/>
-          <text x="30" y="278">Pharmacy Data</text>
-          <rect x="10" y="330" width="150" height="46" rx="10" fill="#fff" stroke="#E2E7F0"/>
-          <text x="30" y="358">Billing Records</text>
-        </g>
-        <g stroke="#C6D2E8" stroke-width="1.5" fill="none">
-          <path d="M160 33 C 260 33, 260 200, 330 200"/>
-          <path d="M160 113 C 260 113, 260 200, 330 200"/>
-          <path d="M160 193 C 260 193, 260 200, 330 200"/>
-          <path d="M160 273 C 260 273, 260 200, 330 200"/>
-          <path d="M160 353 C 260 353, 260 200, 330 200"/>
-        </g>
-        <circle cx="395" cy="200" r="65" fill="#0A1628"/>
-        <text x="395" y="196" text-anchor="middle" fill="#fff" font-family="Fraunces" font-size="15" font-weight="600">AURA</text>
-        <text x="395" y="214" text-anchor="middle" fill="#8FB4FF" font-family="IBM Plex Mono" font-size="9">Health</text>
-      </svg>
-    </div>
   </div>
-</div>
 </section>
 
-<!-- ============ 04 DESIGN GOAL ============ -->
-<section class="section">
+<!-- ===== DESIGN GOAL ===== -->
+<section class="case-section">
   <div class="eyebrow">Design Goal</div>
-  <h2 class="big-h" style="margin-bottom:56px;">One intelligent workspace for every clinical decision.</h2>
-  <div class="grid grid-3">
-    <div class="goal-card"><div class="num">01</div><h3>Reduce Cognitive Load</h3><p>Make critical patient information easier to understand at a glance, without digging.</p></div>
-    <div class="goal-card"><div class="num">02</div><h3>Accelerate Workflows</h3><p>Reduce unnecessary navigation and repetitive work across the care journey.</p></div>
-    <div class="goal-card"><div class="num">03</div><h3>Assist Better Decisions</h3><p>Use AI to surface relevant insights while keeping clinicians firmly in control.</p></div>
+  <h2 class="big-h" style="margin-bottom:2rem;">One intelligent workspace for every clinical decision.</h2>
+  <div class="grid-3">
+    <div class="card"><div style="font-family:'IBM Plex Mono';font-size:0.75rem;color:#3d7fff;font-weight:700;">01</div><h3 style="font-family:'Fraunces';font-size:1.2rem;margin:0.4rem 0;">Reduce Cognitive Load</h3><p style="font-size:0.9rem;color:#4a5568;">Make critical patient information easier to understand at a glance, without digging.</p></div>
+    <div class="card"><div style="font-family:'IBM Plex Mono';font-size:0.75rem;color:#3d7fff;font-weight:700;">02</div><h3 style="font-family:'Fraunces';font-size:1.2rem;margin:0.4rem 0;">Accelerate Workflows</h3><p style="font-size:0.9rem;color:#4a5568;">Reduce unnecessary navigation and repetitive work across the care journey.</p></div>
+    <div class="card"><div style="font-family:'IBM Plex Mono';font-size:0.75rem;color:#3d7fff;font-weight:700;">03</div><h3 style="font-family:'Fraunces';font-size:1.2rem;margin:0.4rem 0;">Assist Better Decisions</h3><p style="font-size:0.9rem;color:#4a5568;">Use AI to surface relevant insights while keeping clinicians firmly in control.</p></div>
   </div>
 </section>
 
-<!-- ============ 05 USER RESEARCH ============ -->
-<section class="section--alt">
-<div class="inner">
-  <div class="eyebrow">User Research</div>
-  <h2 class="big-h" style="margin-bottom:56px;">Understanding the clinical workflow.</h2>
-  <div class="grid grid-4">
-    <div class="research-card"><div class="rn">01</div><h4>Information Overload</h4><p>Clinicians need to review large amounts of information before every appointment.</p></div>
-    <div class="research-card"><div class="rn">02</div><h4>Fragmented Workflows</h4><p>Important information is distributed across multiple disconnected systems.</p></div>
-    <div class="research-card"><div class="rn">03</div><h4>History Navigation</h4><p>Patient history can be difficult and slow to scan quickly during a visit.</p></div>
-    <div class="research-card"><div class="rn">04</div><h4>Documentation</h4><p>Healthcare professionals spend significant time documenting routine information.</p></div>
+<!-- ===== USER RESEARCH ===== -->
+<section class="case-section--alt">
+  <div class="inner container">
+    <div class="eyebrow">User Research</div>
+    <h2 class="big-h" style="margin-bottom:2rem;">Understanding the clinical workflow.</h2>
+    <div class="grid-4">
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">01</div><h4 style="font-size:1rem;">Information Overload</h4><p style="font-size:0.85rem;color:#4a5568;">Clinicians review large amounts of information before every appointment.</p></div>
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">02</div><h4 style="font-size:1rem;">Fragmented Workflows</h4><p style="font-size:0.85rem;color:#4a5568;">Important information distributed across multiple disconnected systems.</p></div>
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">03</div><h4 style="font-size:1rem;">History Navigation</h4><p style="font-size:0.85rem;color:#4a5568;">Patient history can be difficult and slow to scan quickly.</p></div>
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">04</div><h4 style="font-size:1rem;">Documentation Burden</h4><p style="font-size:0.85rem;color:#4a5568;">Significant time spent documenting routine information.</p></div>
+    </div>
   </div>
-</div>
 </section>
 
-<!-- ============ 06 PERSONA ============ -->
-<section class="section">
+<!-- ===== PERSONA ===== -->
+<section class="case-section">
   <div class="eyebrow">Persona</div>
-  <div class="persona-wrap">
-    <div style="text-align:center;">
-      <div class="avatar xl" style="margin:0 auto 20px;">OB</div>
-      <h3 style="font-size:22px;">Dr. Olivia Bennett</h3>
-      <p style="font-size:13.5px;margin-top:4px;">Cardiology Specialist</p>
-    </div>
-    <div class="grid grid-2">
-      <div>
-        <div class="card-title">Goals</div>
-        <ul class="persona-list goals">
-          <li>Understand patient history quickly</li>
-          <li>Identify important changes</li>
-          <li>Prepare before appointments</li>
-          <li>Reduce documentation time</li>
-        </ul>
+  <div class="card" style="padding:2rem;">
+    <div class="grid-2" style="align-items:center;">
+      <div style="text-align:center;">
+        <div class="avatar xl" style="margin:0 auto 1rem;">OB</div>
+        <h3 style="font-family:'Fraunces';font-size:1.4rem;">Dr. Olivia Bennett</h3>
+        <p style="font-size:0.85rem;color:#4a5568;">Cardiology Specialist</p>
       </div>
-      <div>
-        <div class="card-title">Pain points</div>
-        <ul class="persona-list pain">
-          <li>Too many disconnected systems</li>
-          <li>Information overload</li>
-          <li>Repetitive documentation</li>
-          <li>Difficult patient timelines</li>
-        </ul>
+      <div class="grid-2">
+        <div>
+          <div class="card-title">Goals</div>
+          <ul style="list-style:none;padding:0;font-size:0.85rem;color:#4a5568;">
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✓ Understand patient history quickly</li>
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✓ Identify important changes</li>
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✓ Prepare before appointments</li>
+          </ul>
+        </div>
+        <div>
+          <div class="card-title">Pain points</div>
+          <ul style="list-style:none;padding:0;font-size:0.85rem;color:#4a5568;">
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✗ Too many disconnected systems</li>
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✗ Information overload</li>
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✗ Repetitive documentation</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 07 USER JOURNEY ============ -->
-<section class="section--alt">
-<div class="inner">
-  <div class="eyebrow">User Journey</div>
-  <h2 class="big-h" style="margin-bottom:50px;">From search to follow-up, in one flow.</h2>
-  <div class="journey-track">
-    <div class="journey-step"><div class="journey-line"></div><div class="jn">1</div><p>Patient Search</p></div>
-    <div class="journey-step"><div class="journey-line"></div><div class="jn">2</div><p>Patient Overview</p></div>
-    <div class="journey-step"><div class="journey-line"></div><div class="jn">3</div><p>Review History</p></div>
-    <div class="journey-step"><div class="journey-line"></div><div class="jn">4</div><p>Lab Results</p></div>
-    <div class="journey-step"><div class="journey-line"></div><div class="jn">5</div><p>AI Insights</p></div>
-    <div class="journey-step"><div class="journey-line"></div><div class="jn">6</div><p>Clinical Decision</p></div>
-    <div class="journey-step"><div class="journey-line"></div><div class="jn">7</div><p>Treatment Plan</p></div>
-    <div class="journey-step"><div class="journey-line"></div><div class="jn">8</div><p>Documentation</p></div>
-    <div class="journey-step"><div class="jn">9</div><p>Follow-up</p></div>
+<!-- ===== JOURNEY ===== -->
+<section class="case-section--alt">
+  <div class="inner container">
+    <div class="eyebrow">User Journey</div>
+    <h2 class="big-h" style="margin-bottom:2rem;">From search to follow-up, in one flow.</h2>
+    <div style="display:flex;gap:0.4rem;overflow-x:auto;padding-bottom:1rem;">
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">1</div><p style="font-size:0.7rem;font-weight:600;">Search</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">2</div><p style="font-size:0.7rem;font-weight:600;">Overview</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">3</div><p style="font-size:0.7rem;font-weight:600;">History</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">4</div><p style="font-size:0.7rem;font-weight:600;">Labs</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">5</div><p style="font-size:0.7rem;font-weight:600;">AI Insights</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">6</div><p style="font-size:0.7rem;font-weight:600;">Decision</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">7</div><p style="font-size:0.7rem;font-weight:600;">Treatment</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">8</div><p style="font-size:0.7rem;font-weight:600;">Document</p></div>
+    </div>
   </div>
-</div>
 </section>
 
-<!-- ============ 08 INFORMATION ARCHITECTURE ============ -->
-<section class="section">
+<!-- ===== IA ===== -->
+<section class="case-section">
   <div class="eyebrow">Information Architecture</div>
-  <h2 class="big-h" style="margin-bottom:50px;">A single, focused navigation model.</h2>
-  <div class="card" style="max-width:560px;padding:36px 40px;">
-    <div class="ia-tree">
-      <div class="root">Dashboard</div>
-      <div class="child">├── Patients</div>
-      <div class="child">├── Appointments</div>
-      <div class="child">├── AI Assistant</div>
-      <div class="child">├── Medical Records</div>
-      <div class="child">├── Lab Results</div>
-      <div class="child">├── Treatment Plans</div>
-      <div class="child">├── Messages</div>
-      <div class="child">├── Analytics</div>
-      <div class="child">└── Settings</div>
+  <h2 class="big-h" style="margin-bottom:2rem;">A single, focused navigation model.</h2>
+  <div class="card" style="max-width:400px;padding:1.5rem 2rem;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;color:#4a5568;line-height:2.2;">
+      <div style="font-weight:700;color:#0a1628;">Dashboard</div>
+      <div style="padding-left:1.2rem;">├── Patients</div>
+      <div style="padding-left:1.2rem;">├── Appointments</div>
+      <div style="padding-left:1.2rem;">├── AI Assistant</div>
+      <div style="padding-left:1.2rem;">├── Medical Records</div>
+      <div style="padding-left:1.2rem;">├── Lab Results</div>
+      <div style="padding-left:1.2rem;">├── Treatment Plans</div>
+      <div style="padding-left:1.2rem;">├── Messages</div>
+      <div style="padding-left:1.2rem;">├── Analytics</div>
+      <div style="padding-left:1.2rem;">└── Settings</div>
     </div>
   </div>
 </section>
 
-<!-- ============ 09 DESIGN SYSTEM ============ -->
-<section class="section--dark">
-<div class="inner">
-  <div class="eyebrow">Design System</div>
-  <h2 class="big-h" style="margin-bottom:60px;color:#fff;">Building a consistent visual language.</h2>
-
-  <div style="margin-bottom:70px;">
-    <div class="card-title" style="color:#8FA0C4;">Color</div>
-    <div class="grid grid-4" style="grid-template-columns:repeat(8,1fr);">
-      <div class="swatch" style="background:#0A1628;"><span class="lbl">Deep Navy</span></div>
-      <div class="swatch" style="background:#1B4B91;"><span class="lbl">Primary Blue</span></div>
-      <div class="swatch" style="background:#3D7FFF;"><span class="lbl">Electric Blue</span></div>
-      <div class="swatch light" style="background:#FFFFFF;border:1px solid #E2E7F0;"><span class="lbl">White</span></div>
-      <div class="swatch light" style="background:#EEF2F8;"><span class="lbl">Soft Gray</span></div>
-      <div class="swatch" style="background:#16A34A;"><span class="lbl">Success</span></div>
-      <div class="swatch" style="background:#D97706;"><span class="lbl">Warning</span></div>
-      <div class="swatch" style="background:#DC2626;"><span class="lbl">Critical</span></div>
-    </div>
-  </div>
-
-  <div style="margin-bottom:70px;">
-    <div class="card-title" style="color:#8FA0C4;">Typography</div>
-    <div class="type-row" style="border-color:rgba(255,255,255,.12);"><span class="tag" style="color:#8FA0C4;">Display</span><span class="display" style="font-size:44px;color:#fff;">Aa — Fraunces</span></div>
-    <div class="type-row" style="border-color:rgba(255,255,255,.12);"><span class="tag" style="color:#8FA0C4;">Heading</span><span style="font-size:26px;font-weight:700;color:#fff;">Aa — Inter Bold</span></div>
-    <div class="type-row" style="border-color:rgba(255,255,255,.12);"><span class="tag" style="color:#8FA0C4;">Body</span><span style="font-size:18px;color:#C7D3EA;">Aa — Inter Regular</span></div>
-    <div class="type-row" style="border-color:rgba(255,255,255,.12);"><span class="tag" style="color:#8FA0C4;">Caption</span><span class="mono" style="font-size:13px;color:#8FA0C4;">Aa — IBM Plex Mono</span></div>
-  </div>
-
-  <div>
-    <div class="card-title" style="color:#8FA0C4;">Components</div>
-    <div class="grid grid-4">
-      <div class="comp-tile"><span class="lbl">Buttons</span><div style="display:flex;gap:8px;"><div class="btn btn-primary">Save</div><div class="btn btn-ghost">Cancel</div></div></div>
-      <div class="comp-tile"><span class="lbl">Inputs</span><div style="width:100%;border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12.5px;color:var(--gray);">Enter value…</div></div>
-      <div class="comp-tile"><span class="lbl">Search</span><div class="app-search" style="max-width:none;">Search patients…</div></div>
-      <div class="comp-tile"><span class="lbl">Tabs</span><div style="display:flex;gap:16px;font-size:12.5px;"><span style="font-weight:700;border-bottom:2px solid var(--electric);padding-bottom:4px;">Overview</span><span style="color:var(--gray);">History</span></div></div>
-      <div class="comp-tile"><span class="lbl">Cards</span><div style="width:100%;height:36px;background:var(--bg-alt);border-radius:8px;"></div></div>
-      <div class="comp-tile"><span class="lbl">Tables</span><div style="width:100%;"><div style="border-bottom:1px solid var(--border);padding:4px 0;font-size:11px;">Row A</div><div style="padding:4px 0;font-size:11px;">Row B</div></div></div>
-      <div class="comp-tile"><span class="lbl">Badges</span><div style="display:flex;gap:6px;"><span class="badge success">Stable</span><span class="badge critical">Alert</span></div></div>
-      <div class="comp-tile"><span class="lbl">Avatars</span><div style="display:flex;gap:6px;"><div class="avatar" style="width:30px;height:30px;font-size:11px;">OC</div><div class="avatar" style="width:30px;height:30px;font-size:11px;">ML</div></div></div>
-      <div class="comp-tile"><span class="lbl">Navigation</span><div class="app-nav-item active" style="width:100%;"><span class="ic"></span>Dashboard</div></div>
-      <div class="comp-tile"><span class="lbl">Charts</span><div class="bar-chart" style="height:40px;width:100%;"><div class="bar" style="height:60%"></div><div class="bar alt" style="height:90%"></div><div class="bar" style="height:40%"></div></div></div>
-      <div class="comp-tile" style="grid-column:span 2;"><span class="lbl">AI Components</span><div style="width:100%;background:linear-gradient(135deg,#0F2038,#123055);border-radius:10px;padding:12px 14px;color:#DCE5F7;font-size:12px;display:flex;align-items:center;gap:8px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--mint);"></span>AI insight — reviewed by clinician</div></div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ============ 10 FINAL UI EXPLORATION INTRO ============ -->
-<section class="section" style="text-align:center;padding-top:150px;padding-bottom:80px;">
-  <div class="eyebrow" style="justify-content:center;">Final UI Exploration</div>
-  <h2 class="display" style="font-size:clamp(30px,4.5vw,50px);">Every screen, one continuous story.</h2>
-  <p style="max-width:520px;margin:20px auto 0;">Scroll to explore the complete AURA Health interface — from the clinical dashboard to the AI assistant, screen by screen.</p>
-</section>
-
-<!-- ============ 11 SCREEN 01 — DASHBOARD ============ -->
-<section class="section" id="screen-dashboard">
+<!-- ===== SCREEN 01 — DASHBOARD ===== -->
+<section class="case-section">
   <div class="eyebrow">Screen 01 — Main Dashboard</div>
   <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/dashboard</span></div>
+    <div class="browser-bar">
+      <span class="browser-dot" style="background:#ff5f57;"></span>
+      <span class="browser-dot" style="background:#febc2e;"></span>
+      <span class="browser-dot" style="background:#28c840;"></span>
+      <span class="browser-url">aurahealth.app/dashboard</span>
+    </div>
     <div class="app-shell">
       <div class="app-sidebar">
         <div class="app-logo"><span class="dot"></span>AURA</div>
@@ -569,51 +509,39 @@ p{line-height:1.7;color:var(--gray-dark);font-size:16.5px;}
           <div class="app-nav-item"><span class="ic"></span>Patients</div>
           <div class="app-nav-item"><span class="ic"></span>Appointments</div>
           <div class="app-nav-item"><span class="ic"></span>AI Assistant</div>
-          <div class="app-nav-item"><span class="ic"></span>Medical Records</div>
+          <div class="app-nav-item"><span class="ic"></span>Records</div>
           <div class="app-nav-item"><span class="ic"></span>Lab Results</div>
-          <div class="app-nav-item"><span class="ic"></span>Treatment Plans</div>
           <div class="app-nav-item"><span class="ic"></span>Messages</div>
-          <div class="app-nav-item"><span class="ic"></span>Analytics</div>
-          <div class="app-nav-item" style="margin-top:auto"><span class="ic"></span>Settings</div>
+          <div class="app-nav-item" style="margin-top:auto;"><span class="ic"></span>Settings</div>
         </div>
       </div>
       <div class="app-main">
-        <div class="app-topbar"><div class="app-search">Search patients, records, insights…</div><div class="app-top-right"><div class="bell"></div><div class="avatar">OB</div></div></div>
-        <div style="margin-bottom:20px;"><div style="font-family:'Fraunces';font-size:24px;font-weight:500;">Good morning, Dr. Bennett</div><p style="font-size:13.5px;margin-top:4px;">8 appointments today · 2 priority insights waiting</p></div>
-        <div class="grid grid-4" style="margin-bottom:18px;">
+        <div class="app-topbar">
+          <div class="app-search">Search patients, records, insights…</div>
+          <div class="app-top-right" style="display:flex;align-items:center;gap:10px;"><div class="avatar">OB</div></div>
+        </div>
+        <div style="margin-bottom:1rem;"><div style="font-family:'Fraunces';font-size:1.4rem;font-weight:500;">Good morning, Dr. Bennett</div><p style="font-size:0.8rem;color:#4a5568;">8 appointments today · 2 priority insights</p></div>
+        <div class="grid-4" style="margin-bottom:1rem;">
           <div class="metric-tile"><div class="mv">8</div><div class="ml">Today's appointments</div></div>
           <div class="metric-tile"><div class="mv">2</div><div class="ml">Priority insights</div></div>
           <div class="metric-tile"><div class="mv">126</div><div class="ml">Active patients</div></div>
-          <div class="metric-tile"><div class="mv">3</div><div class="ml">Unread messages</div></div>
+          <div class="metric-tile"><div class="mv">94%</div><div class="ml">Adherence rate</div></div>
         </div>
-        <div class="grid grid-2" style="margin-bottom:18px;">
-          <div class="card">
-            <div class="card-title">Today's schedule</div>
-            <div class="status-row"><span>09:00 — Olivia Carter</span><span class="badge neutral">Follow-up</span></div>
-            <div class="status-row"><span>10:30 — Marcus Lee</span><span class="badge neutral">Consultation</span></div>
-            <div class="status-row"><span>13:15 — Priya Nair</span><span class="badge warning">Confirm</span></div>
-          </div>
-          <div class="card">
-            <div class="card-title">Clinical activity</div>
-            <div class="bar-chart"><div class="bar" style="height:40%"></div><div class="bar alt" style="height:70%"></div><div class="bar" style="height:55%"></div><div class="bar alt" style="height:90%"></div><div class="bar" style="height:60%"></div><div class="bar alt" style="height:75%"></div></div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">Priority insights</div>
-          <div class="status-row"><span>Elevated blood pressure trend — Olivia Carter</span><span class="badge critical">Attention</span></div>
-          <div class="status-row"><span>Lab result ready for review — Marcus Lee</span><span class="badge neutral">New</span></div>
+        <div class="grid-2">
+          <div class="card"><div class="card-title">Recent patients</div><div class="status-row"><span>Olivia Carter</span><span class="badge warning">Review</span></div><div class="status-row"><span>Marcus Lee</span><span class="badge success">Stable</span></div></div>
+          <div class="card"><div class="card-title">AI priority insights</div><div class="status-row"><span>Elevated BP trend — O. Carter</span><span class="badge critical">Alert</span></div><div class="status-row"><span>Lab result ready — M. Lee</span><span class="badge neutral">New</span></div></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>Critical information is surfaced above the fold so clinicians can understand their workload and patient priorities immediately, without navigating away from the dashboard.</p></div>
+  <div class="mockup-caption"><span class="label">UX Decision</span><p>Critical information is surfaced above the fold so clinicians can understand their workload and patient priorities immediately.</p></div>
 </section>
 
-<!-- ============ 12 SCREEN 02 — PATIENT OVERVIEW ============ -->
-<section class="section" id="screen-patient">
+<!-- ===== SCREEN 02 — PATIENT OVERVIEW ===== -->
+<section class="case-section">
   <div class="eyebrow">Screen 02 — Patient Overview</div>
   <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/patients/AH-20481</span></div>
+    <div class="browser-bar"><span class="browser-dot" style="background:#ff5f57;"></span><span class="browser-dot" style="background:#febc2e;"></span><span class="browser-dot" style="background:#28c840;"></span><span class="browser-url">aurahealth.app/patients/AH-20481</span></div>
     <div class="app-shell">
       <div class="app-sidebar">
         <div class="app-logo"><span class="dot"></span>AURA</div>
@@ -622,424 +550,111 @@ p{line-height:1.7;color:var(--gray-dark);font-size:16.5px;}
           <div class="app-nav-item active"><span class="ic"></span>Patients</div>
           <div class="app-nav-item"><span class="ic"></span>Appointments</div>
           <div class="app-nav-item"><span class="ic"></span>AI Assistant</div>
-          <div class="app-nav-item"><span class="ic"></span>Medical Records</div>
+          <div class="app-nav-item"><span class="ic"></span>Records</div>
           <div class="app-nav-item"><span class="ic"></span>Lab Results</div>
-          <div class="app-nav-item"><span class="ic"></span>Treatment Plans</div>
-          <div class="app-nav-item"><span class="ic"></span>Messages</div>
-          <div class="app-nav-item"><span class="ic"></span>Analytics</div>
-          <div class="app-nav-item" style="margin-top:auto"><span class="ic"></span>Settings</div>
+          <div class="app-nav-item" style="margin-top:auto;"><span class="ic"></span>Settings</div>
         </div>
       </div>
       <div class="app-main">
-        <div class="app-topbar"><div class="app-search">Search patients, records, insights…</div><div class="app-top-right"><div class="bell"></div><div class="avatar">OB</div></div></div>
-        <div style="display:flex;align-items:center;gap:18px;margin-bottom:22px;">
+        <div class="app-topbar"><div class="app-search">Search patients…</div><div class="avatar">OB</div></div>
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;">
           <div class="avatar lg">OC</div>
-          <div>
-            <div style="font-family:'Fraunces';font-size:22px;font-weight:500;">Olivia Carter</div>
-            <p class="mono" style="font-size:12px;margin-top:3px;">AH-20481 · Age 42 · Last visit Aug 12, 2026</p>
-          </div>
+          <div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Olivia Carter</div><p style="font-size:0.7rem;color:#8894a6;">AH-20481 · Age 42 · Last visit Aug 12, 2026</p></div>
         </div>
-        <div class="grid grid-3" style="margin-bottom:18px;">
-          <div class="card"><div class="card-title">Health summary</div><p style="font-size:13px;">Managed hypertension with recent upward trend in blood pressure readings.</p></div>
-          <div class="card"><div class="card-title">Current conditions</div><div class="status-row"><span>Hypertension</span><span class="badge warning">Active</span></div><div class="status-row"><span>Type 2 Diabetes</span><span class="badge neutral">Managed</span></div></div>
+        <div class="grid-3" style="margin-bottom:1rem;">
+          <div class="card"><div class="card-title">Health summary</div><p style="font-size:0.8rem;">Managed hypertension with recent upward trend.</p></div>
+          <div class="card"><div class="card-title">Conditions</div><div class="status-row"><span>Hypertension</span><span class="badge warning">Active</span></div></div>
           <div class="card"><div class="card-title">Allergies</div><div class="status-row"><span>Penicillin</span><span class="badge critical">Severe</span></div></div>
         </div>
-        <div class="grid grid-2" style="margin-bottom:18px;">
-          <div class="card"><div class="card-title">Medications</div><div class="status-row"><span>Lisinopril 10mg</span><span class="mono" style="font-size:11px;color:var(--gray);">Daily</span></div><div class="status-row"><span>Metformin 500mg</span><span class="mono" style="font-size:11px;color:var(--gray);">2× Daily</span></div></div>
-          <div class="card"><div class="card-title">Recent vitals</div><div class="status-row"><span>Blood Pressure</span><span>138/89 mmHg</span></div><div class="status-row"><span>Heart Rate</span><span>76 bpm</span></div></div>
+        <div class="grid-2">
+          <div class="card"><div class="card-title">Medications</div><div class="status-row"><span>Lisinopril 10mg</span><span class="mono" style="font-size:0.6rem;color:#8894a6;">Daily</span></div></div>
+          <div class="card"><div class="card-title">Recent vitals</div><div class="status-row"><span>BP</span><span>138/89</span></div></div>
         </div>
-        <div class="card"><div class="card-title">Upcoming appointment</div><div class="status-row"><span>Aug 26, 2026 — Follow-up consultation</span><span class="badge neutral">Confirmed</span></div></div>
       </div>
     </div>
   </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>The patient overview consolidates the most important information into one scannable workspace, removing the need to open multiple records to answer a simple clinical question.</p></div>
+  <div class="mockup-caption"><span class="label">UX Decision</span><p>The patient overview consolidates the most important information into one scannable workspace.</p></div>
 </section>
 
-<!-- ============ 13 SCREEN 03 — PATIENT TIMELINE ============ -->
-<section class="section" id="screen-timeline">
-  <div class="eyebrow">Screen 03 — Patient Timeline</div>
+<!-- ===== SCREEN 03 — AI ASSISTANT ===== -->
+<section class="case-section">
+  <div class="eyebrow">Screen 03 — AI Clinical Assistant</div>
   <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/patients/AH-20481/timeline</span></div>
-    <div style="padding:44px 50px;background:#fff;">
-      <div style="font-family:'Fraunces';font-size:22px;font-weight:500;margin-bottom:6px;">Patient Timeline — Olivia Carter</div>
-      <p style="font-size:13px;margin-bottom:20px;">Chronological view of consultations, labs, and treatment changes.</p>
-      <div>
-        <div class="timeline-item"><div class="timeline-date mono">Aug 12, 2026</div><div class="timeline-dot" style="background:var(--electric);"></div><div><strong style="font-size:14px;">Consultation</strong><p style="font-size:13px;margin-top:2px;">Routine follow-up; blood pressure trend discussed.</p></div></div>
-        <div class="timeline-item"><div class="timeline-date mono">Aug 05, 2026</div><div class="timeline-dot" style="background:var(--mint);"></div><div><strong style="font-size:14px;">Laboratory test</strong><p style="font-size:13px;margin-top:2px;">Full lipid panel and glucose screening completed.</p></div></div>
-        <div class="timeline-item"><div class="timeline-date mono">Jul 22, 2026</div><div class="timeline-dot" style="background:var(--warning);"></div><div><strong style="font-size:14px;">Prescription</strong><p style="font-size:13px;margin-top:2px;">Lisinopril dosage adjusted to 10mg daily.</p></div></div>
-        <div class="timeline-item"><div class="timeline-date mono">Jul 10, 2026</div><div class="timeline-dot" style="background:var(--critical);"></div><div><strong style="font-size:14px;">Diagnosis</strong><p style="font-size:13px;margin-top:2px;">Hypertension confirmed following ambulatory monitoring.</p></div></div>
-        <div class="timeline-item"><div class="timeline-date mono">Jun 28, 2026</div><div class="timeline-dot" style="background:var(--electric);"></div><div><strong style="font-size:14px;">Treatment update</strong><p style="font-size:13px;margin-top:2px;">Dietary sodium reduction plan introduced.</p></div></div>
-        <div class="timeline-item"><div class="timeline-date mono">Jun 14, 2026</div><div class="timeline-dot" style="background:var(--gray);"></div><div><strong style="font-size:14px;">Follow-up</strong><p style="font-size:13px;margin-top:2px;">Scheduled two-week vitals recheck.</p></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>A single vertical timeline replaces scattered records with one continuous, chronological narrative of the patient's care.</p></div>
-</section>
-
-<!-- ============ 14 SCREEN 04 — LAB RESULTS ============ -->
-<section class="section" id="screen-labs">
-  <div class="eyebrow">Screen 04 — Lab Results</div>
-  <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/patients/AH-20481/labs</span></div>
-    <div style="padding:44px 50px;background:#fff;">
-      <div style="font-family:'Fraunces';font-size:22px;font-weight:500;margin-bottom:20px;">Lab Results — Olivia Carter</div>
-      <div class="grid grid-3">
-        <div class="card"><div class="card-title">Blood Pressure</div><svg viewBox="0 0 200 60" style="width:100%;"><polyline points="0,40 40,36 80,30 120,20 160,14 200,10" fill="none" stroke="#DC2626" stroke-width="2"/></svg><div style="display:flex;justify-content:space-between;font-size:12px;margin-top:8px;"><span>Current <strong>138/89</strong></span><span class="trend" style="background:var(--critical-bg);color:var(--critical);">↑ Rising</span></div><p style="font-size:11px;margin-top:6px;color:var(--gray);">Reference: 120/80 mmHg</p></div>
-        <div class="card"><div class="card-title">LDL Cholesterol</div><svg viewBox="0 0 200 60" style="width:100%;"><polyline points="0,20 40,24 80,18 120,26 160,30 200,34" fill="none" stroke="#D97706" stroke-width="2"/></svg><div style="display:flex;justify-content:space-between;font-size:12px;margin-top:8px;"><span>Current <strong>142 mg/dL</strong></span><span class="trend" style="background:var(--warning-bg);color:var(--warning);">Watch</span></div><p style="font-size:11px;margin-top:6px;color:var(--gray);">Reference: &lt;100 mg/dL</p></div>
-        <div class="card"><div class="card-title">HDL Cholesterol</div><svg viewBox="0 0 200 60" style="width:100%;"><polyline points="0,30 40,28 80,26 120,24 160,22 200,20" fill="none" stroke="#16A34A" stroke-width="2"/></svg><div style="display:flex;justify-content:space-between;font-size:12px;margin-top:8px;"><span>Current <strong>58 mg/dL</strong></span><span class="trend" style="background:var(--success-bg);color:var(--success);">Normal</span></div><p style="font-size:11px;margin-top:6px;color:var(--gray);">Reference: &gt;40 mg/dL</p></div>
-        <div class="card"><div class="card-title">Heart Rate</div><svg viewBox="0 0 200 60" style="width:100%;"><polyline points="0,30 40,26 80,32 120,28 160,24 200,26" fill="none" stroke="#3D7FFF" stroke-width="2"/></svg><div style="display:flex;justify-content:space-between;font-size:12px;margin-top:8px;"><span>Current <strong>76 bpm</strong></span><span class="trend" style="background:var(--success-bg);color:var(--success);">Normal</span></div><p style="font-size:11px;margin-top:6px;color:var(--gray);">Reference: 60–100 bpm</p></div>
-        <div class="card"><div class="card-title">Glucose</div><svg viewBox="0 0 200 60" style="width:100%;"><polyline points="0,26 40,24 80,28 120,22 160,20 200,18" fill="none" stroke="#D97706" stroke-width="2"/></svg><div style="display:flex;justify-content:space-between;font-size:12px;margin-top:8px;"><span>Current <strong>112 mg/dL</strong></span><span class="trend" style="background:var(--warning-bg);color:var(--warning);">Watch</span></div><p style="font-size:11px;margin-top:6px;color:var(--gray);">Reference: 70–99 mg/dL</p></div>
-        <div class="card"><div class="card-title">Total Cholesterol</div><svg viewBox="0 0 200 60" style="width:100%;"><polyline points="0,22 40,24 80,20 120,26 160,28 200,30" fill="none" stroke="#D97706" stroke-width="2"/></svg><div style="display:flex;justify-content:space-between;font-size:12px;margin-top:8px;"><span>Current <strong>212 mg/dL</strong></span><span class="trend" style="background:var(--warning-bg);color:var(--warning);">Watch</span></div><p style="font-size:11px;margin-top:6px;color:var(--gray);">Reference: &lt;200 mg/dL</p></div>
-      </div>
-    </div>
-  </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>Every metric pairs the current result with its previous value, reference range, and trend direction — enabling a clinical read in seconds.</p></div>
-</section>
-
-<!-- ============ 15 SCREEN 05 — AI CLINICAL ASSISTANT ============ -->
-<section class="section" id="screen-ai">
-  <div class="eyebrow">Screen 05 — AI Clinical Assistant</div>
-  <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/ai-assistant</span></div>
-    <div style="background:linear-gradient(160deg,#0A1628,#102B4C);padding:50px 60px;">
-      <div style="font-family:'Fraunces';font-size:24px;font-weight:500;color:#fff;margin-bottom:26px;">AI Clinical Assistant</div>
-      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px 22px;color:#DCE5F7;font-size:14.5px;margin-bottom:22px;max-width:560px;">What should I know before Olivia's next appointment?</div>
-      <div style="background:#fff;border-radius:16px;padding:34px;max-width:720px;box-shadow:var(--shadow-lg);">
+    <div class="browser-bar"><span class="browser-dot" style="background:#ff5f57;"></span><span class="browser-dot" style="background:#febc2e;"></span><span class="browser-dot" style="background:#28c840;"></span><span class="browser-url">aurahealth.app/ai-assistant</span></div>
+    <div style="background:linear-gradient(160deg,#0a1628,#102b4c);padding:2rem 2.5rem;">
+      <div style="font-family:'Fraunces';font-size:1.3rem;font-weight:500;color:#fff;margin-bottom:1.2rem;">AI Clinical Assistant</div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:0.8rem 1.2rem;color:#dce5f7;font-size:0.9rem;margin-bottom:1.2rem;max-width:480px;">What should I know before Olivia's next appointment?</div>
+      <div style="background:#fff;border-radius:14px;padding:1.5rem;max-width:540px;">
         <div class="card-title">Priority findings</div>
-        <ul style="margin:0 0 22px 18px;font-size:14px;color:var(--gray-dark);line-height:2;">
-          <li>Blood pressure trend increased over the last 30 days.</li>
-          <li>Recent LDL result requires review.</li>
-          <li>Medication adherence appears inconsistent.</li>
-        </ul>
+        <ul style="margin:0 0 1rem 1rem;font-size:0.85rem;color:#4a5568;line-height:1.8;"><li>BP trend increased over last 30 days</li><li>Recent LDL requires review</li></ul>
         <div class="card-title">Recommended actions</div>
-        <ul style="margin:0 0 26px 18px;font-size:14px;color:var(--gray-dark);line-height:2;">
-          <li>Review latest lab results.</li>
-          <li>Discuss medication adherence.</li>
-          <li>Schedule follow-up monitoring.</li>
-        </ul>
-        <div style="display:flex;gap:10px;margin-bottom:22px;">
-          <div class="btn btn-primary">Review Evidence</div>
-          <div class="btn btn-ghost">Create Note</div>
-          <div class="btn btn-mint">Add to Treatment Plan</div>
-        </div>
-        <div style="display:flex;gap:26px;border-top:1px solid var(--border);padding-top:16px;font-size:12px;color:var(--gray);">
-          <span>AI Confidence: <strong style="color:var(--navy);">High</strong></span>
-          <span>Sources: <strong style="color:var(--navy);">6 records</strong></span>
-          <span>Last updated: <strong style="color:var(--navy);">2 min ago</strong></span>
-        </div>
-      </div>
-      <p style="color:#8FA0C4;font-size:12px;margin-top:18px;">AI-generated recommendation — clinician review required.</p>
-    </div>
-  </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>The assistant frames every output as a recommendation with visible confidence and sourcing, keeping the clinician firmly in the decision-making seat.</p></div>
-</section>
-
-<!-- ============ 16 SCREEN 06 — AI INSIGHT DETAIL ============ -->
-<section class="section" id="screen-ai-detail">
-  <div class="eyebrow">Screen 06 — AI Insight Detail</div>
-  <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/ai-assistant/insight/bp-trend</span></div>
-    <div style="padding:44px 50px;background:#fff;">
-      <div style="font-family:'Fraunces';font-size:20px;font-weight:500;margin-bottom:4px;">Elevated blood pressure trend</div>
-      <p class="mono" style="font-size:11.5px;margin-bottom:24px;">Insight ID AI-4471 · Olivia Carter</p>
-      <div class="grid grid-2" style="margin-bottom:18px;">
-        <div class="card"><div class="card-title">Why this matters</div><p style="font-size:13px;">Sustained increases in systolic pressure raise long-term cardiovascular risk if left unaddressed.</p></div>
-        <div class="card"><div class="card-title">Supporting data</div><p style="font-size:13px;">Four consecutive readings above target range across the last three visits.</p></div>
-        <div class="card"><div class="card-title">Patient history</div><p style="font-size:13px;">Diagnosed hypertension, current dosage adjusted 3 weeks ago.</p></div>
-        <div class="card"><div class="card-title">Related lab results</div><p style="font-size:13px;">LDL and total cholesterol both trending upward in parallel.</p></div>
-      </div>
-      <div class="card" style="margin-bottom:22px;"><div class="card-title">AI reasoning summary</div><p style="font-size:13px;">Pattern consistent with reduced medication adherence combined with dietary sodium intake above the recommended threshold.</p></div>
-      <div class="card" style="margin-bottom:22px;"><div class="card-title">Recommended action</div><p style="font-size:13px;">Discuss adherence and consider a follow-up reading within two weeks.</p></div>
-      <div style="display:flex;gap:10px;"><div class="btn btn-mint">Accept</div><div class="btn btn-ghost">Edit</div><div class="btn btn-ghost">Dismiss</div></div>
-    </div>
-  </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>Expanding an insight always shows its full reasoning chain, so trust in the AI is earned through transparency rather than assumed.</p></div>
-</section>
-
-<!-- ============ 17 SCREEN 07 — APPOINTMENTS ============ -->
-<section class="section" id="screen-appointments">
-  <div class="eyebrow">Screen 07 — Appointments</div>
-  <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/appointments</span></div>
-    <div style="padding:44px 50px;background:#fff;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-        <div style="font-family:'Fraunces';font-size:22px;font-weight:500;">Appointments</div>
-        <div style="display:flex;gap:8px;">
-          <div class="btn btn-primary" style="padding:7px 14px;font-size:12px;">Today</div>
-          <div class="btn btn-ghost" style="padding:7px 14px;font-size:12px;">Tomorrow</div>
-          <div class="btn btn-ghost" style="padding:7px 14px;font-size:12px;">This Week</div>
-          <div class="btn btn-ghost" style="padding:7px 14px;font-size:12px;">All</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="status-row"><span class="mono" style="width:70px;display:inline-block;">09:00</span><span style="flex:1;">Olivia Carter</span><span style="color:var(--gray);width:120px;">Follow-up</span><span class="badge neutral">Confirmed</span></div>
-        <div class="status-row"><span class="mono" style="width:70px;display:inline-block;">10:30</span><span style="flex:1;">Marcus Lee</span><span style="color:var(--gray);width:120px;">Consultation</span><span class="badge neutral">Confirmed</span></div>
-        <div class="status-row"><span class="mono" style="width:70px;display:inline-block;">11:45</span><span style="flex:1;">Priya Nair</span><span style="color:var(--gray);width:120px;">Lab review</span><span class="badge warning">Pending</span></div>
-        <div class="status-row"><span class="mono" style="width:70px;display:inline-block;">13:15</span><span style="flex:1;">James Whitfield</span><span style="color:var(--gray);width:120px;">Follow-up</span><span class="badge warning">Pending</span></div>
-        <div class="status-row"><span class="mono" style="width:70px;display:inline-block;">15:00</span><span style="flex:1;">Elena Ruiz</span><span style="color:var(--gray);width:120px;">Consultation</span><span class="badge neutral">Confirmed</span></div>
+        <ul style="margin:0 0 1.2rem 1rem;font-size:0.85rem;color:#4a5568;line-height:1.8;"><li>Review latest lab results</li><li>Discuss medication adherence</li></ul>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;"><div class="btn btn-primary">Review Evidence</div><div class="btn btn-ghost">Create Note</div></div>
       </div>
     </div>
   </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>Filter chips replace a dense calendar grid for the common case: seeing what's next, not what's on the whole month.</p></div>
+  <div class="mockup-caption"><span class="label">UX Decision</span><p>The assistant frames every output as a recommendation with visible confidence, keeping the clinician in control.</p></div>
 </section>
 
-<!-- ============ 18 SCREEN 08 — MEDICAL RECORDS ============ -->
-<section class="section" id="screen-records">
-  <div class="eyebrow">Screen 08 — Medical Records</div>
-  <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/records</span></div>
-    <div style="padding:44px 50px;background:#fff;">
-      <div style="font-family:'Fraunces';font-size:22px;font-weight:500;margin-bottom:20px;">Medical Records</div>
-      <div class="card">
-        <div class="status-row" style="font-size:11px;color:var(--gray);font-weight:700;text-transform:uppercase;"><span style="width:110px;">Date</span><span style="flex:1;">Document type</span><span style="width:140px;">Doctor</span><span style="width:100px;">Status</span></div>
-        <div class="status-row"><span class="mono" style="width:110px;">Aug 12</span><span style="flex:1;">Clinical Notes</span><span style="width:140px;">Dr. Bennett</span><span class="badge success">Complete</span></div>
-        <div class="status-row"><span class="mono" style="width:110px;">Aug 05</span><span style="flex:1;">Lab Report</span><span style="width:140px;">Dr. Bennett</span><span class="badge success">Complete</span></div>
-        <div class="status-row"><span class="mono" style="width:110px;">Jul 22</span><span style="flex:1;">Prescription</span><span style="width:140px;">Dr. Bennett</span><span class="badge success">Complete</span></div>
-        <div class="status-row"><span class="mono" style="width:110px;">Jul 10</span><span style="flex:1;">Imaging</span><span style="width:140px;">Dr. Osei</span><span class="badge neutral">Reviewed</span></div>
-        <div class="status-row"><span class="mono" style="width:110px;">Jun 28</span><span style="flex:1;">Consultation Record</span><span style="width:140px;">Dr. Bennett</span><span class="badge success">Complete</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>Records are organized by type and status rather than raw file names, so clinicians can scan for what's outstanding at a glance.</p></div>
-</section>
-
-<!-- ============ 19 SCREEN 09 — TREATMENT PLAN ============ -->
-<section class="section" id="screen-treatment">
-  <div class="eyebrow">Screen 09 — Treatment Plan</div>
-  <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/patients/AH-20481/treatment</span></div>
-    <div style="padding:44px 50px;background:#fff;">
-      <div style="font-family:'Fraunces';font-size:22px;font-weight:500;margin-bottom:20px;">Treatment Plan — Olivia Carter</div>
-      <div class="grid grid-2" style="margin-bottom:18px;">
-        <div class="card"><div class="card-title">Current treatment</div><p style="font-size:13px;">Hypertension management with dietary and pharmacological intervention.</p></div>
-        <div class="card"><div class="card-title">Progress</div><div style="width:100%;height:8px;background:var(--bg-alt);border-radius:6px;overflow:hidden;margin-top:10px;"><div style="width:64%;height:100%;background:var(--electric);"></div></div><p style="font-size:12px;margin-top:8px;">64% toward target blood pressure range</p></div>
-      </div>
-      <div class="card" style="margin-bottom:18px;">
-        <div class="card-title">Medication</div>
-        <div class="status-row"><span>Lisinopril</span><span class="mono" style="font-size:12px;">10mg · Once daily · 90 days</span></div>
-        <div class="status-row"><span>Metformin</span><span class="mono" style="font-size:12px;">500mg · Twice daily · 90 days</span></div>
-      </div>
-      <div class="card"><div class="card-title">Treatment timeline</div>
-        <div class="status-row"><span>Jul 10 — Plan initiated</span><span class="badge success">Complete</span></div>
-        <div class="status-row"><span>Jul 22 — Dosage adjustment</span><span class="badge success">Complete</span></div>
-        <div class="status-row"><span>Aug 26 — Progress review</span><span class="badge neutral">Upcoming</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>Progress is shown as a single visual measure against a clear target, turning an abstract plan into something trackable at a glance.</p></div>
-</section>
-
-<!-- ============ 20 SCREEN 10 — MESSAGES ============ -->
-<section class="section" id="screen-messages">
-  <div class="eyebrow">Screen 10 — Messages</div>
-  <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/messages</span></div>
-    <div style="display:flex;height:560px;background:#fff;">
-      <div style="width:280px;border-right:1px solid var(--border);padding:20px;">
-        <div class="app-search" style="max-width:none;margin-bottom:16px;">Search conversations…</div>
-        <div class="status-row" style="border:none;padding:12px 8px;background:var(--bg-alt);border-radius:10px;"><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="width:30px;height:30px;font-size:11px;">OC</div><div><div style="font-size:13px;font-weight:600;">Olivia Carter</div><div style="font-size:11px;color:var(--gray);">Thank you, doctor…</div></div></div></div>
-        <div class="status-row" style="border:none;padding:12px 8px;"><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="width:30px;height:30px;font-size:11px;">ML</div><div><div style="font-size:13px;font-weight:600;">Marcus Lee</div><div style="font-size:11px;color:var(--gray);">Can I reschedule…</div></div></div></div>
-        <div class="status-row" style="border:none;padding:12px 8px;"><div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="width:30px;height:30px;font-size:11px;">PN</div><div><div style="font-size:13px;font-weight:600;">Priya Nair</div><div style="font-size:11px;color:var(--gray);">Lab results question</div></div></div></div>
-      </div>
-      <div style="flex:1;padding:20px 26px;display:flex;flex-direction:column;">
-        <div style="border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
-          <div style="display:flex;align-items:center;gap:10px;"><div class="avatar" style="width:34px;height:34px;font-size:12px;">OC</div><div style="font-size:14px;font-weight:600;">Olivia Carter</div></div>
-          <span class="badge neutral">Appointment Aug 26</span>
-        </div>
-        <div style="flex:1;display:flex;flex-direction:column;gap:12px;">
-          <div style="align-self:flex-start;background:var(--bg-alt);padding:10px 14px;border-radius:12px;font-size:13px;max-width:280px;">Should I keep monitoring my blood pressure at home?</div>
-          <div style="align-self:flex-end;background:var(--electric);color:#fff;padding:10px 14px;border-radius:12px;font-size:13px;max-width:280px;">Yes — twice daily, same time, and log it in your chart before our next visit.</div>
-          <div style="align-self:flex-start;background:var(--bg-alt);padding:10px 14px;border-radius:12px;font-size:13px;max-width:280px;">Thank you, doctor. I'll start today. 📎 home-readings.pdf</div>
-        </div>
-        <div class="app-search" style="max-width:none;margin-top:16px;">Type a message…</div>
-      </div>
-    </div>
-  </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>Every conversation is anchored to its appointment context, so care communication never loses its clinical thread.</p></div>
-</section>
-
-<!-- ============ 21 SCREEN 11 — ANALYTICS ============ -->
-<section class="section" id="screen-analytics">
-  <div class="eyebrow">Screen 11 — Analytics</div>
-  <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/analytics</span></div>
-    <div style="padding:44px 50px;background:#fff;">
-      <div style="font-family:'Fraunces';font-size:22px;font-weight:500;margin-bottom:20px;">Analytics</div>
-      <div class="grid grid-4" style="margin-bottom:20px;">
-        <div class="metric-tile"><div class="mv">1,284</div><div class="ml">Patient volume (30d)</div></div>
-        <div class="metric-tile"><div class="mv">92%</div><div class="ml">Appointment completion</div></div>
-        <div class="metric-tile"><div class="mv">87%</div><div class="ml">Treatment adherence</div></div>
-        <div class="metric-tile"><div class="mv">14 min</div><div class="ml">Avg. consultation time</div></div>
-      </div>
-      <div class="grid grid-2">
-        <div class="card"><div class="card-title">Patient outcomes</div><div class="bar-chart"><div class="bar" style="height:50%"></div><div class="bar alt" style="height:70%"></div><div class="bar" style="height:60%"></div><div class="bar alt" style="height:85%"></div><div class="bar" style="height:65%"></div><div class="bar alt" style="height:92%"></div></div></div>
-        <div class="card"><div class="card-title">Clinical alerts by category</div>
-          <div class="status-row"><span>Vitals out of range</span><span>38</span></div>
-          <div class="status-row"><span>Lab results pending review</span><span>22</span></div>
-          <div class="status-row"><span>Adherence concerns</span><span>16</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>Analytics prioritizes operational and clinical signals side by side, so care-quality trends are as visible as scheduling metrics.</p></div>
-</section>
-
-<!-- ============ 22 SCREEN 12 — NOTIFICATIONS ============ -->
-<section class="section" id="screen-notifications">
-  <div class="eyebrow">Screen 12 — Notifications</div>
-  <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/notifications</span></div>
-    <div style="padding:44px 50px;background:#fff;max-width:640px;">
-      <div style="font-family:'Fraunces';font-size:22px;font-weight:500;margin-bottom:20px;">Notifications</div>
-      <div class="card" style="margin-bottom:12px;display:flex;gap:14px;align-items:flex-start;"><span style="width:8px;height:8px;border-radius:50%;background:var(--electric);margin-top:6px;flex-shrink:0;"></span><div><p style="font-size:13.5px;color:var(--navy);">Olivia Carter's latest lab results are ready for review.</p><span class="mono" style="font-size:11px;color:var(--gray);">2 minutes ago</span></div></div>
-      <div class="card" style="margin-bottom:12px;display:flex;gap:14px;align-items:flex-start;"><span style="width:8px;height:8px;border-radius:50%;background:var(--warning);margin-top:6px;flex-shrink:0;"></span><div><p style="font-size:13.5px;color:var(--navy);">3 appointments require confirmation.</p><span class="mono" style="font-size:11px;color:var(--gray);">1 hour ago</span></div></div>
-      <div class="card" style="display:flex;gap:14px;align-items:flex-start;"><span style="width:8px;height:8px;border-radius:50%;background:var(--mint);margin-top:6px;flex-shrink:0;"></span><div><p style="font-size:13.5px;color:var(--navy);">AI identified 2 priority patient insights.</p><span class="mono" style="font-size:11px;color:var(--gray);">This morning</span></div></div>
-    </div>
-  </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>Notifications are written as plain clinical statements, not system events — each one tells the clinician exactly what to do next.</p></div>
-</section>
-
-<!-- ============ 23 SCREEN 13 — SETTINGS ============ -->
-<section class="section" id="screen-settings">
-  <div class="eyebrow">Screen 13 — Settings</div>
-  <div class="browser-frame">
-    <div class="browser-bar"><span class="browser-dot" style="background:#FF5F57;"></span><span class="browser-dot" style="background:#FEBC2E;"></span><span class="browser-dot" style="background:#28C840;"></span><span class="browser-url">aurahealth.app/settings</span></div>
-    <div style="display:flex;background:#fff;min-height:420px;">
-      <div style="width:220px;border-right:1px solid var(--border);padding:26px 16px;">
-        <div class="app-nav-item active" style="width:100%;"><span class="ic"></span>Profile</div>
-        <div class="app-nav-item" style="width:100%;"><span class="ic"></span>Notifications</div>
-        <div class="app-nav-item" style="width:100%;"><span class="ic"></span>AI Preferences</div>
-        <div class="app-nav-item" style="width:100%;"><span class="ic"></span>Security</div>
-        <div class="app-nav-item" style="width:100%;"><span class="ic"></span>Team</div>
-        <div class="app-nav-item" style="width:100%;"><span class="ic"></span>Integrations</div>
-        <div class="app-nav-item" style="width:100%;"><span class="ic"></span>Appearance</div>
-        <div class="app-nav-item" style="width:100%;"><span class="ic"></span>Privacy</div>
-      </div>
-      <div style="flex:1;padding:34px 40px;">
-        <div style="font-family:'Fraunces';font-size:20px;font-weight:500;margin-bottom:20px;">Profile</div>
-        <div class="grid grid-2">
-          <div class="card"><div class="card-title">Full name</div><p style="font-size:13.5px;">Dr. Olivia Bennett</p></div>
-          <div class="card"><div class="card-title">Specialty</div><p style="font-size:13.5px;">Cardiology</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="mockup-caption"><span class="label">UX Decision</span><p>AI Preferences sits as a first-class settings category, giving clinicians direct control over how AI assistance behaves.</p></div>
-</section>
-
-<!-- ============ 24 MOBILE SHOWCASE ============ -->
-<section class="section--dark">
-<div class="inner" style="text-align:center;">
-  <div class="eyebrow" style="justify-content:center;">Mobile</div>
-  <h2 class="big-h" style="color:#fff;margin:0 auto 60px;">Designed for every screen size.</h2>
-  <div style="display:flex;gap:26px;overflow-x:auto;padding-bottom:20px;justify-content:flex-start;">
-    <div class="phone-frame"><div class="phone-screen"><div class="phone-notch"></div>
-      <div style="padding:34px 16px 16px;">
-        <p style="font-size:10px;color:var(--gray);text-align:left;">Dashboard</p>
-        <div style="font-family:'Fraunces';font-size:16px;text-align:left;margin:4px 0 14px;">Good morning, Dr. Bennett</div>
-        <div class="grid grid-2" style="gap:8px;"><div class="metric-tile" style="padding:10px;"><div class="mv" style="font-size:16px;">8</div><div class="ml" style="font-size:9px;">Appointments</div></div><div class="metric-tile" style="padding:10px;"><div class="mv" style="font-size:16px;">2</div><div class="ml" style="font-size:9px;">Insights</div></div></div>
-      </div>
-    </div></div>
-    <div class="phone-frame"><div class="phone-screen"><div class="phone-notch"></div>
-      <div style="padding:34px 16px 16px;text-align:left;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;"><div class="avatar" style="width:34px;height:34px;font-size:11px;">OC</div><div><div style="font-size:13px;font-weight:600;">Olivia Carter</div><div class="mono" style="font-size:9px;color:var(--gray);">AH-20481</div></div></div>
-        <div class="card" style="padding:12px;margin-bottom:8px;"><div class="card-title" style="font-size:9px;">Vitals</div><p style="font-size:11px;">138/89 mmHg</p></div>
-        <div class="card" style="padding:12px;"><div class="card-title" style="font-size:9px;">Medications</div><p style="font-size:11px;">Lisinopril 10mg</p></div>
-      </div>
-    </div></div>
-    <div class="phone-frame"><div class="phone-screen"><div class="phone-notch"></div>
-      <div style="padding:34px 16px 16px;background:linear-gradient(160deg,#0A1628,#102B4C);height:100%;text-align:left;">
-        <p style="color:#fff;font-size:12px;font-weight:600;margin-bottom:10px;">AI Assistant</p>
-        <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:12px;color:#DCE5F7;font-size:10.5px;line-height:1.6;">BP trend rising. Review medication adherence before next visit.</div>
-      </div>
-    </div></div>
-    <div class="phone-frame"><div class="phone-screen"><div class="phone-notch"></div>
-      <div style="padding:34px 16px 16px;text-align:left;">
-        <p style="font-size:10px;color:var(--gray);margin-bottom:10px;">Appointments</p>
-        <div class="status-row" style="font-size:11px;"><span>09:00 Carter</span><span class="badge neutral" style="font-size:9px;">OK</span></div>
-        <div class="status-row" style="font-size:11px;"><span>10:30 Lee</span><span class="badge neutral" style="font-size:9px;">OK</span></div>
-        <div class="status-row" style="font-size:11px;"><span>13:15 Nair</span><span class="badge warning" style="font-size:9px;">Pend</span></div>
-      </div>
-    </div></div>
-    <div class="phone-frame"><div class="phone-screen"><div class="phone-notch"></div>
-      <div style="padding:34px 16px 16px;text-align:left;">
-        <p style="font-size:10px;color:var(--gray);margin-bottom:10px;">Notifications</p>
-        <div class="card" style="padding:10px;margin-bottom:8px;"><p style="font-size:10.5px;">Lab results ready — O. Carter</p></div>
-        <div class="card" style="padding:10px;"><p style="font-size:10.5px;">2 priority insights found</p></div>
-      </div>
-    </div></div>
-  </div>
-</div>
-</section>
-
-<!-- ============ 25 BEFORE / AFTER ============ -->
-<section class="section">
-  <div class="eyebrow">Transformation</div>
-  <h2 class="big-h" style="margin-bottom:56px;">From fragmented tools to one clear workspace.</h2>
-  <div class="grid grid-2">
-    <div class="card" style="border-color:#F0D6D2;background:#FDF7F6;padding:34px;">
-      <div class="card-title" style="color:var(--critical);">Before</div>
-      <div class="status-row"><span>Fragmented workflow</span></div>
-      <div class="status-row"><span>Multiple disconnected systems</span></div>
-      <div class="status-row"><span>Information overload</span></div>
-      <div class="status-row"><span>Slow, manual navigation</span></div>
-    </div>
-    <div class="card" style="border-color:#CDE6DE;background:#F4FBF8;padding:34px;">
-      <div class="card-title" style="color:var(--success);">After</div>
-      <div class="status-row"><span>Unified workspace</span></div>
-      <div class="status-row"><span>AI-assisted insights</span></div>
-      <div class="status-row"><span>Clear information hierarchy</span></div>
-      <div class="status-row"><span>Faster information scanning</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 26 DESIGN DETAILS ============ -->
-<section class="section--alt">
-<div class="inner">
-  <div class="eyebrow">Design Details</div>
-  <h2 class="big-h" style="margin-bottom:56px;">Precision in the small moments.</h2>
-  <div class="grid grid-4">
-    <div class="detail-tile"><span class="tag">Dashboard Card</span><div class="metric-tile"><div class="mv">126</div><div class="ml">Active patients</div></div></div>
-    <div class="detail-tile"><span class="tag">AI Insight Card</span><div style="background:linear-gradient(135deg,#0F2038,#123055);border-radius:10px;padding:14px;color:#DCE5F7;font-size:11.5px;">BP trend rising — review recommended</div></div>
-    <div class="detail-tile"><span class="tag">Trend Chart</span><svg viewBox="0 0 160 50" style="width:100%;"><polyline points="0,35 30,28 60,30 90,18 120,12 160,8" fill="none" stroke="#3D7FFF" stroke-width="2"/></svg></div>
-    <div class="detail-tile"><span class="tag">Button States</span><div style="display:flex;gap:8px;flex-wrap:wrap;"><div class="btn btn-primary" style="font-size:11px;padding:7px 12px;">Primary</div><div class="btn btn-ghost" style="font-size:11px;padding:7px 12px;">Ghost</div></div></div>
-    <div class="detail-tile"><span class="tag">Navigation Item</span><div class="app-nav-item active" style="background:var(--bg-alt);color:var(--navy);"><span class="ic" style="background:var(--electric);"></span>AI Assistant</div></div>
-    <div class="detail-tile"><span class="tag">Status Badge</span><div style="display:flex;gap:6px;flex-wrap:wrap;"><span class="badge success">Stable</span><span class="badge warning">Pending</span><span class="badge critical">Attention</span></div></div>
-    <div class="detail-tile"><span class="tag">Table Row</span><div class="status-row"><span>Aug 12</span><span>Clinical Notes</span><span class="badge success">Complete</span></div></div>
-    <div class="detail-tile"><span class="tag">Patient Chip</span><div style="display:flex;align-items:center;gap:8px;"><div class="avatar" style="width:28px;height:28px;font-size:10px;">OC</div><span style="font-size:12px;font-weight:600;">Olivia Carter</span></div></div>
-  </div>
-</div>
-</section>
-
-<!-- ============ 27 FINAL OUTCOME ============ -->
-<section class="section" style="text-align:center;">
+<!-- ===== OUTCOME ===== -->
+<section class="case-section" style="text-align:center;">
   <div class="eyebrow" style="justify-content:center;">Outcome</div>
-  <h2 class="big-h" style="margin:0 auto 50px;">A calmer interface for complex clinical work.</h2>
-  <p style="max-width:640px;margin:0 auto 60px;">AURA Health transforms fragmented clinical workflows into one intelligent workspace where healthcare professionals can understand patients faster, identify important changes, and make informed decisions with AI assistance.</p>
-  <div class="grid grid-3" style="max-width:900px;margin:0 auto;">
-    <div class="goal-card"><div class="display" style="font-size:44px;color:var(--electric);">32%</div><p style="margin-top:10px;">Faster patient information review</p></div>
-    <div class="goal-card"><div class="display" style="font-size:44px;color:var(--electric);">41%</div><p style="margin-top:10px;">Less workflow friction</p></div>
-    <div class="goal-card"><div class="display" style="font-size:44px;color:var(--electric);">28%</div><p style="margin-top:10px;">Reduction in repetitive documentation</p></div>
+  <h2 class="big-h" style="margin:0 auto 2rem;">A calmer interface for complex clinical work.</h2>
+  <p style="max-width:600px;margin:0 auto 2.5rem;color:#4a5568;">AURA Health transforms fragmented clinical workflows into one intelligent workspace where healthcare professionals can understand patients faster and make informed decisions with AI assistance.</p>
+  <div class="grid-3" style="max-width:800px;margin:0 auto;">
+    <div class="card"><div style="font-family:'Fraunces';font-size:2.4rem;color:#3d7fff;">32%</div><p style="font-size:0.9rem;color:#4a5568;">Faster patient review</p></div>
+    <div class="card"><div style="font-family:'Fraunces';font-size:2.4rem;color:#3d7fff;">41%</div><p style="font-size:0.9rem;color:#4a5568;">Less workflow friction</p></div>
+    <div class="card"><div style="font-family:'Fraunces';font-size:2.4rem;color:#3d7fff;">28%</div><p style="font-size:0.9rem;color:#4a5568;">Reduced documentation</p></div>
   </div>
-  <p class="mono" style="font-size:11px;color:var(--gray);margin-top:34px;letter-spacing:.04em;">CONCEPTUAL DESIGN OUTCOMES / PROJECT HYPOTHESES — NOT CLINICAL RESEARCH RESULTS</p>
+  <p style="font-size:0.65rem;color:#8894a6;margin-top:2rem;font-family:'IBM Plex Mono';">CONCEPTUAL OUTCOMES — NOT CLINICAL RESEARCH RESULTS</p>
 </section>
 
-<!-- ============ 28 CLOSING ============ -->
-<section class="hero" style="background:radial-gradient(120% 90% at 50% 0%,#122747 0%, var(--navy) 60%), var(--navy);">
+<!-- ===== CLOSING ===== -->
+<section style="background:radial-gradient(120% 90% at 50% 0%,#122747 0%, #0a1628 60%), #0a1628;color:#fff;padding:3rem 0;">
   <div class="footer-cta">
-    <h2 class="display">Designing better healthcare experiences with intelligent technology.</h2>
-    <p style="color:#8FA0C4;font-size:15px;margin-bottom:26px;">AURA Health — AI Healthcare Command Center</p>
-    <p class="mono" style="color:#5E7099;font-size:12px;letter-spacing:.08em;">PRODUCT DESIGN • UI/UX • AI UX • 2026</p>
+    <h2>Designing better healthcare experiences with intelligent technology.</h2>
+    <p style="color:#8fa0c4;font-size:0.9rem;margin-bottom:1rem;">AURA Health — AI Healthcare Command Center</p>
+    <p style="font-family:'IBM Plex Mono';color:#5e7099;font-size:0.7rem;letter-spacing:.08em;">PRODUCT DESIGN • UI/UX • AI UX • 2026</p>
   </div>
 </section>
 
+<!-- ===== FOOTER (mini) ===== -->
+<footer style="background:#0a1628;border-top:1px solid #1f2a3a;padding:2rem 0;text-align:center;color:#5e7099;font-size:0.8rem;">
+  <div class="container">
+    <p>© 2026 Mohammad Waris · Designed with intent.</p>
+    <p style="font-size:0.7rem;margin-top:0.3rem;"><a href="index.html" style="color:#7b6ef6;">← Back to Portfolio</a></p>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
 <script>
-window.addEventListener('scroll', function(){
-  var h = document.documentElement.scrollHeight - window.innerHeight;
-  var p = h > 0 ? (window.scrollY / h) * 100 : 0;
-  document.getElementById('progress').style.width = p + '%';
-});
+  // Theme toggle (mirror main site)
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = themeToggle.querySelector('i');
+  if(localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-theme');
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
+  }
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    if(document.body.classList.contains('light-theme')) {
+      localStorage.setItem('theme', 'light');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    } else {
+      localStorage.setItem('theme', 'dark');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+    }
+  });
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
 </script>
 </body>
 </html>
