@@ -70,8 +70,24 @@
     .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
     .theme-toggle { background: none; border: none; color: var(--text-muted); font-size: 1.1rem; cursor: pointer; transition: 0.2s; }
     .theme-toggle:hover { color: var(--primary); }
-    .btn-cv { background: #7b6ef6; color: #fff; border: none; padding: 0.5rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: 0.2s; }
-    .btn-cv:hover { background: #9589ff; transform: scale(1.02); }
+    
+    /* ✅ NEW PROFESSIONAL BUTTON (Consultation) */
+    .btn-consult {
+      background: #7b6ef6;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn-consult:hover { background: #9589ff; transform: scale(1.02); }
+    
     .mobile-menu-btn { background: none; border: none; color: var(--text-muted); font-size: 1.4rem; display: block; cursor: pointer; }
     @media (min-width: 820px) { .mobile-menu-btn { display: none; } }
 
@@ -234,7 +250,12 @@
       </div>
       <div class="nav-actions">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <a href="#cv" class="btn-cv">Download CV</a>
+        
+        <!-- ✅ NEW PROFESSIONAL FEATURE (REPLACED CV) -->
+        <a href="https://calendly.com/" target="_blank" class="btn-consult">
+          <i class="fas fa-calendar-check"></i> Book a Call
+        </a>
+        
         <button class="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
@@ -250,7 +271,11 @@
         <p class="desc">Designing clear, thoughtful, and visually refined digital experiences. Product thinking meets visual craft.</p>
         <div class="hero-cta">
           <a href="#work" class="btn-primary">View Selected Work</a>
-          <a href="#cv" class="btn-outline">Download CV</a>
+          
+          <!-- ✅ NEW PROFESSIONAL FEATURE (REPLACED CV) -->
+          <a href="https://calendly.com/" target="_blank" class="btn-outline">
+            <i class="fas fa-calendar-plus"></i> Free 15-min Consult
+          </a>
         </div>
       </div>
       <div class="hero-right">
@@ -384,7 +409,7 @@
       </div>
       <div class="footer-col">
         <h5>Links</h5>
-        <a href="#work">Work</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a><a href="#cv">Download CV</a>
+        <a href="#work">Work</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a>
       </div>
       <div class="footer-col">
         <h5>Case Studies</h5>
@@ -414,7 +439,6 @@
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle.querySelector('i');
     
-    // Check saved theme
     if(localStorage.getItem('theme') === 'light') {
       document.body.classList.add('light-theme');
       themeIcon.classList.remove('fa-moon');
@@ -447,7 +471,6 @@
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', function() {
-        // Remove active from all buttons
         filterBtns.forEach(b => b.classList.remove('active'));
         this.classList.add('active');
 
@@ -457,9 +480,9 @@
           const category = card.getAttribute('data-category');
           
           if(filterValue === 'all' || category === filterValue) {
-            card.style.display = 'grid'; // Show card
+            card.style.display = 'grid';
           } else {
-            card.style.display = 'none'; // Hide card
+            card.style.display = 'none';
           }
         });
       });
@@ -468,7 +491,6 @@
     // 4. AI WHATSAPP AGENT (Smart Message Generator)
     function openWAAgent() {
       const phone = "923407921680";
-      // AI generates a smart message based on current page/time
       const date = new Date();
       const hour = date.getHours();
       let greeting = "Good Morning";
@@ -478,12 +500,10 @@
 
       const message = `${greeting}! I am Mohammad Waris, a Senior UI/UX & Product Designer. I just visited your portfolio and I am very impressed! I have a new project for you. Let's discuss it right now!`;
       
-      // Open WhatsApp with the AI generated message
       const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }
 
-    // Hide the speech bubble after 8 seconds (so it doesn't annoy users)
     setTimeout(() => {
       const bubble = document.getElementById('waBubble');
       if(bubble) bubble.style.opacity = '0';
