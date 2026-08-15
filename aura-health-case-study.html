@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA Health · AI Healthcare Command Center · Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Manrope:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: #f5f7fb; }
+    body {
+      font-family: 'Manrope', 'Inter', sans-serif;
+      background: #f5f7fb;
+      color: #0a1628;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ::selection { background: #3d7fff; color: #fff; }
+
+    .container { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
+
+    .navbar {
+      position: fixed; top: 1.2rem; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 2.4rem); max-width: 1280px; z-index: 999;
+      background: rgba(11, 10, 12, 0.55);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 60px; padding: 0.6rem 1.8rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+    .navbar.scrolled { background: rgba(11, 10, 12, 0.8); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+    .nav-left { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.1rem; color: #e8e6ea; }
+    .nav-sub { font-size: 0.7rem; color: #a09eab; border-left: 1px solid #26222e; padding-left: 0.75rem; display: none; }
+    @media (min-width: 640px) { .nav-sub { display: inline-block; } }
+    .nav-right { display: flex; align-items: center; gap: 1.8rem; }
+    .nav-links { display: none; gap: 1.8rem; font-weight: 500; font-size: 0.9rem; color: #a09eab; }
+    @media (min-width: 820px) { .nav-links { display: flex; } }
+    .nav-links a:hover { color: #7b6ef6; }
+    .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
+    .theme-toggle { background: none; border: none; color: #a09eab; font-size: 1.1rem; cursor: pointer; transition: 0.2s; }
+    .theme-toggle:hover { color: #7b6ef6; }
+    .btn-consult {
+      background: #7b6ef6; color: #fff; border: none;
+      padding: 0.5rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.8rem;
+      cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .btn-consult:hover { background: #9589ff; transform: scale(1.02); }
+    .mobile-menu-btn { background: none; border: none; color: #a09eab; font-size: 1.4rem; display: block; cursor: pointer; }
+    @media (min-width: 820px) { .mobile-menu-btn { display: none; } }
+
+    .case-hero {
+      padding: 8rem 0 3rem;
+      background: radial-gradient(120% 90% at 15% 0%,#122747 0%, #0a1628 55%), #0a1628;
+      color: #fff;
+    }
+    .case-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .case-hero .subhead {
+      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+      font-weight: 400;
+      color: #b9c7e4;
+      margin-bottom: 1.2rem;
+    }
+    .case-hero .desc {
+      max-width: 640px;
+      font-size: 1.1rem;
+      color: #c7d3ea;
+      line-height: 1.7;
+    }
+    .case-tags {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .case-tag {
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      color: #dce5f7;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.02em;
+    }
+    .case-section {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .case-section--alt {
+      background: #eef2f8;
+      max-width: none;
+      padding: 4rem 0;
+    }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3d7fff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.2rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: #3d7fff;
+      display: inline-block;
+    }
+    .big-h {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 3.6vw, 3.2rem);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    @media (max-width: 800px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e2e7f0;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(10,22,40,0.06);
+    }
+    .card-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8894a6;
+      margin-bottom: 0.8rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .badge.success { background: #e7f8ee; color: #16a34a; }
+    .badge.warning { background: #fdf3e3; color: #d97706; }
+    .badge.critical { background: #fbeaea; color: #dc2626; }
+    .badge.neutral { background: #eef1f6; color: #4a5568; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; display: inline-block; margin-right: 4px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: default;
+    }
+    .btn-primary { background: #3d7fff; color: #fff; }
+    .btn-ghost { background: #fff; border: 1px solid #e2e7f0; color: #0a1628; }
+
+    .metric-tile { background: #fff; border: 1px solid #e2e7f0; border-radius: 14px; padding: 1.2rem; }
+    .metric-tile .mv { font-family: 'IBM Plex Mono', monospace; font-size: 1.6rem; font-weight: 600; color: #0a1628; }
+    .metric-tile .ml { font-size: 0.75rem; color: #8894a6; margin-top: 4px; }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #e2e7f0;
+      font-size: 0.85rem;
+    }
+    .status-row:last-child { border-bottom: none; }
+
+    .app-shell { display: flex; min-height: 480px; background: #f5f7fb; }
+    .app-sidebar {
+      width: 180px;
+      background: #0a1628;
+      color: #fff;
+      padding: 1.5rem 1rem;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .app-logo { display: flex; align-items: center; gap: 8px; font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; }
+    .app-logo .dot { width: 8px; height: 8px; border-radius: 50%; background: #14b8a6; box-shadow: 0 0 12px #14b8a6; }
+    .app-nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 0.5rem 0.7rem; border-radius: 8px;
+      font-size: 0.75rem; color: #aab8d6; font-weight: 500;
+    }
+    .app-nav-item .ic { width: 14px; height: 14px; border-radius: 4px; background: rgba(255,255,255,0.14); flex-shrink: 0; }
+    .app-nav-item.active { background: rgba(61,127,255,0.18); color: #fff; }
+    .app-nav-item.active .ic { background: #3d7fff; }
+    .app-main { flex: 1; padding: 1.5rem 1.8rem; overflow: hidden; }
+    .app-search {
+      flex: 1; max-width: 280px; background: #fff; border: 1px solid #e2e7f0;
+      border-radius: 10px; padding: 0.4rem 0.8rem; font-size: 0.75rem; color: #8894a6;
+    }
+    .app-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+    .avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #3d7fff, #14b8a6);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; font-family: 'IBM Plex Mono', monospace;
+      flex-shrink: 0;
+    }
+    .avatar.lg { width: 48px; height: 48px; font-size: 1rem; }
+
+    .browser-frame {
+      background: #fff; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(10,22,40,0.18);
+      border: 1px solid rgba(10,22,40,0.06);
+    }
+    .browser-bar {
+      height: 38px; background: #f0f2f6; display: flex; align-items: center; padding: 0 14px; gap: 6px;
+      border-bottom: 1px solid #e4e8ef;
+    }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-url {
+      margin-left: 12px; background: #fff; border: 1px solid #e4e8ef; border-radius: 6px;
+      padding: 4px 12px; font-size: 0.65rem; color: #8894a6; font-family: 'IBM Plex Mono', monospace;
+      flex: 1; max-width: 280px;
+    }
+    .mockup-caption { margin-top: 1.5rem; max-width: 640px; }
+    .mockup-caption .label {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: .12em;
+      text-transform: uppercase; color: #3d7fff; font-weight: 600; margin-bottom: 0.4rem; display: block;
+    }
+
+    .footer-cta {
+      text-align: center; padding: 4rem 1.5rem;
+    }
+    .footer-cta h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      max-width: 800px; margin: 0 auto 1.5rem; color: #fff;
+    }
+
+    @media (max-width: 700px) {
+      .navbar { padding: 0.4rem 1rem; }
+      .container { padding: 0 1rem; }
+      .case-hero { padding: 6rem 0 2rem; }
+      .case-section { padding: 2rem 1rem; }
+      .app-shell { flex-direction: column; }
+      .app-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 0.8rem; }
+      .app-nav { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-left">
+    <span class="nav-name">MOHAMMAD WARIS</span>
+    <span class="nav-sub">UI/UX & Product Designer</span>
+  </div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <a href="https://calendly.com/" target="_blank" class="btn-consult">
+        <i class="fas fa-calendar-check"></i> Book a Call
+      </a>
+      <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<section class="case-hero">
+  <div class="container">
+    <div class="eyebrow" style="color:#14b8a6;">PRODUCT DESIGN CASE STUDY • 2026</div>
+    <h1>AURA Health</h1>
+    <div class="subhead">AI Healthcare Command Center</div>
+    <p class="desc">Designing a smarter clinical workspace that helps healthcare teams understand patients, coordinate care, and act faster with AI-powered insights.</p>
+    <div class="case-tags">
+      <span class="case-tag">Product Designer</span>
+      <span class="case-tag">UI/UX Design</span>
+      <span class="case-tag">AI Experience</span>
+      <span class="case-tag">Healthcare SaaS</span>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="grid-4" style="margin-bottom: 2.5rem;">
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Role</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Product Designer</div></div>
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Timeline</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">8 Weeks</div></div>
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Platform</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Web Application</div></div>
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Tools</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Figma • FigJam</div></div>
+  </div>
+  <div class="eyebrow">Overview</div>
+  <p class="big-h" style="font-weight:400;max-width:800px;">AURA Health is an AI‑powered healthcare command center designed to bring patient information, clinical workflows and intelligent insights into one focused workspace.</p>
+</section>
+
+<section class="case-section--alt">
+  <div class="container">
+    <div class="grid-2">
+      <div>
+        <div class="eyebrow">The Challenge</div>
+        <h2 class="big-h">Healthcare data is powerful, but fragmented.</h2>
+        <p style="margin-top:1.2rem;max-width:480px;color:#4a5568;">Healthcare professionals often work across disconnected systems for patient records, appointments, laboratory results, medications and treatment plans.</p>
+        <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem;">
+          <div class="card" style="border-left:4px solid #dc2626;padding:0.8rem 1.2rem;"><span style="font-weight:600;">Information overload</span></div>
+          <div class="card" style="border-left:4px solid #dc2626;padding:0.8rem 1.2rem;"><span style="font-weight:600;">Fragmented workflows</span></div>
+          <div class="card" style="border-left:4px solid #dc2626;padding:0.8rem 1.2rem;"><span style="font-weight:600;">Difficult patient history navigation</span></div>
+        </div>
+      </div>
+      <div>
+        <svg viewBox="0 0 400 320" style="width:100%;max-width:420px;">
+          <g font-family="IBM Plex Mono" font-size="10" fill="#4a5568">
+            <rect x="10" y="10" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="33">Records</text>
+            <rect x="10" y="70" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="93">Lab Systems</text>
+            <rect x="10" y="130" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="153">Scheduling</text>
+            <rect x="10" y="190" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="213">Pharmacy</text>
+            <rect x="10" y="250" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="273">Billing</text>
+          </g>
+          <g stroke="#c6d2e8" stroke-width="1.5" fill="none">
+            <path d="M130 28 C 210 28, 210 150, 280 150"/>
+            <path d="M130 88 C 210 88, 210 150, 280 150"/>
+            <path d="M130 148 C 210 148, 210 150, 280 150"/>
+            <path d="M130 208 C 210 208, 210 150, 280 150"/>
+            <path d="M130 268 C 210 268, 210 150, 280 150"/>
+          </g>
+          <circle cx="330" cy="150" r="50" fill="#0a1628"/>
+          <text x="330" y="148" text-anchor="middle" fill="#fff" font-family="Fraunces" font-size="14" font-weight="600">AURA</text>
+          <text x="330" y="164" text-anchor="middle" fill="#8fb4ff" font-family="IBM Plex Mono" font-size="8">Health</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="eyebrow">Design Goal</div>
+  <h2 class="big-h" style="margin-bottom:2rem;">One intelligent workspace for every clinical decision.</h2>
+  <div class="grid-3">
+    <div class="card"><div style="font-family:'IBM Plex Mono';font-size:0.75rem;color:#3d7fff;font-weight:700;">01</div><h3 style="font-family:'Fraunces';font-size:1.2rem;margin:0.4rem 0;">Reduce Cognitive Load</h3><p style="font-size:0.9rem;color:#4a5568;">Make critical patient information easier to understand at a glance.</p></div>
+    <div class="card"><div style="font-family:'IBM Plex Mono';font-size:0.75rem;color:#3d7fff;font-weight:700;">02</div><h3 style="font-family:'Fraunces';font-size:1.2rem;margin:0.4rem 0;">Accelerate Workflows</h3><p style="font-size:0.9rem;color:#4a5568;">Reduce unnecessary navigation and repetitive work.</p></div>
+    <div class="card"><div style="font-family:'IBM Plex Mono';font-size:0.75rem;color:#3d7fff;font-weight:700;">03</div><h3 style="font-family:'Fraunces';font-size:1.2rem;margin:0.4rem 0;">Assist Better Decisions</h3><p style="font-size:0.9rem;color:#4a5568;">Use AI to surface relevant insights while keeping clinicians in control.</p></div>
+  </div>
+</section>
+
+<section class="case-section--alt">
+  <div class="container">
+    <div class="eyebrow">User Research</div>
+    <h2 class="big-h" style="margin-bottom:2rem;">Understanding the clinical workflow.</h2>
+    <div class="grid-4">
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">01</div><h4 style="font-size:1rem;">Information Overload</h4><p style="font-size:0.85rem;color:#4a5568;">Clinicians review large amounts of information before every appointment.</p></div>
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">02</div><h4 style="font-size:1rem;">Fragmented Workflows</h4><p style="font-size:0.85rem;color:#4a5568;">Information distributed across multiple disconnected systems.</p></div>
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">03</div><h4 style="font-size:1rem;">History Navigation</h4><p style="font-size:0.85rem;color:#4a5568;">Patient history can be difficult and slow to scan quickly.</p></div>
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">04</div><h4 style="font-size:1rem;">Documentation Burden</h4><p style="font-size:0.85rem;color:#4a5568;">Significant time spent documenting routine information.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="eyebrow">Screen 01 — Main Dashboard</div>
+  <div class="browser-frame">
+    <div class="browser-bar">
+      <span class="browser-dot" style="background:#ff5f57;"></span>
+      <span class="browser-dot" style="background:#febc2e;"></span>
+      <span class="browser-dot" style="background:#28c840;"></span>
+      <span class="browser-url">aurahealth.app/dashboard</span>
+    </div>
+    <div class="app-shell">
+      <div class="app-sidebar">
+        <div class="app-logo"><span class="dot"></span>AURA</div>
+        <div class="app-nav">
+          <div class="app-nav-item active"><span class="ic"></span>Dashboard</div>
+          <div class="app-nav-item"><span class="ic"></span>Patients</div>
+          <div class="app-nav-item"><span class="ic"></span>Appointments</div>
+          <div class="app-nav-item"><span class="ic"></span>AI Assistant</div>
+          <div class="app-nav-item"><span class="ic"></span>Records</div>
+          <div class="app-nav-item"><span class="ic"></span>Lab Results</div>
+          <div class="app-nav-item"><span class="ic"></span>Messages</div>
+          <div class="app-nav-item" style="margin-top:auto;"><span class="ic"></span>Settings</div>
+        </div>
+      </div>
+      <div class="app-main">
+        <div class="app-topbar">
+          <div class="app-search">Search patients, records, insights…</div>
+          <div class="app-top-right" style="display:flex;align-items:center;gap:10px;"><div class="avatar">OB</div></div>
+        </div>
+        <div style="margin-bottom:1rem;"><div style="font-family:'Fraunces';font-size:1.4rem;font-weight:500;">Good morning, Dr. Bennett</div><p style="font-size:0.8rem;color:#4a5568;">8 appointments today · 2 priority insights</p></div>
+        <div class="grid-4" style="margin-bottom:1rem;">
+          <div class="metric-tile"><div class="mv">8</div><div class="ml">Today's appointments</div></div>
+          <div class="metric-tile"><div class="mv">2</div><div class="ml">Priority insights</div></div>
+          <div class="metric-tile"><div class="mv">126</div><div class="ml">Active patients</div></div>
+          <div class="metric-tile"><div class="mv">94%</div><div class="ml">Adherence rate</div></div>
+        </div>
+        <div class="grid-2">
+          <div class="card"><div class="card-title">Recent patients</div><div class="status-row"><span>Olivia Carter</span><span class="badge warning">Review</span></div><div class="status-row"><span>Marcus Lee</span><span class="badge success">Stable</span></div></div>
+          <div class="card"><div class="card-title">AI priority insights</div><div class="status-row"><span>Elevated BP trend — O. Carter</span><span class="badge critical">Alert</span></div><div class="status-row"><span>Lab result ready — M. Lee</span><span class="badge neutral">New</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mockup-caption"><span class="label">UX Decision</span><p>Critical information is surfaced above the fold so clinicians can understand their workload and patient priorities immediately.</p></div>
+</section>
+
+<section class="case-section" style="text-align:center;">
+  <div class="eyebrow" style="justify-content:center;">Outcome</div>
+  <h2 class="big-h" style="margin:0 auto 2rem;">A calmer interface for complex clinical work.</h2>
+  <p style="max-width:600px;margin:0 auto 2.5rem;color:#4a5568;">AURA Health transforms fragmented clinical workflows into one intelligent workspace where healthcare professionals can understand patients faster and make informed decisions with AI assistance.</p>
+  <div class="grid-3" style="max-width:800px;margin:0 auto;">
+    <div class="card"><div style="font-family:'Fraunces';font-size:2.4rem;color:#3d7fff;">32%</div><p style="font-size:0.9rem;color:#4a5568;">Faster patient review</p></div>
+    <div class="card"><div style="font-family:'Fraunces';font-size:2.4rem;color:#3d7fff;">41%</div><p style="font-size:0.9rem;color:#4a5568;">Less workflow friction</p></div>
+    <div class="card"><div style="font-family:'Fraunces';font-size:2.4rem;color:#3d7fff;">28%</div><p style="font-size:0.9rem;color:#4a5568;">Reduced documentation</p></div>
+  </div>
+  <p style="font-size:0.65rem;color:#8894a6;margin-top:2rem;font-family:'IBM Plex Mono';">CONCEPTUAL OUTCOMES — NOT CLINICAL RESEARCH RESULTS</p>
+</section>
+
+<section style="background:radial-gradient(120% 90% at 50% 0%,#122747 0%, #0a1628 60%), #0a1628;color:#fff;padding:3rem 0;">
+  <div class="footer-cta">
+    <h2>Designing better healthcare experiences with intelligent technology.</h2>
+    <p style="color:#8fa0c4;font-size:0.9rem;margin-bottom:1rem;">AURA Health — AI Healthcare Command Center</p>
+    <p style="font-family:'IBM Plex Mono';color:#5e7099;font-size:0.7rem;letter-spacing:.08em;">PRODUCT DESIGN • UI/UX • AI UX • 2026</p>
+  </div>
+</section>
+
+<footer style="background:#0a1628;border-top:1px solid #1f2a3a;padding:2rem 0;text-align:center;color:#5e7099;font-size:0.8rem;">
+  <div class="container">
+    <p>© 2026 Mohammad Waris · Designed with intent.</p>
+    <p style="font-size:0.7rem;margin-top:0.3rem;"><a href="index.html" style="color:#7b6ef6;">← Back to Portfolio</a></p>
+  </div>
+</footer>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = themeToggle.querySelector('i');
+  if(localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-theme');
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
+  }
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    if(document.body.classList.contains('light-theme')) {
+      localStorage.setItem('theme', 'light');
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    } else {
+      localStorage.setItem('theme', 'dark');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+    }
+  });
+
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+</script>
+</body>
+</html>
