@@ -1,51 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOHAMMAD WARIS · Senior UI/UX & Product Designer</title>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA Health · AI Healthcare Command Center · Case Study</title>
+  <!-- Google Fonts & Font Awesome (same as main site) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Manrope:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ----- CSS VARIABLES FOR THEME ----- */
-    :root {
-      --bg-color: #0b0a0c;
-      --bg-card: #121016;
-      --text-color: #e8e6ea;
-      --text-muted: #a09eab;
-      --border-color: #26222e;
-      --primary: #7b6ef6;
-    }
-    .light-theme {
-      --bg-color: #f8f6fc;
-      --bg-card: #ffffff;
-      --text-color: #1a1520;
-      --text-muted: #5a5570;
-      --border-color: #dcd7e6;
-    }
-    
-    /* ----- RESET & BASE ----- */
+    /* ----- RESET & BASE (matches main site) ----- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; background: var(--bg-color); }
+    html { scroll-behavior: smooth; background: #f5f7fb; }
     body {
-      font-family: 'Manrope', sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
+      font-family: 'Manrope', 'Inter', sans-serif;
+      background: #f5f7fb;
+      color: #0a1628;
       line-height: 1.5;
-      transition: background 0.3s, color 0.3s;
+      -webkit-font-smoothing: antialiased;
     }
     a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
-    ::selection { background: #7b6ef6; color: #fff; }
-    
-    /* ----- CONTAINER ----- */
+    img { max-width: 100%; display: block; }
+    ::selection { background: #3d7fff; color: #fff; }
+
+    /* ----- CONTAINER & NAV (mirror main site) ----- */
     .container { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
-    
-    /* ----- NAVIGATION ----- */
+
+    /* ----- NAVIGATION (same as main site, adjusted for case study) ----- */
     .navbar {
       position: fixed; top: 1.2rem; left: 50%; transform: translateX(-50%);
       width: calc(100% - 2.4rem); max-width: 1280px; z-index: 999;
@@ -56,459 +38,623 @@
       display: flex; align-items: center; justify-content: space-between;
       transition: all 0.25s ease;
     }
-    .light-theme .navbar { background: rgba(255, 255, 255, 0.7); border-color: rgba(0,0,0,0.05); }
     .navbar.scrolled { background: rgba(11, 10, 12, 0.8); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
-    .light-theme .navbar.scrolled { background: rgba(255, 255, 255, 0.85); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
     .nav-left { display: flex; align-items: center; gap: 0.75rem; }
-    .nav-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text-color); }
-    .nav-sub { font-size: 0.7rem; color: var(--text-muted); border-left: 1px solid var(--border-color); padding-left: 0.75rem; display: none; }
+    .nav-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.1rem; color: #e8e6ea; }
+    .nav-sub { font-size: 0.7rem; color: #a09eab; border-left: 1px solid #26222e; padding-left: 0.75rem; display: none; }
     @media (min-width: 640px) { .nav-sub { display: inline-block; } }
     .nav-right { display: flex; align-items: center; gap: 1.8rem; }
-    .nav-links { display: none; gap: 1.8rem; font-weight: 500; font-size: 0.9rem; color: var(--text-muted); }
+    .nav-links { display: none; gap: 1.8rem; font-weight: 500; font-size: 0.9rem; color: #a09eab; }
     @media (min-width: 820px) { .nav-links { display: flex; } }
-    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover { color: #7b6ef6; }
     .nav-actions { display: flex; align-items: center; gap: 1.2rem; }
-    .theme-toggle { background: none; border: none; color: var(--text-muted); font-size: 1.1rem; cursor: pointer; transition: 0.2s; }
-    .theme-toggle:hover { color: var(--primary); }
-    
-    /* NEW PROFESSIONAL BUTTON (Consultation) */
+    .theme-toggle { background: none; border: none; color: #a09eab; font-size: 1.1rem; cursor: pointer; transition: 0.2s; }
+    .theme-toggle:hover { color: #7b6ef6; }
     .btn-consult {
-      background: #7b6ef6;
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
+      background: #7b6ef6; color: #fff; border: none;
+      padding: 0.5rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.8rem;
+      cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
     }
     .btn-consult:hover { background: #9589ff; transform: scale(1.02); }
-    
-    .mobile-menu-btn { background: none; border: none; color: var(--text-muted); font-size: 1.4rem; display: block; cursor: pointer; }
+    .mobile-menu-btn { background: none; border: none; color: #a09eab; font-size: 1.4rem; display: block; cursor: pointer; }
     @media (min-width: 820px) { .mobile-menu-btn { display: none; } }
 
-    /* ----- HERO ----- */
-    .hero { padding: 8rem 0 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; min-height: 80vh; }
-    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; text-align: center; } }
-    .hero-left .badge { display: inline-block; background: rgba(123, 110, 246, 0.15); border: 1px solid rgba(123, 110, 246, 0.25); border-radius: 40px; padding: 0.25rem 1.2rem; font-size: 0.75rem; font-weight: 500; color: #b8aeff; margin-bottom: 1.5rem; }
-    .hero-left h1 { font-size: clamp(3.4rem, 11vw, 6.8rem); font-weight: 800; line-height: 0.92; letter-spacing: -0.04em; margin-bottom: 0.5rem; }
-    .text-glow { background: linear-gradient(135deg, #c4baff 0%, #7b6ef6 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero-left .subhead { font-size: 1.2rem; font-weight: 500; color: var(--text-muted); margin: 0.5rem 0 0.8rem; }
-    .hero-left .desc { font-size: 1.05rem; color: var(--text-muted); max-width: 420px; margin: 1rem 0 2rem; line-height: 1.6; }
-    @media (max-width: 900px) { .hero-left .desc { max-width: 100%; } }
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
-    .btn-primary { background: #7b6ef6; color: #fff; border: none; padding: 0.8rem 2.2rem; border-radius: 60px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: 0.25s; }
-    .btn-primary:hover { background: #9589ff; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(123, 110, 246, 0.3); }
-    .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); padding: 0.8rem 2.2rem; border-radius: 60px; font-weight: 500; cursor: pointer; transition: 0.25s; }
-    .btn-outline:hover { border-color: #7b6ef6; color: #fff; }
-    .hero-right { position: relative; display: flex; justify-content: center; }
-    .portrait-frame { width: 100%; max-width: 400px; aspect-ratio: 1/1.1; border-radius: 40px; background: var(--bg-card); border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.6); position: relative; }
-    .portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    .floating-tag { position: absolute; background: rgba(18, 16, 22, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.06); border-radius: 40px; padding: 0.3rem 1rem; font-size: 0.7rem; font-weight: 500; color: #cac4dc; box-shadow: 0 8px 20px rgba(0,0,0,0.3); animation: float 6s ease-in-out infinite; pointer-events: none; }
-    .floating-tag:nth-child(2) { top: 8%; right: -5%; animation-delay: 1s; }
-    .floating-tag:nth-child(3) { bottom: 20%; left: -8%; animation-delay: 2.5s; }
-    .floating-tag:nth-child(4) { bottom: 6%; right: -2%; animation-delay: 4s; }
-    @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0px); } }
+    /* ----- CASE STUDY SPECIFIC STYLES (blend with main) ----- */
+    .case-hero {
+      padding: 8rem 0 3rem;
+      background: radial-gradient(120% 90% at 15% 0%,#122747 0%, #0a1628 55%), #0a1628;
+      color: #fff;
+    }
+    .case-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .case-hero .subhead {
+      font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+      font-weight: 400;
+      color: #b9c7e4;
+      margin-bottom: 1.2rem;
+    }
+    .case-hero .desc {
+      max-width: 640px;
+      font-size: 1.1rem;
+      color: #c7d3ea;
+      line-height: 1.7;
+    }
+    .case-tags {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .case-tag {
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      color: #dce5f7;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.02em;
+    }
+    .case-section {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .case-section--alt {
+      background: #eef2f8;
+      max-width: none;
+      padding: 4rem 0;
+    }
+    .case-section--dark {
+      background: #0a1628;
+      color: #eaf0ff;
+      max-width: none;
+      padding: 4rem 0;
+    }
+    .case-section--dark .inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3d7fff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.2rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: #3d7fff;
+      display: inline-block;
+    }
+    .case-section--dark .eyebrow { color: #14b8a6; }
+    .case-section--dark .eyebrow::before { background: #14b8a6; }
 
-    /* ----- STATS ----- */
-    .stats { display: flex; flex-wrap: wrap; justify-content: space-between; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 2rem 0; margin: 2rem 0 3rem; gap: 1.5rem; }
-    .stat-item { flex: 1; min-width: 80px; }
-    .stat-number { font-size: 1.8rem; font-weight: 700; font-family: 'Sora', sans-serif; color: var(--text-color); }
-    .stat-label { font-size: 0.85rem; color: var(--text-muted); }
-    
-    /* ----- SECTIONS ----- */
-    .section-title { font-size: clamp(0.8rem, 1.2vw, 1rem); letter-spacing: 0.12em; text-transform: uppercase; color: #7b6ef6; font-weight: 600; margin-bottom: 0.5rem; }
-    .section-head { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2rem; }
+    .big-h {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 3.6vw, 3.2rem);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    @media (max-width: 800px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
 
-    /* ----- ABOUT ----- */
-    .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; margin: 3rem 0 2rem; }
-    @media (max-width: 750px) { .about-grid { grid-template-columns: 1fr; } }
-    .about-statement { font-size: 1.8rem; font-weight: 600; line-height: 1.2; color: var(--text-color); }
-    .about-statement span { color: #7b6ef6; }
-    .about-text { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; }
-    
-    /* ✅ CHANGED DATES IN EDUCATION HERE */
-    .edu-timeline { margin: 2.5rem 0 3rem; display: flex; flex-wrap: wrap; gap: 3rem; border-left: 2px solid var(--border-color); padding-left: 2rem; }
-    .edu-item { flex: 1 1 200px; }
-    .edu-item .year { font-size: 0.8rem; color: #7b6ef6; font-weight: 600; }
-    .edu-item h4 { font-size: 1.2rem; font-weight: 600; margin: 0.2rem 0; color: var(--text-color); }
-    .edu-item p { color: var(--text-muted); font-size: 0.9rem; }
+    .card {
+      background: #fff;
+      border: 1px solid #e2e7f0;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(10,22,40,0.06);
+    }
+    .card-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8894a6;
+      margin-bottom: 0.8rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .badge.success { background: #e7f8ee; color: #16a34a; }
+    .badge.warning { background: #fdf3e3; color: #d97706; }
+    .badge.critical { background: #fbeaea; color: #dc2626; }
+    .badge.neutral { background: #eef1f6; color: #4a5568; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; display: inline-block; margin-right: 4px; }
 
-    /* ----- PROJECTS / FILTERS ----- */
-    .filters { display: flex; flex-wrap: wrap; gap: 0.8rem 1.8rem; margin-bottom: 2rem; }
-    .filter-btn { background: none; border: none; color: var(--text-muted); font-weight: 500; font-size: 0.9rem; padding: 0.3rem 0; border-bottom: 2px solid transparent; transition: 0.2s; cursor: pointer; }
-    .filter-btn.active { color: var(--text-color); border-bottom-color: #7b6ef6; }
-    .filter-btn:hover { color: var(--text-color); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: default;
+    }
+    .btn-primary { background: #3d7fff; color: #fff; }
+    .btn-ghost { background: #fff; border: 1px solid #e2e7f0; color: #0a1628; }
+    .btn-mint { background: #14b8a6; color: #fff; }
 
-    /* ✅ CHANGED SECTION HEADING TO 2020 - 2026 */
-    .projects-grid { display: flex; flex-direction: column; gap: 5rem; margin: 3rem 0; }
-    .project-card { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 2.5rem; background: var(--bg-card); border-radius: 48px; padding: 2rem 2.5rem; border: 1px solid var(--border-color); transition: all 0.3s ease; cursor: pointer; align-items: center; }
-    .project-card:hover { border-color: #7b6ef6; transform: translateY(-4px); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-    @media (max-width: 800px) { .project-card { grid-template-columns: 1fr; padding: 1.5rem; } }
-    .project-mockup { background: var(--bg-color); border-radius: 28px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); transition: 0.3s; }
-    .project-card:hover .project-mockup { transform: scale(1.01); }
-    .project-mockup img { width: 100%; height: auto; display: block; }
-    .project-info h3 { font-size: 2rem; font-weight: 700; font-family: 'Sora', sans-serif; letter-spacing: -0.02em; color: var(--text-color); }
-    .project-info .category { color: #7b6ef6; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
-    .project-info p { color: var(--text-muted); margin: 0.5rem 0 1rem; }
-    .project-info .arrow { font-size: 1.4rem; color: #7b6ef6; transition: 0.25s; display: inline-block; }
-    .project-card:hover .arrow { transform: translateX(6px); }
+    .metric-tile { background: #fff; border: 1px solid #e2e7f0; border-radius: 14px; padding: 1.2rem; }
+    .metric-tile .mv { font-family: 'IBM Plex Mono', monospace; font-size: 1.6rem; font-weight: 600; color: #0a1628; }
+    .metric-tile .ml { font-size: 0.75rem; color: #8894a6; margin-top: 4px; }
 
-    /* ----- SERVICES ----- */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; margin: 2rem 0; }
-    .service-card { background: var(--bg-card); border-radius: 24px; padding: 1.8rem 1.2rem; border: 1px solid var(--border-color); text-align: center; transition: 0.25s; }
-    .service-card:hover { border-color: #7b6ef6; transform: translateY(-3px); }
-    .service-card i { font-size: 2rem; color: #7b6ef6; margin-bottom: 0.8rem; }
-    .service-card h4 { font-weight: 600; color: var(--text-color); }
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #e2e7f0;
+      font-size: 0.85rem;
+    }
+    .status-row:last-child { border-bottom: none; }
 
-    /* ----- PROCESS ----- */
-    .process-timeline { display: flex; flex-wrap: wrap; gap: 2rem 4rem; margin: 2.5rem 0; justify-content: space-between; }
-    .process-step { flex: 1 0 120px; border-left: 2px solid var(--border-color); padding-left: 1.2rem; }
-    .process-step .num { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.8rem; color: #7b6ef6; opacity: 0.6; }
-    .process-step h5 { font-weight: 600; margin: 0.2rem 0; color: var(--text-color); }
-    .process-step p { font-size: 0.9rem; color: var(--text-muted); }
-
-    /* ----- TOOLS ----- */
-    .tools-badge { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0 3rem; }
-    .tools-badge span { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 40px; padding: 0.4rem 1.4rem; font-size: 0.85rem; font-weight: 500; color: var(--text-color); }
-
-    /* ----- CONTACT SECTION ----- */
-    #contact .social-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
-    #contact .social-btn { background: var(--bg-card); padding: 0.8rem 1.8rem; border-radius: 60px; border: 1px solid var(--border-color); transition: 0.3s; display: inline-flex; align-items: center; gap: 0.7rem; font-weight: 500; color: var(--text-color); }
-    #contact .social-btn:hover { border-color: #7b6ef6; transform: translateY(-3px); }
-    #contact .social-btn i { color: #7b6ef6; }
-    #contact .social-btn.whatsapp i { color: #25D366; }
-
-    /* ----- AI WHATSAPP AGENT (Floating) ----- */
-    .ai-wa-agent {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      z-index: 1000;
+    .app-shell { display: flex; min-height: 480px; background: #f5f7fb; }
+    .app-sidebar {
+      width: 180px;
+      background: #0a1628;
+      color: #fff;
+      padding: 1.5rem 1rem;
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 10px;
+      gap: 1.2rem;
     }
-    .wa-bubble {
-      background: #25D366;
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 12px 12px 0 12px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-      opacity: 0;
-      transform: translateY(10px);
-      animation: popBubble 0.5s forwards 3s;
-      position: relative;
-      max-width: 220px;
-      text-align: center;
+    .app-logo { display: flex; align-items: center; gap: 8px; font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; }
+    .app-logo .dot { width: 8px; height: 8px; border-radius: 50%; background: #14b8a6; box-shadow: 0 0 12px #14b8a6; }
+    .app-nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 0.5rem 0.7rem; border-radius: 8px;
+      font-size: 0.75rem; color: #aab8d6; font-weight: 500;
     }
-    .wa-bubble span { font-weight: 300; font-size: 0.75rem; }
-    @keyframes popBubble {
-      to { opacity: 1; transform: translateY(0); }
+    .app-nav-item .ic { width: 14px; height: 14px; border-radius: 4px; background: rgba(255,255,255,0.14); flex-shrink: 0; }
+    .app-nav-item.active { background: rgba(61,127,255,0.18); color: #fff; }
+    .app-nav-item.active .ic { background: #3d7fff; }
+    .app-main { flex: 1; padding: 1.5rem 1.8rem; overflow: hidden; }
+    .app-search {
+      flex: 1; max-width: 280px; background: #fff; border: 1px solid #e2e7f0;
+      border-radius: 10px; padding: 0.4rem 0.8rem; font-size: 0.75rem; color: #8894a6;
     }
-    .ai-wa-btn {
-      width: 60px; height: 60px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex; justify-content: center; align-items: center;
-      color: white; font-size: 2rem;
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-      transition: 0.3s ease;
-      animation: pulseWa 2s infinite;
+    .app-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+    .avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #3d7fff, #14b8a6);
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; font-family: 'IBM Plex Mono', monospace;
+      flex-shrink: 0;
     }
-    .ai-wa-btn:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6); }
-    @keyframes pulseWa { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+    .avatar.lg { width: 48px; height: 48px; font-size: 1rem; }
+    .avatar.xl { width: 100px; height: 100px; font-size: 2rem; box-shadow: 0 12px 32px rgba(10,22,40,0.18); }
 
-    /* ----- FOOTER ----- */
-    .footer { border-top: 1px solid var(--border-color); padding: 3rem 0 2rem; margin-top: 4rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; }
-    .footer-col h5 { font-weight: 600; margin-bottom: 0.5rem; color: var(--text-color); }
-    .footer-col p, .footer-col a { color: var(--text-muted); font-size: 0.9rem; display: block; margin: 0.2rem 0; transition: 0.2s; }
-    .footer-col a:hover { color: var(--text-color); }
-    .footer-copy { width: 100%; text-align: center; font-size: 0.8rem; color: var(--text-muted); padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
-    @media (max-width: 600px) { .container { padding: 0 1.2rem; } .navbar { padding: 0.4rem 1rem; } .nav-name { font-size: 0.9rem; } .hero { padding-top: 6rem; } }
+    .browser-frame {
+      background: #fff; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(10,22,40,0.18);
+      border: 1px solid rgba(10,22,40,0.06);
+    }
+    .browser-bar {
+      height: 38px; background: #f0f2f6; display: flex; align-items: center; padding: 0 14px; gap: 6px;
+      border-bottom: 1px solid #e4e8ef;
+    }
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-url {
+      margin-left: 12px; background: #fff; border: 1px solid #e4e8ef; border-radius: 6px;
+      padding: 4px 12px; font-size: 0.65rem; color: #8894a6; font-family: 'IBM Plex Mono', monospace;
+      flex: 1; max-width: 280px;
+    }
+    .mockup-caption { margin-top: 1.5rem; max-width: 640px; }
+    .mockup-caption .label {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: .12em;
+      text-transform: uppercase; color: #3d7fff; font-weight: 600; margin-bottom: 0.4rem; display: block;
+    }
+
+    .phone-frame {
+      width: 180px; border-radius: 28px; background: #0a1628; padding: 8px;
+      box-shadow: 0 30px 80px rgba(10,22,40,0.18); flex-shrink: 0;
+    }
+    .phone-screen { background: #fff; border-radius: 22px; overflow: hidden; height: 380px; position: relative; }
+    .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 70px; height: 18px; background: #0a1628; border-radius: 0 0 12px 12px; z-index: 2; }
+
+    /* footer-like */
+    .footer-cta {
+      text-align: center; padding: 4rem 1.5rem;
+    }
+    .footer-cta h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      max-width: 800px; margin: 0 auto 1.5rem; color: #fff;
+    }
+
+    /* responsive tweaks */
+    @media (max-width: 700px) {
+      .navbar { padding: 0.4rem 1rem; }
+      .container { padding: 0 1rem; }
+      .case-hero { padding: 6rem 0 2rem; }
+      .case-section { padding: 2rem 1rem; }
+      .app-shell { flex-direction: column; }
+      .app-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 0.8rem; }
+      .app-nav { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-left">
-      <span class="nav-name">MOHAMMAD WARIS</span>
-      <span class="nav-sub">UI/UX & Product Designer</span>
-    </div>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <a href="https://calendly.com/" target="_blank" class="btn-consult">
-          <i class="fas fa-calendar-check"></i> Book a Call
-        </a>
-        <button class="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
-      </div>
-    </div>
-  </nav>
-
-  <main class="container">
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="hero-left">
-        <span class="badge"><i class="fas fa-circle" style="color:#6fcf97; font-size:0.5rem; margin-right:6px;"></i> Available for new projects</span>
-        <h1>MOHAMMAD <span class="text-glow">WARIS</span></h1>
-        <div class="subhead">Senior UI/UX Designer · Product Designer</div>
-        <p class="desc">Designing clear, thoughtful, and visually refined digital experiences. Product thinking meets visual craft.</p>
-        <div class="hero-cta">
-          <a href="#work" class="btn-primary">View Selected Work</a>
-          <a href="https://calendly.com/" target="_blank" class="btn-outline">
-            <i class="fas fa-calendar-plus"></i> Free 15-min Consult
-          </a>
-        </div>
-      </div>
-      <div class="hero-right">
-        <div class="portrait-frame">
-          <img src="my-photo.jpg.webp" alt="Mohammad Waris portrait" />
-        </div>
-        <span class="floating-tag"><i class="fas fa-pencil-alt"></i> UI/UX</span>
-        <span class="floating-tag"><i class="fas fa-mobile-alt"></i> Product Design</span>
-        <span class="floating-tag"><i class="fab fa-figma"></i> Figma</span>
-        <span class="floating-tag"><i class="fas fa-layer-group"></i> Design Systems</span>
-      </div>
-    </section>
-
-    <!-- STATS -->
-    <div class="stats">
-      <div class="stat-item"><span class="stat-number">5+</span> <div class="stat-label">Years designing</div></div>
-      <div class="stat-item"><span class="stat-number">40+</span> <div class="stat-label">Products shipped</div></div>
-      <div class="stat-item"><span class="stat-number">20+</span> <div class="stat-label">Happy clients</div></div>
-      <div class="stat-item"><span class="stat-number">6</span> <div class="stat-label">Featured case studies</div></div>
-    </div>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="section-title">About</div>
-      <h2 class="section-head">Design that earns its place</h2>
-      <div class="about-grid">
-        <div class="about-statement">Clear, thoughtful, and <span>visually refined</span>.</div>
-        <div class="about-text">
-          <p>I'm Mohammad Waris, a Senior UI/UX & Product Designer with a passion for crafting digital experiences that are both functional and beautiful. With over 5 years of designing products across mobile, web, and design systems, I believe in design that solves real problems while elevating the user's journey. My approach combines product thinking with a meticulous visual craft.</p>
-        </div>
-      </div>
-      
-      <!-- ✅ UPDATED DATES HERE (2020 - 2024) -->
-      <div class="edu-timeline">
-        <div class="edu-item"><span class="year">2020 – 2024</span><h4>Virtual University</h4><p>UI/UX Design</p></div>
-        <div class="edu-item"><span class="year">2020 – 2022</span><h4>Computer Collegiate</h4><p>Graphic Design</p></div>
-      </div>
-    </section>
-
-    <!-- WORK / PROJECTS -->
-    <section id="work">
-      <div class="section-title">Selected Work</div>
-      <!-- ✅ UPDATED HEADING HERE (2020 - 2026) -->
-      <h2 class="section-head">Projects that define my craft (2020 – 2026)</h2>
-      
-      <div class="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
-        <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
-        <button class="filter-btn" data-filter="web">Web Apps</button>
-      </div>
-      
-      <div class="projects-grid">
-        <!-- project 1: ArchMind AI (Category: web) -->
-        <a href="archmind-ai.html" class="project-card" data-category="web">
-          <div class="project-mockup"><img src="archmind-1.png" alt="ArchiMind AI mockup" /></div>
-          <div class="project-info"><span class="category">AI · Web App</span><h3>ArchiMind AI</h3><p>AI Architecture Studio</p><span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
-        </a>
-        
-        <!-- project 2: SwiftDrop (Category: mobile) -->
-        <a href="swiftdrop.html" class="project-card" data-category="mobile">
-          <div class="project-mockup"><img src="swiftdrop-9-home.png" alt="SwiftDrop mockup" /></div>
-          <div class="project-info"><span class="category">Mobile App</span><h3>SwiftDrop</h3><p>Premium Delivery Mobile App</p><span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
-        </a>
-        
-        <!-- project 3: Luxe Market (Category: ecommerce) -->
-        <a href="luxe-market.html" class="project-card" data-category="ecommerce">
-          <div class="project-mockup"><img src="luxe-1.png" alt="Luxe Market mockup" /></div>
-          <div class="project-info"><span class="category">E-commerce</span><h3>Luxe Market</h3><p>Premium Mobile Commerce App</p><span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
-        </a>
-        
-        <!-- project 4: Luxora (Category: ecommerce) -->
-        <a href="luxora.html" class="project-card" data-category="ecommerce">
-          <div class="project-mockup"><img src="luxora-cover.png" alt="Luxora mockup" /></div>
-          <div class="project-info"><span class="category">Web · E-commerce</span><h3>Luxora</h3><p>Premium Fashion E-Commerce Website</p><span class="arrow"><i class="fas fa-arrow-right"></i></span></div>
-        </a>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-      <div class="section-title">Services</div>
-      <h2 class="section-head">Capabilities</h2>
-      <div class="services-grid">
-        <div class="service-card"><i class="fas fa-pen-fancy"></i><h4>UI/UX Design</h4></div>
-        <div class="service-card"><i class="fas fa-cube"></i><h4>Product Design</h4></div>
-        <div class="service-card"><i class="fas fa-mobile-alt"></i><h4>Mobile App Design</h4></div>
-        <div class="service-card"><i class="fas fa-desktop"></i><h4>Web Design</h4></div>
-        <div class="service-card"><i class="fas fa-sitemap"></i><h4>Design Systems</h4></div>
-        <div class="service-card"><i class="fas fa-flask"></i><h4>Prototyping</h4></div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section id="process">
-      <div class="section-title">Process</div>
-      <h2 class="section-head">How I work</h2>
-      <div class="process-timeline">
-        <div class="process-step"><span class="num">01</span><h5>Discover</h5><p>Research & empathy</p></div>
-        <div class="process-step"><span class="num">02</span><h5>Define</h5><p>Strategy & scope</p></div>
-        <div class="process-step"><span class="num">03</span><h5>Design</h5><p>Ideation & UI</p></div>
-        <div class="process-step"><span class="num">04</span><h5>Prototype</h5><p>Interactive models</p></div>
-        <div class="process-step"><span class="num">05</span><h5>Refine</h5><p>Testing & polish</p></div>
-        <div class="process-step"><span class="num">06</span><h5>Deliver</h5><p>Launch & handoff</p></div>
-      </div>
-    </section>
-
-    <!-- TOOLS -->
-    <section>
-      <div class="section-title">Tools</div>
-      <div class="tools-badge">
-        <span>Figma</span><span>FigJam</span><span>Adobe XD</span><span>Photoshop</span><span>Illustrator</span>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" style="margin: 4rem 0;">
-      <div class="section-title">Contact</div>
-      <h2 class="section-head">Let’s connect</h2>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/muhammad-waris-6a408a21b" target="_blank" class="social-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://www.upwork.com/freelancers/~0189221b87188189fc?mp_source=share" target="_blank" class="social-btn"><i class="fab fa-upwork"></i> Upwork</a>
-        <a href="https://www.behance.net" target="_blank" class="social-btn"><i class="fab fa-behance"></i> Behance</a>
-        <a href="https://wa.me/923407921680" target="_blank" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp (+92 340 7921680)</a>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="footer-col">
-        <h5>MOHAMMAD WARIS</h5>
-        <p>Senior UI/UX & Product Designer</p>
-        <p style="color:#7b6ef6;">Designing clear, thoughtful, and visually refined digital experiences.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Links</h5>
-        <a href="#work">Work</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h5>Case Studies</h5>
-        <a href="archmind-ai.html">ArchiMind AI</a><a href="swiftdrop.html">SwiftDrop</a><a href="luxe-market.html">Luxe Market</a><a href="luxora.html">Luxora</a>
-      </div>
-      <div class="footer-copy">© 2026 Mohammad Waris — Designed with intent.</div>
-    </footer>
-  </main>
-
-  <!-- ========================================== -->
-  <!-- 🤖 AI WHATSAPP AGENT (Floating Button)      -->
-  <!-- ========================================== -->
-  <div class="ai-wa-agent">
-    <div class="wa-bubble" id="waBubble">
-      👋 Need a designer? <br><span>I can help you right away!</span>
-    </div>
-    <a href="javascript:void(0)" onclick="openWAAgent()" class="ai-wa-btn" title="Chat with AI Agent">
-      <i class="fab fa-whatsapp"></i>
-    </a>
+<!-- ===== NAVIGATION (same as main site) ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-left">
+    <span class="nav-name">MOHAMMAD WARIS</span>
+    <span class="nav-sub">UI/UX & Product Designer</span>
   </div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+      <a href="https://calendly.com/" target="_blank" class="btn-consult">
+        <i class="fas fa-calendar-check"></i> Book a Call
+      </a>
+      <button class="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
 
-  <!-- ========================================== -->
-  <!-- JAVASCRIPT (Filters, Theme, AI Agent)      -->
-  <!-- ========================================== -->
-  <script>
-    // 1. THEME TOGGLE (Light / Dark)
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    if(localStorage.getItem('theme') === 'light') {
-      document.body.classList.add('light-theme');
+<!-- ===== CASE STUDY HERO ===== -->
+<section class="case-hero">
+  <div class="container">
+    <div class="eyebrow" style="color:#14b8a6;">PRODUCT DESIGN CASE STUDY • 2026</div>
+    <h1>AURA Health</h1>
+    <div class="subhead">AI Healthcare Command Center</div>
+    <p class="desc">Designing a smarter clinical workspace that helps healthcare teams understand patients, coordinate care, and act faster with AI-powered insights.</p>
+    <div class="case-tags">
+      <span class="case-tag">Product Designer</span>
+      <span class="case-tag">UI/UX Design</span>
+      <span class="case-tag">AI Experience</span>
+      <span class="case-tag">Healthcare SaaS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OVERVIEW ===== -->
+<section class="case-section">
+  <div class="grid-4" style="margin-bottom: 2.5rem;">
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Role</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Product Designer</div></div>
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Timeline</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">8 Weeks</div></div>
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Platform</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Web Application</div></div>
+    <div><div class="eyebrow" style="margin-bottom:0.2rem;">Tools</div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Figma • FigJam</div></div>
+  </div>
+  <div class="eyebrow">Overview</div>
+  <p class="big-h" style="font-weight:400;max-width:800px;">AURA Health is an AI‑powered healthcare command center designed to bring patient information, clinical workflows and intelligent insights into one focused workspace.</p>
+</section>
+
+<!-- ===== CHALLENGE ===== -->
+<section class="case-section--alt">
+  <div class="inner container">
+    <div class="grid-2">
+      <div>
+        <div class="eyebrow">The Challenge</div>
+        <h2 class="big-h">Healthcare data is powerful, but fragmented.</h2>
+        <p style="margin-top:1.2rem;max-width:480px;color:#4a5568;">Healthcare professionals often work across disconnected systems for patient records, appointments, laboratory results, medications and treatment plans — switching context dozens of times a day just to answer one clinical question.</p>
+        <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem;">
+          <div class="card" style="border-left:4px solid #dc2626;padding:0.8rem 1.2rem;"><span style="font-weight:600;">Information overload</span></div>
+          <div class="card" style="border-left:4px solid #dc2626;padding:0.8rem 1.2rem;"><span style="font-weight:600;">Fragmented workflows</span></div>
+          <div class="card" style="border-left:4px solid #dc2626;padding:0.8rem 1.2rem;"><span style="font-weight:600;">Difficult patient history navigation</span></div>
+        </div>
+      </div>
+      <div>
+        <svg viewBox="0 0 400 320" style="width:100%;max-width:420px;">
+          <g font-family="IBM Plex Mono" font-size="10" fill="#4a5568">
+            <rect x="10" y="10" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="33">Records</text>
+            <rect x="10" y="70" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="93">Lab Systems</text>
+            <rect x="10" y="130" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="153">Scheduling</text>
+            <rect x="10" y="190" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="213">Pharmacy</text>
+            <rect x="10" y="250" width="120" height="36" rx="8" fill="#fff" stroke="#e2e7f0"/>
+            <text x="26" y="273">Billing</text>
+          </g>
+          <g stroke="#c6d2e8" stroke-width="1.5" fill="none">
+            <path d="M130 28 C 210 28, 210 150, 280 150"/>
+            <path d="M130 88 C 210 88, 210 150, 280 150"/>
+            <path d="M130 148 C 210 148, 210 150, 280 150"/>
+            <path d="M130 208 C 210 208, 210 150, 280 150"/>
+            <path d="M130 268 C 210 268, 210 150, 280 150"/>
+          </g>
+          <circle cx="330" cy="150" r="50" fill="#0a1628"/>
+          <text x="330" y="148" text-anchor="middle" fill="#fff" font-family="Fraunces" font-size="14" font-weight="600">AURA</text>
+          <text x="330" y="164" text-anchor="middle" fill="#8fb4ff" font-family="IBM Plex Mono" font-size="8">Health</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DESIGN GOAL ===== -->
+<section class="case-section">
+  <div class="eyebrow">Design Goal</div>
+  <h2 class="big-h" style="margin-bottom:2rem;">One intelligent workspace for every clinical decision.</h2>
+  <div class="grid-3">
+    <div class="card"><div style="font-family:'IBM Plex Mono';font-size:0.75rem;color:#3d7fff;font-weight:700;">01</div><h3 style="font-family:'Fraunces';font-size:1.2rem;margin:0.4rem 0;">Reduce Cognitive Load</h3><p style="font-size:0.9rem;color:#4a5568;">Make critical patient information easier to understand at a glance, without digging.</p></div>
+    <div class="card"><div style="font-family:'IBM Plex Mono';font-size:0.75rem;color:#3d7fff;font-weight:700;">02</div><h3 style="font-family:'Fraunces';font-size:1.2rem;margin:0.4rem 0;">Accelerate Workflows</h3><p style="font-size:0.9rem;color:#4a5568;">Reduce unnecessary navigation and repetitive work across the care journey.</p></div>
+    <div class="card"><div style="font-family:'IBM Plex Mono';font-size:0.75rem;color:#3d7fff;font-weight:700;">03</div><h3 style="font-family:'Fraunces';font-size:1.2rem;margin:0.4rem 0;">Assist Better Decisions</h3><p style="font-size:0.9rem;color:#4a5568;">Use AI to surface relevant insights while keeping clinicians firmly in control.</p></div>
+  </div>
+</section>
+
+<!-- ===== USER RESEARCH ===== -->
+<section class="case-section--alt">
+  <div class="inner container">
+    <div class="eyebrow">User Research</div>
+    <h2 class="big-h" style="margin-bottom:2rem;">Understanding the clinical workflow.</h2>
+    <div class="grid-4">
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">01</div><h4 style="font-size:1rem;">Information Overload</h4><p style="font-size:0.85rem;color:#4a5568;">Clinicians review large amounts of information before every appointment.</p></div>
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">02</div><h4 style="font-size:1rem;">Fragmented Workflows</h4><p style="font-size:0.85rem;color:#4a5568;">Important information distributed across multiple disconnected systems.</p></div>
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">03</div><h4 style="font-size:1rem;">History Navigation</h4><p style="font-size:0.85rem;color:#4a5568;">Patient history can be difficult and slow to scan quickly.</p></div>
+      <div class="card"><div style="font-family:'Fraunces';font-size:2rem;color:#d7deeb;font-weight:600;">04</div><h4 style="font-size:1rem;">Documentation Burden</h4><p style="font-size:0.85rem;color:#4a5568;">Significant time spent documenting routine information.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PERSONA ===== -->
+<section class="case-section">
+  <div class="eyebrow">Persona</div>
+  <div class="card" style="padding:2rem;">
+    <div class="grid-2" style="align-items:center;">
+      <div style="text-align:center;">
+        <div class="avatar xl" style="margin:0 auto 1rem;">OB</div>
+        <h3 style="font-family:'Fraunces';font-size:1.4rem;">Dr. Olivia Bennett</h3>
+        <p style="font-size:0.85rem;color:#4a5568;">Cardiology Specialist</p>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div class="card-title">Goals</div>
+          <ul style="list-style:none;padding:0;font-size:0.85rem;color:#4a5568;">
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✓ Understand patient history quickly</li>
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✓ Identify important changes</li>
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✓ Prepare before appointments</li>
+          </ul>
+        </div>
+        <div>
+          <div class="card-title">Pain points</div>
+          <ul style="list-style:none;padding:0;font-size:0.85rem;color:#4a5568;">
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✗ Too many disconnected systems</li>
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✗ Information overload</li>
+            <li style="padding:0.3rem 0;padding-left:1.2rem;position:relative;">✗ Repetitive documentation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOURNEY ===== -->
+<section class="case-section--alt">
+  <div class="inner container">
+    <div class="eyebrow">User Journey</div>
+    <h2 class="big-h" style="margin-bottom:2rem;">From search to follow-up, in one flow.</h2>
+    <div style="display:flex;gap:0.4rem;overflow-x:auto;padding-bottom:1rem;">
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">1</div><p style="font-size:0.7rem;font-weight:600;">Search</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">2</div><p style="font-size:0.7rem;font-weight:600;">Overview</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">3</div><p style="font-size:0.7rem;font-weight:600;">History</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">4</div><p style="font-size:0.7rem;font-weight:600;">Labs</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">5</div><p style="font-size:0.7rem;font-weight:600;">AI Insights</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">6</div><p style="font-size:0.7rem;font-weight:600;">Decision</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">7</div><p style="font-size:0.7rem;font-weight:600;">Treatment</p></div>
+      <div style="min-width:80px;text-align:center;position:relative;"><div style="width:32px;height:32px;border-radius:50%;background:#0a1628;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 0.4rem;font-family:'IBM Plex Mono';font-size:0.7rem;">8</div><p style="font-size:0.7rem;font-weight:600;">Document</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IA ===== -->
+<section class="case-section">
+  <div class="eyebrow">Information Architecture</div>
+  <h2 class="big-h" style="margin-bottom:2rem;">A single, focused navigation model.</h2>
+  <div class="card" style="max-width:400px;padding:1.5rem 2rem;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;color:#4a5568;line-height:2.2;">
+      <div style="font-weight:700;color:#0a1628;">Dashboard</div>
+      <div style="padding-left:1.2rem;">├── Patients</div>
+      <div style="padding-left:1.2rem;">├── Appointments</div>
+      <div style="padding-left:1.2rem;">├── AI Assistant</div>
+      <div style="padding-left:1.2rem;">├── Medical Records</div>
+      <div style="padding-left:1.2rem;">├── Lab Results</div>
+      <div style="padding-left:1.2rem;">├── Treatment Plans</div>
+      <div style="padding-left:1.2rem;">├── Messages</div>
+      <div style="padding-left:1.2rem;">├── Analytics</div>
+      <div style="padding-left:1.2rem;">└── Settings</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCREEN 01 — DASHBOARD ===== -->
+<section class="case-section">
+  <div class="eyebrow">Screen 01 — Main Dashboard</div>
+  <div class="browser-frame">
+    <div class="browser-bar">
+      <span class="browser-dot" style="background:#ff5f57;"></span>
+      <span class="browser-dot" style="background:#febc2e;"></span>
+      <span class="browser-dot" style="background:#28c840;"></span>
+      <span class="browser-url">aurahealth.app/dashboard</span>
+    </div>
+    <div class="app-shell">
+      <div class="app-sidebar">
+        <div class="app-logo"><span class="dot"></span>AURA</div>
+        <div class="app-nav">
+          <div class="app-nav-item active"><span class="ic"></span>Dashboard</div>
+          <div class="app-nav-item"><span class="ic"></span>Patients</div>
+          <div class="app-nav-item"><span class="ic"></span>Appointments</div>
+          <div class="app-nav-item"><span class="ic"></span>AI Assistant</div>
+          <div class="app-nav-item"><span class="ic"></span>Records</div>
+          <div class="app-nav-item"><span class="ic"></span>Lab Results</div>
+          <div class="app-nav-item"><span class="ic"></span>Messages</div>
+          <div class="app-nav-item" style="margin-top:auto;"><span class="ic"></span>Settings</div>
+        </div>
+      </div>
+      <div class="app-main">
+        <div class="app-topbar">
+          <div class="app-search">Search patients, records, insights…</div>
+          <div class="app-top-right" style="display:flex;align-items:center;gap:10px;"><div class="avatar">OB</div></div>
+        </div>
+        <div style="margin-bottom:1rem;"><div style="font-family:'Fraunces';font-size:1.4rem;font-weight:500;">Good morning, Dr. Bennett</div><p style="font-size:0.8rem;color:#4a5568;">8 appointments today · 2 priority insights</p></div>
+        <div class="grid-4" style="margin-bottom:1rem;">
+          <div class="metric-tile"><div class="mv">8</div><div class="ml">Today's appointments</div></div>
+          <div class="metric-tile"><div class="mv">2</div><div class="ml">Priority insights</div></div>
+          <div class="metric-tile"><div class="mv">126</div><div class="ml">Active patients</div></div>
+          <div class="metric-tile"><div class="mv">94%</div><div class="ml">Adherence rate</div></div>
+        </div>
+        <div class="grid-2">
+          <div class="card"><div class="card-title">Recent patients</div><div class="status-row"><span>Olivia Carter</span><span class="badge warning">Review</span></div><div class="status-row"><span>Marcus Lee</span><span class="badge success">Stable</span></div></div>
+          <div class="card"><div class="card-title">AI priority insights</div><div class="status-row"><span>Elevated BP trend — O. Carter</span><span class="badge critical">Alert</span></div><div class="status-row"><span>Lab result ready — M. Lee</span><span class="badge neutral">New</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mockup-caption"><span class="label">UX Decision</span><p>Critical information is surfaced above the fold so clinicians can understand their workload and patient priorities immediately.</p></div>
+</section>
+
+<!-- ===== SCREEN 02 — PATIENT OVERVIEW ===== -->
+<section class="case-section">
+  <div class="eyebrow">Screen 02 — Patient Overview</div>
+  <div class="browser-frame">
+    <div class="browser-bar"><span class="browser-dot" style="background:#ff5f57;"></span><span class="browser-dot" style="background:#febc2e;"></span><span class="browser-dot" style="background:#28c840;"></span><span class="browser-url">aurahealth.app/patients/AH-20481</span></div>
+    <div class="app-shell">
+      <div class="app-sidebar">
+        <div class="app-logo"><span class="dot"></span>AURA</div>
+        <div class="app-nav">
+          <div class="app-nav-item"><span class="ic"></span>Dashboard</div>
+          <div class="app-nav-item active"><span class="ic"></span>Patients</div>
+          <div class="app-nav-item"><span class="ic"></span>Appointments</div>
+          <div class="app-nav-item"><span class="ic"></span>AI Assistant</div>
+          <div class="app-nav-item"><span class="ic"></span>Records</div>
+          <div class="app-nav-item"><span class="ic"></span>Lab Results</div>
+          <div class="app-nav-item" style="margin-top:auto;"><span class="ic"></span>Settings</div>
+        </div>
+      </div>
+      <div class="app-main">
+        <div class="app-topbar"><div class="app-search">Search patients…</div><div class="avatar">OB</div></div>
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;">
+          <div class="avatar lg">OC</div>
+          <div><div style="font-family:'Fraunces';font-size:1.2rem;font-weight:500;">Olivia Carter</div><p style="font-size:0.7rem;color:#8894a6;">AH-20481 · Age 42 · Last visit Aug 12, 2026</p></div>
+        </div>
+        <div class="grid-3" style="margin-bottom:1rem;">
+          <div class="card"><div class="card-title">Health summary</div><p style="font-size:0.8rem;">Managed hypertension with recent upward trend.</p></div>
+          <div class="card"><div class="card-title">Conditions</div><div class="status-row"><span>Hypertension</span><span class="badge warning">Active</span></div></div>
+          <div class="card"><div class="card-title">Allergies</div><div class="status-row"><span>Penicillin</span><span class="badge critical">Severe</span></div></div>
+        </div>
+        <div class="grid-2">
+          <div class="card"><div class="card-title">Medications</div><div class="status-row"><span>Lisinopril 10mg</span><span class="mono" style="font-size:0.6rem;color:#8894a6;">Daily</span></div></div>
+          <div class="card"><div class="card-title">Recent vitals</div><div class="status-row"><span>BP</span><span>138/89</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mockup-caption"><span class="label">UX Decision</span><p>The patient overview consolidates the most important information into one scannable workspace.</p></div>
+</section>
+
+<!-- ===== SCREEN 03 — AI ASSISTANT ===== -->
+<section class="case-section">
+  <div class="eyebrow">Screen 03 — AI Clinical Assistant</div>
+  <div class="browser-frame">
+    <div class="browser-bar"><span class="browser-dot" style="background:#ff5f57;"></span><span class="browser-dot" style="background:#febc2e;"></span><span class="browser-dot" style="background:#28c840;"></span><span class="browser-url">aurahealth.app/ai-assistant</span></div>
+    <div style="background:linear-gradient(160deg,#0a1628,#102b4c);padding:2rem 2.5rem;">
+      <div style="font-family:'Fraunces';font-size:1.3rem;font-weight:500;color:#fff;margin-bottom:1.2rem;">AI Clinical Assistant</div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:0.8rem 1.2rem;color:#dce5f7;font-size:0.9rem;margin-bottom:1.2rem;max-width:480px;">What should I know before Olivia's next appointment?</div>
+      <div style="background:#fff;border-radius:14px;padding:1.5rem;max-width:540px;">
+        <div class="card-title">Priority findings</div>
+        <ul style="margin:0 0 1rem 1rem;font-size:0.85rem;color:#4a5568;line-height:1.8;"><li>BP trend increased over last 30 days</li><li>Recent LDL requires review</li></ul>
+        <div class="card-title">Recommended actions</div>
+        <ul style="margin:0 0 1.2rem 1rem;font-size:0.85rem;color:#4a5568;line-height:1.8;"><li>Review latest lab results</li><li>Discuss medication adherence</li></ul>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;"><div class="btn btn-primary">Review Evidence</div><div class="btn btn-ghost">Create Note</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="mockup-caption"><span class="label">UX Decision</span><p>The assistant frames every output as a recommendation with visible confidence, keeping the clinician in control.</p></div>
+</section>
+
+<!-- ===== OUTCOME ===== -->
+<section class="case-section" style="text-align:center;">
+  <div class="eyebrow" style="justify-content:center;">Outcome</div>
+  <h2 class="big-h" style="margin:0 auto 2rem;">A calmer interface for complex clinical work.</h2>
+  <p style="max-width:600px;margin:0 auto 2.5rem;color:#4a5568;">AURA Health transforms fragmented clinical workflows into one intelligent workspace where healthcare professionals can understand patients faster and make informed decisions with AI assistance.</p>
+  <div class="grid-3" style="max-width:800px;margin:0 auto;">
+    <div class="card"><div style="font-family:'Fraunces';font-size:2.4rem;color:#3d7fff;">32%</div><p style="font-size:0.9rem;color:#4a5568;">Faster patient review</p></div>
+    <div class="card"><div style="font-family:'Fraunces';font-size:2.4rem;color:#3d7fff;">41%</div><p style="font-size:0.9rem;color:#4a5568;">Less workflow friction</p></div>
+    <div class="card"><div style="font-family:'Fraunces';font-size:2.4rem;color:#3d7fff;">28%</div><p style="font-size:0.9rem;color:#4a5568;">Reduced documentation</p></div>
+  </div>
+  <p style="font-size:0.65rem;color:#8894a6;margin-top:2rem;font-family:'IBM Plex Mono';">CONCEPTUAL OUTCOMES — NOT CLINICAL RESEARCH RESULTS</p>
+</section>
+
+<!-- ===== CLOSING ===== -->
+<section style="background:radial-gradient(120% 90% at 50% 0%,#122747 0%, #0a1628 60%), #0a1628;color:#fff;padding:3rem 0;">
+  <div class="footer-cta">
+    <h2>Designing better healthcare experiences with intelligent technology.</h2>
+    <p style="color:#8fa0c4;font-size:0.9rem;margin-bottom:1rem;">AURA Health — AI Healthcare Command Center</p>
+    <p style="font-family:'IBM Plex Mono';color:#5e7099;font-size:0.7rem;letter-spacing:.08em;">PRODUCT DESIGN • UI/UX • AI UX • 2026</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER (mini) ===== -->
+<footer style="background:#0a1628;border-top:1px solid #1f2a3a;padding:2rem 0;text-align:center;color:#5e7099;font-size:0.8rem;">
+  <div class="container">
+    <p>© 2026 Mohammad Waris · Designed with intent.</p>
+    <p style="font-size:0.7rem;margin-top:0.3rem;"><a href="index.html" style="color:#7b6ef6;">← Back to Portfolio</a></p>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // Theme toggle (mirror main site)
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = themeToggle.querySelector('i');
+  if(localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-theme');
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
+  }
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    if(document.body.classList.contains('light-theme')) {
+      localStorage.setItem('theme', 'light');
       themeIcon.classList.remove('fa-moon');
       themeIcon.classList.add('fa-sun');
+    } else {
+      localStorage.setItem('theme', 'dark');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
     }
+  });
 
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('light-theme');
-      if(document.body.classList.contains('light-theme')) {
-        localStorage.setItem('theme', 'light');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-      } else {
-        localStorage.setItem('theme', 'dark');
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-      }
-    });
-
-    // 2. NAVBAR SCROLL EFFECT
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
-    });
-
-    // 3. PROJECT FILTERS (All, Mobile, E-com, Web)
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-
-        const filterValue = this.getAttribute('data-filter');
-
-        projectCards.forEach(card => {
-          const category = card.getAttribute('data-category');
-          
-          if(filterValue === 'all' || category === filterValue) {
-            card.style.display = 'grid';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // 4. AI WHATSAPP AGENT (Smart Message Generator)
-    function openWAAgent() {
-      const phone = "923407921680";
-      const date = new Date();
-      const hour = date.getHours();
-      let greeting = "Good Morning";
-      if(hour >= 12 && hour < 17) greeting = "Good Afternoon";
-      else if(hour >= 17 && hour < 21) greeting = "Good Evening";
-      else if(hour >= 21) greeting = "Good Night";
-
-      const message = `${greeting}! I am Mohammad Waris, a Senior UI/UX & Product Designer. I just visited your portfolio and I am very impressed! I have a new project for you. Let's discuss it right now!`;
-      
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    }
-
-    setTimeout(() => {
-      const bubble = document.getElementById('waBubble');
-      if(bubble) bubble.style.opacity = '0';
-    }, 8000);
-  </script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
+</script>
 </body>
 </html>
