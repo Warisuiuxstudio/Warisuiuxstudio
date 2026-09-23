@@ -4,10 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- ===== GOOGLE ANALYTICS ===== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S712ZC42LF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S712ZC42LF');
+  </script>
+
   <!-- ===== PRIMARY SEO ===== -->
   <title>Mohammad Waris — Senior UI/UX & Product Designer | Hire Top Designer 2026</title>
-  <meta name="description" content="Hire Mohammad Waris — Senior UI/UX & Product Designer with 5+ years experience. Expert in mobile apps, SaaS dashboards, design systems & web apps. 40+ products shipped. Available worldwide." />
-  <meta name="keywords" content="UI UX designer, product designer, hire UI UX designer, freelance UI UX designer, senior product designer, mobile app designer, web designer, Figma designer, design systems, SaaS dashboard designer, fintech UI designer, healthcare UX designer, ecommerce UX designer, best UI UX designer 2026, UI UX portfolio, hire product designer, UI UX consultant" />
+  <meta name="description" content="Hire Mohammad Waris — Senior UI/UX & Product Designer with 5+ years experience. Expert in mobile apps, SaaS dashboards, design systems & web apps. 40+ products shipped. View portfolio: ArchiMind AI, SwiftDrop, Luxe Market, Luxora, AURA Health, FactoryOS." />
+  <meta name="keywords" content="UI UX designer, product designer, hire UI UX designer, freelance UI UX designer, senior product designer, mobile app designer, web designer, Figma designer, design systems, SaaS dashboard designer, fintech UI designer, healthcare UX designer, ecommerce UX designer, best UI UX designer 2026, UI UX portfolio, hire product designer, ArchiMind AI, SwiftDrop, Luxe Market, Luxora, AURA Health, FactoryOS, case study" />
   <meta name="author" content="Mohammad Waris" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <link rel="canonical" href="https://warisuiuxstudio.vercel.app/" />
@@ -16,8 +25,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://warisuiuxstudio.vercel.app/" />
   <meta property="og:title" content="Mohammad Waris — Senior UI/UX & Product Designer" />
-  <meta property="og:description" content="5+ years designing clear, thoughtful, and visually refined digital experiences." />
-  <meta property="og:image" content="https://warisuiuxstudio.vercel.app/og-image.jpg" />
+  <meta property="og:description" content="5+ years designing clear, thoughtful, and visually refined digital experiences. View portfolio: ArchiMind AI, SwiftDrop, Luxe Market, Luxora, AURA Health, FactoryOS." />
+  <meta property="og:image" content="https://warisuiuxstudio.vercel.app/logo.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Mohammad Waris Portfolio" />
@@ -26,7 +35,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Mohammad Waris — Senior UI/UX & Product Designer" />
   <meta name="twitter:description" content="Hire top-rated UI/UX designer. 5+ years, 40+ products shipped." />
-  <meta name="twitter:image" content="https://warisuiuxstudio.vercel.app/og-image.jpg" />
+  <meta name="twitter:image" content="https://warisuiuxstudio.vercel.app/logo.webp" />
 
   <meta name="theme-color" content="#050507" />
   <meta name="google-site-verification" content="zv4bHDkRluBLDeRlajRCiARhiVpxVC4RMf7_MmxK1IA" />
@@ -82,6 +91,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
 
   <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600&family=Sora:wght@400;600;700;800&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -110,7 +120,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* LIGHTWEIGHT BACKGROUND (CSS only) */
     body::before {
       content: '';
       position: fixed;
@@ -231,7 +240,6 @@
       min-height: 4.5rem;
     }
 
-    /* Typing cursor */
     .hero-left .greeting .cursor {
       display: inline-block;
       width: 4px;
@@ -292,9 +300,7 @@
 
     .hero-left .cta-mini a:hover { color: #fff; border-bottom-color: #fff; }
 
-    @keyframes fadeInText {
-      to { opacity: 1; }
-    }
+    @keyframes fadeInText { to { opacity: 1; } }
 
     .hero-right { display: flex; justify-content: center; align-items: center; }
 
@@ -315,10 +321,7 @@
     .hero-right .portrait:hover { transform: scale(1.02); }
 
     @keyframes portraitReveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hero-right .portrait img {
@@ -590,7 +593,7 @@
       gap: 1rem;
     }
 
-    /* ===== FADE-IN ON SCROLL ===== */
+    /* ===== FADE-IN ===== */
     .fade-up {
       opacity: 0;
       transform: translateY(20px);
@@ -630,7 +633,6 @@
       .top-nav { flex-wrap: wrap; }
     }
 
-    /* Reduce motion for accessibility */
     @media (prefers-reduced-motion: reduce) {
       * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
@@ -702,109 +704,64 @@
         <span class="tab active" data-tab="all">All Projects</span>
         <span class="tab" data-tab="case-study">Case Studies</span>
         <span class="tab" data-tab="project">Projects</span>
-        <span class="tab-count" id="tabCount">11</span>
+        <span class="tab-count" id="tabCount">06</span>
       </div>
 
       <div class="projects-grid" id="projectsGrid">
 
-        <!-- 1. WMS -->
-        <div class="project-card" data-type="project">
-          <div class="mockup"><div class="placeholder">WMS</div></div>
-          <div class="meta"><span>UX Audit</span><span>Dashboard</span><span>Enterprise SaaS</span><span>Logistics</span></div>
-          <h3>WMS Dashboard Enhancement</h3>
-          <p>A warehouse management platform enabling businesses to monitor inventory, warehouse utilization, pallet tracking, and temperature-sensitive storage in real time.</p>
-          <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
-        </div>
-
-        <!-- 2. Artus AI -->
-        <div class="project-card" data-type="project">
-          <div class="mockup"><div class="placeholder">Artus AI</div></div>
-          <div class="meta"><span>Web App</span><span>AI</span><span>SaaS</span></div>
-          <h3>Artus AI</h3>
-          <p>An AI-powered SaaS platform designed to streamline creative workflows with intelligent automation and collaborative tools.</p>
-          <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
-        </div>
-
-        <!-- 3. Transporter App -->
-        <div class="project-card" data-type="project">
-          <div class="mockup"><div class="placeholder">Transporter</div></div>
-          <div class="meta"><span>Mobile App</span><span>B2B</span><span>Logistics</span></div>
-          <h3>Transporter App</h3>
-          <p>A mobile-first logistics platform that helps operators manage trips, vehicles, drivers, invoices, and real-time shipment tracking.</p>
-          <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
-        </div>
-
-        <!-- 4. Customer HYP -->
-        <div class="project-card" data-type="project">
-          <div class="mockup"><div class="placeholder">HYP</div></div>
-          <div class="meta"><span>UX Audit</span><span>Dashboard</span><span>SaaS</span></div>
-          <h3>Customer HYP Enhancement</h3>
-          <p>Scalable customer dashboard experiences for hyperlocal logistics operations with better visibility and faster actions.</p>
-          <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
-        </div>
-
-        <!-- 5. Ownschool -->
-        <div class="project-card" data-type="project">
-          <div class="mockup"><div class="placeholder">Ownschool</div></div>
-          <div class="meta"><span>Mobile App</span><span>EdTech</span><span>UI/UX</span></div>
-          <h3>Ownschool</h3>
-          <p>An EdTech mobile application connecting students with learning resources, progress tracking, and interactive study tools.</p>
-          <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
-        </div>
-
-        <!-- 6. Vlieg Engineering -->
-        <div class="project-card" data-type="project">
-          <div class="mockup"><div class="placeholder">Vlieg</div></div>
-          <div class="meta"><span>B2B SaaS</span><span>Web Design</span><span>Redesign</span></div>
-          <h3>Vlieg Engineering</h3>
-          <p>An engineering automation platform transforming complex calculations and manual workflows into streamlined digital processes.</p>
-          <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
-        </div>
-
-        <!-- 7. Boansel -->
-        <div class="project-card" data-type="project">
-          <div class="mockup"><div class="placeholder">Boansel</div></div>
-          <div class="meta"><span>Web App</span><span>AI</span><span>SaaS</span></div>
-          <h3>Boansel</h3>
-          <p>A web-based AI SaaS product designed for seamless content creation with an intuitive interface and smart automation.</p>
-          <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
-        </div>
-
-        <!-- 8. Reqbeam -->
-        <div class="project-card" data-type="project">
-          <div class="mockup"><div class="placeholder">Reqbeam</div></div>
-          <div class="meta"><span>Open Source</span><span>UX/UI</span><span>SaaS</span></div>
-          <h3>Reqbeam</h3>
-          <p>An open-source, Docker-first API testing platform for developers to create, test, and manage APIs efficiently.</p>
-          <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
-        </div>
-
-        <!-- 9. Litebite -->
-        <div class="project-card" data-type="project">
-          <div class="mockup"><div class="placeholder">Litebite</div></div>
-          <div class="meta"><span>Mobile App</span><span>AI</span><span>Health</span></div>
-          <h3>Litebite</h3>
-          <p>A mobile app that helps users track meals and calories with AI-powered food recognition and health insights.</p>
-          <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
-        </div>
-
-        <!-- 10. NeoBank (CASE STUDY) -->
-        <div class="project-card" data-type="case-study">
-          <div class="mockup"><div class="placeholder">NeoBank</div></div>
-          <div class="meta"><span>Case Study</span><span>Fintech</span><span>Mobile App</span></div>
-          <h3>NeoBank — Fintech App Redesign</h3>
-          <p>Complete redesign of a mobile banking app. Reduced onboarding drop-off by 42%, increased daily active users by 3.2x through streamlined KYC flow and personalized dashboards.</p>
+        <!-- 1. ArchiMind AI -->
+        <a href="archmind-ai.html" class="project-card" data-type="case-study">
+          <div class="mockup"><img src="archmind-1.png" alt="ArchiMind AI — AI Architecture Studio Web App UI Design" loading="lazy" /></div>
+          <div class="meta"><span>AI</span><span>Web App</span><span>Product Design</span></div>
+          <h3>ArchiMind AI</h3>
+          <p>AI-powered architecture design studio platform. Full case study covering research, wireframes, design system, and final UI.</p>
           <span class="view-link">Read Case Study <i class="fas fa-arrow-right"></i></span>
-        </div>
+        </a>
 
-        <!-- 11. Atlas Design System (CASE STUDY) -->
-        <div class="project-card" data-type="case-study">
-          <div class="mockup"><div class="placeholder">Atlas DS</div></div>
-          <div class="meta"><span>Case Study</span><span>Design System</span><span>B2B SaaS</span></div>
-          <h3>Atlas — Enterprise Design System</h3>
-          <p>Built a 200+ component design system for a B2B SaaS platform. Cut design-to-dev handoff time by 60% and unified 4 product teams under one visual language.</p>
+        <!-- 2. SwiftDrop -->
+        <a href="swiftdrop.html" class="project-card" data-type="case-study">
+          <div class="mockup"><img src="swiftdrop-9-home.png" alt="SwiftDrop — Premium Delivery Mobile App UI Design" loading="lazy" /></div>
+          <div class="meta"><span>Mobile App</span><span>Delivery</span><span>UI/UX</span></div>
+          <h3>SwiftDrop</h3>
+          <p>Premium delivery mobile app. Complete case study with discovery, brand, colors, visual system, and final screens.</p>
           <span class="view-link">Read Case Study <i class="fas fa-arrow-right"></i></span>
-        </div>
+        </a>
+
+        <!-- 3. Luxe Market -->
+        <a href="luxe-market.html" class="project-card" data-type="case-study">
+          <div class="mockup"><img src="luxe-1.png" alt="Luxe Market — Premium Mobile Commerce App UI Design" loading="lazy" /></div>
+          <div class="meta"><span>E-commerce</span><span>Mobile App</span><span>UI/UX</span></div>
+          <h3>Luxe Market</h3>
+          <p>Premium mobile commerce app with luxury shopping experience. Full case study with multiple screens and flows.</p>
+          <span class="view-link">Read Case Study <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 4. Luxora -->
+        <a href="luxora.html" class="project-card" data-type="case-study">
+          <div class="mockup"><img src="luxora-cover.png" alt="Luxora — Premium Fashion E-Commerce Website UI Design" loading="lazy" /></div>
+          <div class="meta"><span>Web</span><span>E-commerce</span><span>Fashion</span></div>
+          <h3>Luxora</h3>
+          <p>Premium fashion e-commerce website. Complete case study with wireframes, brand, product pages, cart, checkout and tracking.</p>
+          <span class="view-link">Read Case Study <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 5. AURA Health -->
+        <a href="aura-health-case-study.html" class="project-card" data-type="case-study">
+          <div class="mockup"><img src="component-library.png" alt="AURA Health — AI Healthcare Command Center Dashboard UI" loading="lazy" /></div>
+          <div class="meta"><span>AI</span><span>Healthcare</span><span>Web App</span></div>
+          <h3>AURA Health</h3>
+          <p>AI healthcare command center dashboard. Case study featuring research, personas, user journey, and design system.</p>
+          <span class="view-link">Read Case Study <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <!-- 6. FactoryOS -->
+        <a href="factoryos.html" class="project-card" data-type="case-study">
+          <div class="mockup"><img src="desktop-admin-console.png" alt="FactoryOS — Industrial IoT Platform Dashboard UI Design" loading="lazy" /></div>
+          <div class="meta"><span>B2B SaaS</span><span>Industrial IoT</span><span>Dashboard</span></div>
+          <h3>FactoryOS</h3>
+          <p>Industrial IoT platform for smart factory operations. Case study with admin console, digital twin, predictive maintenance, worker safety, and energy dashboard.</p>
+          <span class="view-link">Read Case Study <i class="fas fa-arrow-right"></i></span>
+        </a>
 
       </div>
     </section>
@@ -843,8 +800,7 @@
       const target = document.getElementById('typedText');
       const text = "Hello...";
       let index = 0;
-      const speed = 130; // typing speed in ms
-
+      const speed = 130;
       function type() {
         if (index < text.length) {
           target.textContent += text.charAt(index);
@@ -852,7 +808,6 @@
           setTimeout(type, speed);
         }
       }
-      // Slight delay before typing starts for a premium feel
       setTimeout(type, 400);
     })();
 
@@ -895,7 +850,7 @@
       });
     });
 
-    // ===== FADE-IN ON SCROLL =====
+    // ===== FADE-IN =====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
