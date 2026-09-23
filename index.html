@@ -6,8 +6,8 @@
 
   <!-- ===== PRIMARY SEO ===== -->
   <title>Mohammad Waris — Senior UI/UX & Product Designer | Hire Top Designer 2026</title>
-  <meta name="description" content="Hire Mohammad Waris — Senior UI/UX & Product Designer with 5+ years experience. Expert in mobile apps, SaaS dashboards, design systems & web apps. 40+ products shipped. Available for freelance worldwide." />
-  <meta name="keywords" content="UI UX designer, product designer, hire UI UX designer, freelance UI UX designer, senior product designer, mobile app designer, web designer, Figma designer, design systems, SaaS dashboard designer, fintech UI designer, healthcare UX designer, ecommerce UX designer, best UI UX designer 2026, UI UX portfolio, hire product designer, UI UX consultant, app redesign" />
+  <meta name="description" content="Hire Mohammad Waris — Senior UI/UX & Product Designer with 5+ years experience. Expert in mobile apps, SaaS dashboards, design systems & web apps. 40+ products shipped. Available worldwide." />
+  <meta name="keywords" content="UI UX designer, product designer, hire UI UX designer, freelance UI UX designer, senior product designer, mobile app designer, web designer, Figma designer, design systems, SaaS dashboard designer, fintech UI designer, healthcare UX designer, ecommerce UX designer, best UI UX designer 2026, UI UX portfolio, hire product designer, UI UX consultant" />
   <meta name="author" content="Mohammad Waris" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <link rel="canonical" href="https://warisuiuxstudio.vercel.app/" />
@@ -92,7 +92,6 @@
 
     :root {
       --bg: #050507;
-      --card: #0b0b0f;
       --text: #ffffff;
       --dim: #a0a0a8;
       --mute: #6a6a72;
@@ -111,7 +110,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* LIGHTWEIGHT BACKGROUND (CSS only, no JS) */
+    /* LIGHTWEIGHT BACKGROUND (CSS only) */
     body::before {
       content: '';
       position: fixed;
@@ -229,6 +228,23 @@
       line-height: 1;
       letter-spacing: -0.04em;
       margin-bottom: 0.5rem;
+      min-height: 4.5rem;
+    }
+
+    /* Typing cursor */
+    .hero-left .greeting .cursor {
+      display: inline-block;
+      width: 4px;
+      height: 4rem;
+      background: #fff;
+      margin-left: 6px;
+      vertical-align: middle;
+      animation: blink 0.8s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .hero-left .name-title {
@@ -237,6 +253,9 @@
       color: #e0e0e0;
       margin-bottom: 1.2rem;
       line-height: 1.2;
+      opacity: 0;
+      animation: fadeInText 0.8s ease forwards;
+      animation-delay: 2.2s;
     }
 
     .hero-left .name-title strong { font-weight: 600; color: #fff; }
@@ -248,6 +267,9 @@
       max-width: 500px;
       line-height: 1.5;
       margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInText 0.8s ease forwards;
+      animation-delay: 2.6s;
     }
 
     .hero-left .cta-mini {
@@ -257,6 +279,9 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: #aaa;
+      opacity: 0;
+      animation: fadeInText 0.8s ease forwards;
+      animation-delay: 3s;
     }
 
     .hero-left .cta-mini a {
@@ -267,6 +292,10 @@
 
     .hero-left .cta-mini a:hover { color: #fff; border-bottom-color: #fff; }
 
+    @keyframes fadeInText {
+      to { opacity: 1; }
+    }
+
     .hero-right { display: flex; justify-content: center; align-items: center; }
 
     .hero-right .portrait {
@@ -276,10 +305,21 @@
       background: #111;
       border: 1px solid var(--border);
       overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: portraitReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation-delay: 1.8s;
       transition: transform 0.4s ease;
     }
 
     .hero-right .portrait:hover { transform: scale(1.02); }
+
+    @keyframes portraitReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     .hero-right .portrait img {
       width: 100%;
@@ -314,7 +354,7 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ===== TABS (WORKING) ===== */
+    /* ===== TABS ===== */
     .tabs {
       display: flex;
       gap: 2rem;
@@ -360,11 +400,9 @@
       padding-bottom: 1.5rem;
       transition: transform 0.3s ease;
       cursor: pointer;
-      opacity: 1;
     }
 
     .project-card.hidden { display: none; }
-
     .project-card:hover { transform: translateY(-4px); }
 
     .project-card .mockup {
@@ -552,12 +590,11 @@
       gap: 1rem;
     }
 
-    /* ===== FADE-IN (LIGHTWEIGHT) ===== */
+    /* ===== FADE-IN ON SCROLL ===== */
     .fade-up {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
-      will-change: opacity, transform;
     }
 
     .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -571,7 +608,8 @@
       .sidebar { width: 60px; }
       .main { margin-left: 60px; padding: 1.5rem 2rem 3rem; }
       .hero { grid-template-columns: 1fr; text-align: center; padding: 2rem 1.5rem; }
-      .hero-left .greeting { font-size: 3.5rem; }
+      .hero-left .greeting { font-size: 3.5rem; min-height: 3.5rem; }
+      .hero-left .greeting .cursor { height: 3rem; }
       .hero-left .tagline { margin-left: auto; margin-right: auto; }
       .hero-left .cta-mini { justify-content: center; }
       .hero-right .portrait { max-width: 300px; margin: 0 auto; }
@@ -585,10 +623,16 @@
       .projects-grid { grid-template-columns: 1fr; }
       .sidebar { width: 50px; }
       .main { margin-left: 50px; padding: 1rem 1rem 2rem; }
-      .hero-left .greeting { font-size: 2.8rem; }
+      .hero-left .greeting { font-size: 2.8rem; min-height: 2.8rem; }
+      .hero-left .greeting .cursor { height: 2.4rem; }
       .hero-left .name-title { font-size: 1.4rem; }
       .section-title { font-size: 1.8rem; }
       .top-nav { flex-wrap: wrap; }
+    }
+
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -615,9 +659,9 @@
     </div>
 
     <!-- HERO -->
-    <section class="hero fade-up">
+    <section class="hero">
       <div class="hero-left">
-        <div class="greeting">Hello...</div>
+        <div class="greeting"><span id="typedText"></span><span class="cursor"></span></div>
         <div class="name-title">I'm <strong>Mohammad Waris</strong> | Product Designer</div>
         <div class="tagline">I specialize in turning intractable business problems into clear, measurable impact</div>
         <div class="cta-mini">
@@ -633,7 +677,7 @@
     </section>
 
     <!-- BOTTOM LINKS -->
-    <div class="bottom-links fade-up">
+    <div class="bottom-links">
       <a href="#about">ABOUT ME</a>
       <a href="#work">MY WORK</a>
     </div>
@@ -653,7 +697,7 @@
     <section id="work" class="fade-up">
       <h2 class="section-title">Case Studies & Projects</h2>
 
-      <!-- WORKING TABS -->
+      <!-- TABS -->
       <div class="tabs">
         <span class="tab active" data-tab="all">All Projects</span>
         <span class="tab" data-tab="case-study">Case Studies</span>
@@ -663,7 +707,7 @@
 
       <div class="projects-grid" id="projectsGrid">
 
-        <!-- 1. WMS (PROJECT) -->
+        <!-- 1. WMS -->
         <div class="project-card" data-type="project">
           <div class="mockup"><div class="placeholder">WMS</div></div>
           <div class="meta"><span>UX Audit</span><span>Dashboard</span><span>Enterprise SaaS</span><span>Logistics</span></div>
@@ -672,7 +716,7 @@
           <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
         </div>
 
-        <!-- 2. Artus AI (PROJECT) -->
+        <!-- 2. Artus AI -->
         <div class="project-card" data-type="project">
           <div class="mockup"><div class="placeholder">Artus AI</div></div>
           <div class="meta"><span>Web App</span><span>AI</span><span>SaaS</span></div>
@@ -681,7 +725,7 @@
           <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
         </div>
 
-        <!-- 3. Transporter App (PROJECT) -->
+        <!-- 3. Transporter App -->
         <div class="project-card" data-type="project">
           <div class="mockup"><div class="placeholder">Transporter</div></div>
           <div class="meta"><span>Mobile App</span><span>B2B</span><span>Logistics</span></div>
@@ -690,7 +734,7 @@
           <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
         </div>
 
-        <!-- 4. Customer HYP (PROJECT) -->
+        <!-- 4. Customer HYP -->
         <div class="project-card" data-type="project">
           <div class="mockup"><div class="placeholder">HYP</div></div>
           <div class="meta"><span>UX Audit</span><span>Dashboard</span><span>SaaS</span></div>
@@ -699,7 +743,7 @@
           <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
         </div>
 
-        <!-- 5. Ownschool (PROJECT) -->
+        <!-- 5. Ownschool -->
         <div class="project-card" data-type="project">
           <div class="mockup"><div class="placeholder">Ownschool</div></div>
           <div class="meta"><span>Mobile App</span><span>EdTech</span><span>UI/UX</span></div>
@@ -708,7 +752,7 @@
           <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
         </div>
 
-        <!-- 6. Vlieg Engineering (PROJECT) -->
+        <!-- 6. Vlieg Engineering -->
         <div class="project-card" data-type="project">
           <div class="mockup"><div class="placeholder">Vlieg</div></div>
           <div class="meta"><span>B2B SaaS</span><span>Web Design</span><span>Redesign</span></div>
@@ -717,7 +761,7 @@
           <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
         </div>
 
-        <!-- 7. Boansel (PROJECT) -->
+        <!-- 7. Boansel -->
         <div class="project-card" data-type="project">
           <div class="mockup"><div class="placeholder">Boansel</div></div>
           <div class="meta"><span>Web App</span><span>AI</span><span>SaaS</span></div>
@@ -726,7 +770,7 @@
           <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
         </div>
 
-        <!-- 8. Reqbeam (PROJECT) -->
+        <!-- 8. Reqbeam -->
         <div class="project-card" data-type="project">
           <div class="mockup"><div class="placeholder">Reqbeam</div></div>
           <div class="meta"><span>Open Source</span><span>UX/UI</span><span>SaaS</span></div>
@@ -735,7 +779,7 @@
           <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
         </div>
 
-        <!-- 9. Litebite (PROJECT) -->
+        <!-- 9. Litebite -->
         <div class="project-card" data-type="project">
           <div class="mockup"><div class="placeholder">Litebite</div></div>
           <div class="meta"><span>Mobile App</span><span>AI</span><span>Health</span></div>
@@ -744,7 +788,7 @@
           <span class="view-link">View Project <i class="fas fa-arrow-right"></i></span>
         </div>
 
-        <!-- 10. PREMIUM CASE STUDY 1 (Fintech) -->
+        <!-- 10. NeoBank (CASE STUDY) -->
         <div class="project-card" data-type="case-study">
           <div class="mockup"><div class="placeholder">NeoBank</div></div>
           <div class="meta"><span>Case Study</span><span>Fintech</span><span>Mobile App</span></div>
@@ -753,7 +797,7 @@
           <span class="view-link">Read Case Study <i class="fas fa-arrow-right"></i></span>
         </div>
 
-        <!-- 11. PREMIUM CASE STUDY 2 (SaaS Design System) -->
+        <!-- 11. Atlas Design System (CASE STUDY) -->
         <div class="project-card" data-type="case-study">
           <div class="mockup"><div class="placeholder">Atlas DS</div></div>
           <div class="meta"><span>Case Study</span><span>Design System</span><span>B2B SaaS</span></div>
@@ -794,6 +838,24 @@
   </a>
 
   <script>
+    // ===== TYPING ANIMATION =====
+    (function() {
+      const target = document.getElementById('typedText');
+      const text = "Hello...";
+      let index = 0;
+      const speed = 130; // typing speed in ms
+
+      function type() {
+        if (index < text.length) {
+          target.textContent += text.charAt(index);
+          index++;
+          setTimeout(type, speed);
+        }
+      }
+      // Slight delay before typing starts for a premium feel
+      setTimeout(type, 400);
+    })();
+
     // ===== WHATSAPP =====
     function openWAAgent() {
       const phone = "923407921680";
@@ -806,7 +868,7 @@
       window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
     }
 
-    // ===== WORKING TABS =====
+    // ===== TABS =====
     const tabs = document.querySelectorAll('.tab');
     const cards = document.querySelectorAll('.project-card');
     const tabCount = document.getElementById('tabCount');
@@ -833,7 +895,7 @@
       });
     });
 
-    // ===== FADE-IN ON SCROLL (Lightweight) =====
+    // ===== FADE-IN ON SCROLL =====
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
